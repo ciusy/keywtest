@@ -2,6 +2,8 @@ package com.mrj.person;
 
 import java.util.Date;
 
+import com.mrj.policy.Policy;
+
 public class RandomPolicy extends Policy {
 
 	@Override

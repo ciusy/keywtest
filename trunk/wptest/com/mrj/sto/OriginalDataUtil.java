@@ -5,13 +5,16 @@ import java.io.*;
 import java.math.BigDecimal;
 import java.text.*;
 
+import org.apache.log4j.Logger;
+
 import com.mrj.person.*;
+import com.mrj.util.GlobalConstant;
 
 public class OriginalDataUtil { 
-	
+	static Logger logger = Logger.getLogger(OriginalDataUtil.class);
 	public static Map<String,Sto> getAllStoMap(){
 		Map<String,Sto> stoMap=new HashMap<String, Sto>();
-		String filePath="C:/export/";
+		String filePath=GlobalConstant.ExportFilePath;
 		File[] files=new File(filePath).listFiles();
 		InputStreamReader read;
 		for(int i=0;i<files.length;i++){
@@ -47,7 +50,7 @@ public class OriginalDataUtil {
 				sto.setHq(hq);
 				stoMap.put(sto.getCode(), sto);
 			} catch (Exception ex) {
-				ex.printStackTrace();
+				logger.error("", ex);
 			}
 		}
 		return stoMap;
@@ -59,18 +62,7 @@ public class OriginalDataUtil {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Map<String,Sto> stoMap=OriginalDataUtil.getAllStoMap();
 		
-		Person person1=new Person();
-		Policy policy1=new RandomPolicy();
-		person1.setPolicy(policy1);
-		person1.setInitMoney(new BigDecimal(20000.00));
-		try {
-			person1.beginInvest(new SimpleDateFormat("MM/dd/yy").parse("01/01/2000"),new Date());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 }

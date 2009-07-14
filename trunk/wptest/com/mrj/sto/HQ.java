@@ -68,6 +68,10 @@ public class HQ {
 		
 		return re;
 	}
+
+	public float getPrice(Date date) {
+		return getDailyHQ(date).getFinalPrice();
+	}
 	
 	
 
