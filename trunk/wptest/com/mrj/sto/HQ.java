@@ -17,6 +17,9 @@ public class HQ {
 		dhqMap.put(date, dhq);
 	}
 
+/**
+ * º∆À„÷∏±Í
+ */
 	public void calculateAllIndicator() {
 		float[] priceArray = new float[dhqMap.size()];
 		float[] chargeMoneyArray = new float[dhqMap.size()];
