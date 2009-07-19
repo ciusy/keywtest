@@ -1,11 +1,9 @@
 package com.mrj.charge;
 
-import java.math.BigDecimal;
-import java.util.*;
+import java.util.Date;
 
 import org.apache.log4j.Logger;
 
-import com.mrj.person.CapitalSituation;
 import com.mrj.person.Person;
 import com.mrj.policy.ChargeDescription;
 import com.mrj.sto.DHQ;
@@ -28,25 +26,31 @@ public class ChargeCenter {
 		int operateAmount=cd.operateAmount;
 		float plan_price=cd.plan_price;
 		DHQ dhq=sto.getHq().getDailyHQ(date);
-		if(operationType==ChargeDescription.operationType_buy){
-			//if(p.getCs().getLeftMoney().compareTo(new BigDecimal(operateAmount*plan_price))>0){
-				if(plan_price>=dhq.getLowestPrice()){
-					if(plan_price>=dhq.getHighPrice())plan_price=dhq.getHighPrice();
-					return p.getCs().increaseSto(sto,plan_price,operateAmount);
+		if(dhq!=null){
+			if(operationType==ChargeDescription.operationType_buy){
+				//if(p.getCs().getLeftMoney().compareTo(new BigDecimal(operateAmount*plan_price))>0){
+					if(plan_price>=dhq.getLowestPrice()){
+						if(plan_price>=dhq.getHighPrice())plan_price=dhq.getHighPrice();
+						return p.getCs().increaseSto(sto,plan_price,operateAmount);
+					}else{
+						//logger.info("买不到");
+						return ChargeCenter.charge_fail;
+					}
+				//}
+			}else{
+				if(plan_price<=dhq.getHighPrice()){
+					if(plan_price<=dhq.getLowestPrice())plan_price=dhq.getLowestPrice();
+					return p.getCs().reduceSto(sto,plan_price,operateAmount);
 				}else{
-					logger.info("买不到");
+					//logger.info("卖不出");
 					return ChargeCenter.charge_fail;
 				}
-			//}
-		}else{
-			if(plan_price<=dhq.getHighPrice()){
-				if(plan_price<=dhq.getLowestPrice())plan_price=dhq.getLowestPrice();
-				return p.getCs().reduceSto(sto,plan_price,operateAmount);
-			}else{
-				logger.info("卖不出");
-				return ChargeCenter.charge_fail;
 			}
+		}else{
+			//logger.info("当天无交易数据");
+			return ChargeCenter.charge_fail;
 		}
+		
 		
 		
 	}

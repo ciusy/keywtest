@@ -28,6 +28,11 @@ import org.jfree.ui.RefineryUtilities;
 public class CandlestickChartDemo1 extends ApplicationFrame {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = -2328143145648625229L;
+
+	/**
      * A demonstration application showing a candlestick chart.
      *
      * @param title  the frame title.

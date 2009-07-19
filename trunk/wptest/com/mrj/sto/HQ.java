@@ -1,11 +1,14 @@
 package com.mrj.sto;
 
-import java.io.File;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 
 public class HQ {
 	public DHQ hqFile;
-
+	public Date earliestDate;
+	public Date latestDate;
 	private HashMap<Date, DHQ> dhqMap=new HashMap<Date, DHQ>();
 
 	public DHQ getDailyHQ(Date date) {
@@ -73,7 +76,20 @@ public class HQ {
 	}
 
 	public float getPrice(Date date) {
-		return getDailyHQ(date).getFinalPrice();
+		Calendar c=Calendar.getInstance();
+		c.setTime(date);
+		while(true){
+			if(getDailyHQ(c.getTime())!=null){
+				return getDailyHQ(date).getFinalPrice();
+			}else{
+				if(c.getTime().before(this.earliestDate)){
+					return 0;
+				}else{
+					c.add(Calendar.DAY_OF_YEAR, -1);
+				}
+			}
+		}
+		
 	}
 	
 	

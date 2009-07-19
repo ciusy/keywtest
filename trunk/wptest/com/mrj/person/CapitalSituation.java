@@ -1,12 +1,13 @@
 package com.mrj.person;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
 import com.mrj.charge.ChargeCenter;
-import com.mrj.sto.Main;
 import com.mrj.sto.Sto;
 
 public class CapitalSituation {
@@ -68,7 +69,8 @@ public class CapitalSituation {
 				shtemp.sto=sto;
 				holdingList.add(shtemp);
 				
-			}			
+			}	
+			logger.info("已经买入股票"+sto.getName()+operateAmount+"股，成交价格为"+plan_price+"元");
 			return ChargeCenter.charge_succuss;
 		}else{
 			logger.error("余额不足以买入要求的股票");
@@ -109,6 +111,7 @@ public class CapitalSituation {
 				shtemp_SellAll.hodingAmount=nowMount;		
 			}
 			this.leftMoney.add(new BigDecimal(operateAmount*plan_price));
+			logger.info("已经卖出股票"+sto.getName()+operateAmount+"股，成交价格为"+plan_price+"元");
 			return ChargeCenter.charge_succuss;
 		}else{
 			logger.error("要求卖出的股票不在当前已有股票中");

@@ -11,8 +11,7 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 import com.mrj.person.Person;
-import com.mrj.person.RandomPolicy;
-import com.mrj.policy.Policy;
+import com.mrj.policy.RandomPolicy;
 import com.mrj.util.GlobalConstant;
 
 public class Main {
@@ -45,13 +44,11 @@ public class Main {
 		logger.info("Entering application.");
 		Map<String, Sto> stoMap = OriginalDataUtil.getAllStoMap();
 		
-		Person person1 = new Person();
-		Policy policy1 = new RandomPolicy();
-		person1.setPolicy(policy1);
-		person1.setInitMoney(new BigDecimal(20000.00));
+		Person person1 = new Person(new RandomPolicy(),new BigDecimal(20000.00));
+		
 		try {
 			person1.beginInvest(new SimpleDateFormat("MM/dd/yy")
-					.parse("01/01/2000"), new Date());
+					.parse("01/01/2003"), new Date());
 		} catch (Exception e) {			
 			logger.error("", e);
 		}

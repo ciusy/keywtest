@@ -1,13 +1,20 @@
 package com.mrj.sto;
 
-import java.util.*;
-import java.io.*;
-import java.math.BigDecimal;
-import java.text.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 
-import com.mrj.person.*;
 import com.mrj.util.GlobalConstant;
 
 public class OriginalDataUtil {
@@ -19,21 +26,25 @@ public class OriginalDataUtil {
 		if (stoMap != null)
 			return stoMap;
 		else {
+			SimpleDateFormat sdf=new SimpleDateFormat("MM/dd/yy");
 			stoMap = new HashMap<String, Sto>();
 			String filePath = GlobalConstant.ExportFilePath;
 			File[] files = new File(filePath).listFiles();
 			InputStreamReader read;
 			for (int i = 0; i < files.length; i++) {
 				try {
+					logger.info("读取第"+(i+1)+"个文件");
 					read = new InputStreamReader(new FileInputStream(files[i]));
 					BufferedReader reader = new BufferedReader(read);
 					String result = "";
 					int j = 0;
 					Sto sto = new Sto();
 					HQ hq = new HQ();
+					boolean flag_isSetEarliestDate = false;
 					while (true) {
 						DHQ dhq = new DHQ();
 						result = reader.readLine();
+						
 						if (result == null)
 							break;
 						String[] results = result.split("\\s");
@@ -41,8 +52,12 @@ public class OriginalDataUtil {
 							sto.setName(results[1]);
 							sto.setCode(results[0]);
 						} else if (j > 1) {
-							dhq.setDate(new SimpleDateFormat("MM/dd/yy")
-									.parse(results[0]));
+							Date temp=sdf.parse(results[0]);
+							if (!flag_isSetEarliestDate) {
+								hq.earliestDate = temp;
+								flag_isSetEarliestDate=true;
+							}
+							dhq.setDate(temp);
 							dhq.setBeginPrice(Float.parseFloat(results[1]));
 							dhq.setHighPrice(Float.parseFloat(results[2]));
 							dhq.setLowestPrice(Float.parseFloat(results[3]));
@@ -50,6 +65,7 @@ public class OriginalDataUtil {
 							dhq.setChargeVolume(Long.parseLong(results[5]));
 							dhq.setChargeMoney(Float.parseFloat(results[6]));
 							hq.putDHQ(dhq.getDate(), dhq);
+							hq.latestDate=temp;
 						}
 						j++;
 					}
@@ -65,12 +81,13 @@ public class OriginalDataUtil {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	public static List<Sto> getAllStoList() {
 		if (stoList == null) {
-			stoList= new ArrayList<Sto>();
-			Collection c=getAllStoMap().values();
-			for(Iterator i=c.iterator() ; i.hasNext() ; ){
-				stoList.add((Sto)i.next());
+			stoList = new ArrayList<Sto>();
+			Collection c = getAllStoMap().values();
+			for (Iterator i = c.iterator(); i.hasNext();) {
+				stoList.add((Sto) i.next());
 			}
 		}
 
@@ -81,7 +98,7 @@ public class OriginalDataUtil {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		for(Sto sto:getAllStoList()){
+		for (Sto sto : getAllStoList()) {
 			logger.info(sto.code);
 		}
 
