@@ -79,8 +79,10 @@ public abstract class Policy {
 				    float planPrice=getPlanPrice(sto,ppdModel,begin);
 				    if(planPrice==0)continue;
 				    int planMount=new BigDecimal(allotCapital.floatValue()/planPrice).intValue()/100*100;
-					ChargeDescription temp = new ChargeDescription(sto,ChargeDescription.operationType_buy,planMount,planPrice);
-					buyChargeDescriptionList.add(temp);
+				    if(planMount>0){
+				    	ChargeDescription temp = new ChargeDescription(sto,ChargeDescription.operationType_buy,planMount,planPrice);
+						buyChargeDescriptionList.add(temp);
+				    }					
 				}
 
 			} catch (Exception e) {

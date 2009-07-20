@@ -129,7 +129,8 @@ public class CapitalSituation {
 		for(ShareHolding shtemp:holdingList){
 			shtemp.availableAmountForSell=shtemp.hodingAmount;
 		}
-		
 	}
+	
+	
 
 }

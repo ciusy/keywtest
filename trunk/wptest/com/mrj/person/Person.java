@@ -59,8 +59,7 @@ public class Person {
 		Calendar end = Calendar.getInstance();
 		end.setTime(endDate);
 
-		while (begin.compareTo(end) <= 0) {
-			logger.info(begin.getTime()+"交易情况:");
+		while (begin.compareTo(end) <= 0) {			
 			doDailyInvest(begin);
 			begin.add(Calendar.DAY_OF_YEAR, 1);
 		}
@@ -70,6 +69,7 @@ public class Person {
 		availableAmountForSellProcess();// 每日交易前先使得修改可卖数量
 		List<ChargeDescription> sto_tobuy_array = policy.getChargePlan(begin);
 		ChargeCenter cc = new ChargeCenter();
+		if(sto_tobuy_array.size()!=0)logger.info(begin.getTime()+"交易情况:");
 		for (ChargeDescription cd : sto_tobuy_array) {
 			cc.charge(this, cd, begin.getTime());
 		}

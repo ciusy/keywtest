@@ -51,7 +51,7 @@ public class Main {
 		
 		try {
 			Date today=sdf.parse(sdf.format(new Date()));
-			person1.beginInvest(sdf.parse("01/01/2003"), today);
+			person1.beginInvest(sdf.parse("01/01/2007"), today);
 			logger.info(person1.getCs().getTotalAssets(today).floatValue());
 		} catch (Exception e) {			
 			logger.error("", e);
