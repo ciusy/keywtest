@@ -80,7 +80,7 @@ public class HQ {
 		c.setTime(date);
 		while(true){
 			if(getDailyHQ(c.getTime())!=null){
-				return getDailyHQ(date).getFinalPrice();
+				return getDailyHQ(c.getTime()).getFinalPrice();
 			}else{
 				if(c.getTime().before(this.earliestDate)){
 					return 0;

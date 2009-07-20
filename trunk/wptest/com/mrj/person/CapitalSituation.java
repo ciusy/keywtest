@@ -32,19 +32,20 @@ public class CapitalSituation {
 		this.holdingList = holdingList;
 	}
 
-	public BigDecimal getTotalAssets(Date date) {
-		BigDecimal re = new BigDecimal(0f);
-		re.add(this.leftMoney);
+	public BigDecimal getTotalAssets(Date date) {		
+		float reFloat=0f;
+		reFloat+=this.leftMoney.floatValue();
 		for(int i=0;i<holdingList.size();i++){
 			ShareHolding temp=holdingList.get(i);
-			re.add(temp.getAssets(date));
+			reFloat+=temp.getAssets(date).floatValue();
 		}
+		BigDecimal re = new BigDecimal(reFloat);
 		return re;
 	}
 
 	public int increaseSto(Sto sto, float plan_price, int operateAmount) {
 		if(this.leftMoney.compareTo(new BigDecimal(operateAmount*plan_price))>0){
-			this.leftMoney.subtract(new BigDecimal(operateAmount*plan_price));
+			this.leftMoney=this.leftMoney.subtract(new BigDecimal(operateAmount*plan_price));
 			boolean isAlreadyOwn=false;
 			int i=0;
 			for(;i<holdingList.size();i++){
@@ -57,14 +58,14 @@ public class CapitalSituation {
 			if(isAlreadyOwn){
 				ShareHolding shtemp=holdingList.get(i);
 				int alreadyMount=shtemp.hodingAmount;
-				float preCostPrice=shtemp.costPrice;
+				float preCostPrice=shtemp.getCostPrice();
 				int nowMount=alreadyMount+operateAmount;
 				float costPrice=(preCostPrice*alreadyMount+operateAmount*plan_price)/(nowMount*1.0f);
-				shtemp.costPrice=costPrice;
+				shtemp.setCostPrice(costPrice);
 				shtemp.hodingAmount=nowMount;
 			}else{
 				ShareHolding shtemp=new ShareHolding();
-				shtemp.costPrice=plan_price;
+				shtemp.setCostPrice(plan_price);;
 				shtemp.hodingAmount=operateAmount;
 				shtemp.sto=sto;
 				holdingList.add(shtemp);
@@ -106,11 +107,11 @@ public class CapitalSituation {
 			if(nowMount==0){
 				holdingList.remove(shtemp_SellAll);
 			}else{
-				shtemp_SellAll.costPrice=(shtemp_SellAll.costPrice*alreadyMount-plan_price*operateAmount)/(nowMount*1.0f);
+				shtemp_SellAll.setCostPrice((shtemp_SellAll.getCostPrice()*alreadyMount-plan_price*operateAmount)/(nowMount*1.0f));
 				shtemp_SellAll.availableAmountForSell-=operateAmount;
 				shtemp_SellAll.hodingAmount=nowMount;		
 			}
-			this.leftMoney.add(new BigDecimal(operateAmount*plan_price));
+			this.leftMoney=this.leftMoney.add(new BigDecimal(operateAmount*plan_price));
 			logger.info("已经卖出股票"+sto.getName()+operateAmount+"股，成交价格为"+plan_price+"元");
 			return ChargeCenter.charge_succuss;
 		}else{

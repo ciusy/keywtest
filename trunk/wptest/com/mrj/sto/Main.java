@@ -3,6 +3,7 @@ package com.mrj.sto;
 import java.io.FileInputStream;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 import java.util.Properties;
@@ -46,13 +47,16 @@ public class Main {
 		
 		Person person1 = new Person(new RandomPolicy(),new BigDecimal(20000.00));
 		
+		SimpleDateFormat sdf=new SimpleDateFormat("MM/dd/yy");
+		
 		try {
-			person1.beginInvest(new SimpleDateFormat("MM/dd/yy")
-					.parse("01/01/2003"), new Date());
+			Date today=sdf.parse(sdf.format(new Date()));
+			person1.beginInvest(sdf.parse("01/01/2003"), today);
+			logger.info(person1.getCs().getTotalAssets(today).floatValue());
 		} catch (Exception e) {			
 			logger.error("", e);
 		}
-		logger.info(person1.getCs().getTotalAssets(new Date()).floatValue());
+		
 
 	}
 

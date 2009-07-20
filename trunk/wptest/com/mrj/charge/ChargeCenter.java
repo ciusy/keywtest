@@ -28,7 +28,6 @@ public class ChargeCenter {
 		DHQ dhq=sto.getHq().getDailyHQ(date);
 		if(dhq!=null){
 			if(operationType==ChargeDescription.operationType_buy){
-				//if(p.getCs().getLeftMoney().compareTo(new BigDecimal(operateAmount*plan_price))>0){
 					if(plan_price>=dhq.getLowestPrice()){
 						if(plan_price>=dhq.getHighPrice())plan_price=dhq.getHighPrice();
 						return p.getCs().increaseSto(sto,plan_price,operateAmount);
@@ -36,7 +35,6 @@ public class ChargeCenter {
 						//logger.info("Âò²»µ½");
 						return ChargeCenter.charge_fail;
 					}
-				//}
 			}else{
 				if(plan_price<=dhq.getHighPrice()){
 					if(plan_price<=dhq.getLowestPrice())plan_price=dhq.getLowestPrice();

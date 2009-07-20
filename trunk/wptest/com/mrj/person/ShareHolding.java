@@ -40,14 +40,14 @@ public class ShareHolding {
 	}
 
 	int hodingAmount;
-	float costPrice;
+	private float costPrice;
 	int availableAmountForSell;
 	
 	float interestRate;
 	
 	public BigDecimal getAssets(Date date){//早于date时间并里date最近的时间点
 		BigDecimal re = new BigDecimal(0f);
-		re.add(new BigDecimal(sto.getHq().getPrice(date)*hodingAmount));
+		re=re.add(new BigDecimal(sto.getHq().getPrice(date)*hodingAmount));
 		return re;
 	}
 	
