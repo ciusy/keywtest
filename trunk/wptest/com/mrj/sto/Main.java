@@ -10,7 +10,10 @@ import java.util.Properties;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
+import org.hibernate.Session;
 
+import com.mrj.dm.dao.HibernateUtil;
+import com.mrj.dm.domain.CapitalFlow;
 import com.mrj.person.Person;
 import com.mrj.policy.RandomPolicy;
 import com.mrj.util.GlobalConstant;
@@ -37,11 +40,8 @@ public class Main {
 		}
 
 	}
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
+	
+	public static void testSto(){
 		logger.info("Entering application.");
 		Map<String, Sto> stoMap = OriginalDataUtil.getAllStoMap();
 		
@@ -58,6 +58,24 @@ public class Main {
 		}
 		
 
+	}
+	
+	public static void testHql(){
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		CapitalFlow capitalFlow = new CapitalFlow();		
+		capitalFlow.setUserUuid("123");
+		session.save(capitalFlow);
+		capitalFlow.setUserUuid("234");
+		session.save(capitalFlow);
+		session.getTransaction().commit();
+	}
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		testHql();
 	}
 
 }
