@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>org.netbeans.modules.java.j2seproject</type>
+    <configuration>
+        <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
+            <name>Stock</name>
+            <minimum-ant-version>1.6.5</minimum-ant-version>
+            <source-roots>
+                <root id="src.dir" name="src_app"/>
+                <root id="src.src_domainModel.dir"/>
+                <root id="src.src_stockChargeCenter.dir"/>
+                <root id="src.src_chooseStoPolicy.dir"/>
+                <root id="src.src_operatePolicy.dir"/>
+                <root id="src.src_mathsimulate.dir"/>
+                <root id="src.src_chartUtil.dir"/>
+            </source-roots>
+            <test-roots>
+                <root id="test.src.dir"/>
+            </test-roots>
+        </data>
+        <swingapp xmlns="http://www.netbeans.org/ns/form-swingapp/1">
+            <application-class name="stock.StockApp"/>
+        </swingapp>
+    </configuration>
+</project>
