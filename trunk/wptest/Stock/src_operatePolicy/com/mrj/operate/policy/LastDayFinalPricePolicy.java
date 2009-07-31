@@ -86,12 +86,12 @@ public class LastDayFinalPricePolicy extends OperatePolicy {
         Calendar temp = Calendar.getInstance();
         temp.setTime(nextChargeDay.getTime());
         Sto sto = scvp.getSto();
-        HQ hq = sto.hq;
+        HQ hq = sto.getHq();
         while (true) {
             temp.add(Calendar.DAY_OF_YEAR, -1);
             boolean isBeforeearliestDate = false;
             Calendar earliestDate = Calendar.getInstance();
-            earliestDate.setTime(hq.earliestDate);
+            earliestDate.setTime(hq.getEarliestDate());
             isBeforeearliestDate = temp.compareTo(earliestDate) < 0;
             if (hq.getDailyHQ(temp.getTime()) != null || isBeforeearliestDate) {
                 if (hq.getDailyHQ(temp.getTime()) != null) {

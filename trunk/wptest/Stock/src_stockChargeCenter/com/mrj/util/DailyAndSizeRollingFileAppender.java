@@ -12,9 +12,6 @@ import org.apache.log4j.helpers.CountingQuietWriter;
 import org.apache.log4j.helpers.OptionConverter;
 import org.apache.log4j.spi.LoggingEvent;
 
-/**
- * 融合DialyRollingFileAppender和RollingFileAppender
- */
 public class DailyAndSizeRollingFileAppender extends FileAppender {
 	private long maxFileSize = 2 * 1024 * 1024;
 
@@ -73,7 +70,7 @@ public class DailyAndSizeRollingFileAppender extends FileAppender {
 	}
 
 	/**
-	 * 不需要synchronized，父类中的doAppend保证了线程安全
+	 * 锟斤拷锟斤拷要synchronized锟斤拷锟斤拷锟斤拷锟叫碉拷doAppend锟斤拷证锟斤拷锟竭程帮拷全
 	 */
 	@Override
 	protected void subAppend(LoggingEvent e) {
