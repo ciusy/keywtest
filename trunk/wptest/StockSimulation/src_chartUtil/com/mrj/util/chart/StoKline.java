@@ -1,19 +1,34 @@
 package com.mrj.util.chart;
 
-import java.util.Date;
+import java.awt.Color;
+import java.awt.Font;
+import java.util.*;
 
 import javax.swing.JPanel;
 
+import org.apache.commons.collections.ListUtils;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.axis.CategoryLabelPositions;
 import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.axis.ValueAxis;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PiePlot;
+import org.jfree.chart.plot.Plot;
 import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.title.TextTitle;
 import org.jfree.data.xy.DefaultHighLowDataset;
 import org.jfree.data.xy.OHLCDataset;
 import org.jfree.date.DateUtilities;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
+
+import com.mrj.sto.DHQ;
+import com.mrj.sto.HQ;
+import com.mrj.sto.OriginalDataUtil;
+import com.mrj.sto.Sto;
 
 import demo.CandlestickChartDemo1;
 
@@ -43,24 +58,22 @@ public class StoKline extends ApplicationFrame{
      * 
      * @return The dataset.
      */
-    private static JFreeChart createChart(OHLCDataset dataset) {
+    private static JFreeChart createChart(OHLCDataset dataset,String stoCode) {
+    	if(dataset==null)return null;
         JFreeChart chart = ChartFactory.createCandlestickChart(
-            "Candlestick Demo 1",
+        		stoCode==null?"":OriginalDataUtil.getAllStoMap().get(stoCode).getName(),
             "Time", 
             "Value",
             dataset, 
             true
         );
-        XYPlot plot = (XYPlot) chart.getPlot();        
-        NumberAxis axis = (NumberAxis) plot.getRangeAxis();
-        axis.setAutoRangeIncludesZero(false);
-        axis.setUpperMargin(0.0);
-        axis.setLowerMargin(0.0);
-//        CandlestickRenderer renderer = (CandlestickRenderer) plot.getRenderer();
-//        renderer.setUseOutlinePaint(true);
-//        renderer.setOutlinePaint(Color.gray);
+        configFont(chart);
+        
+        
         return chart;        
     }
+    
+    
     
     /**
      * Creates a sample high low dataset.
@@ -419,14 +432,110 @@ public class StoKline extends ApplicationFrame{
      * @return A panel.
      */
     public static JPanel createDemoPanel() {
-        JFreeChart chart = createChart(createDataset());
+        JFreeChart chart = createChart(createDataset(),null);
         return new ChartPanel(chart);
     }
     
-    public static JFreeChart getChart(){
-    	return createChart(createDataset());
+    /**    
+    * 配置字体    
+    * @param chart JFreeChart 对象    
+    */     
+    private static void configFont(JFreeChart chart){     
+   
+    XYPlot plot = (XYPlot) chart.getPlot(); 
+    NumberAxis axis = (NumberAxis) plot.getRangeAxis();
+    axis.setAutoRangeIncludesZero(false);
+    axis.setUpperMargin(0.0);
+    axis.setLowerMargin(0.0);
+    
+ // 配置字体     
+    Font xfont = new Font("宋体",Font.PLAIN,12) ;// X轴     
+    Font yfont = new Font("宋体",Font.PLAIN,12) ;// Y轴     
+    Font kfont = new Font("宋体",Font.PLAIN,12) ;// 底部     
+    Font titleFont = new Font("隶书", Font.BOLD , 25) ; // 图片标题     
+    
+    chart.getTitle().setFont(titleFont); 
+ // 底部     
+    chart.getLegend().setItemFont(kfont);     
+
+    // X 轴     
+    ValueAxis domainAxis = plot.getDomainAxis();     
+    domainAxis.setLabelFont(xfont);// 轴标题     
+    domainAxis.setTickLabelFont(xfont);// 轴数值     
+    domainAxis.setTickLabelPaint(Color.BLUE) ; // 字体颜色     
+    
+    // Y 轴     
+    ValueAxis rangeAxis = plot.getRangeAxis();     
+    rangeAxis.setLabelFont(yfont);     
+    rangeAxis.setLabelPaint(Color.BLUE) ; // 字体颜色     
+    rangeAxis.setTickLabelFont(yfont);     
+   
+    }    
+
+    
+    public static JFreeChart getChart(String stoCode,Date fromdate,Date todate){
+    	JFreeChart re=createChart(createDataset(stoCode,fromdate,todate),stoCode);
+    	//configFont(re);
+    	return re;
     }
-    /**
+    @SuppressWarnings("unchecked")
+	private static OHLCDataset createDataset(String stoCode, Date fromdate,
+			Date todate) {
+    	Sto sto=OriginalDataUtil.getAllStoMap().get(stoCode);
+    	if(sto==null)return null;
+    	HQ hq=sto.getHq();  	
+    	
+    	List dateList = new ArrayList();
+    	List highList = new ArrayList();
+    	List lowList = new ArrayList();
+    	List openList = new ArrayList();
+    	List closeList = new ArrayList();
+    	List volumeList = new ArrayList();
+    	
+    	
+    	Calendar begin = Calendar.getInstance();
+        begin.setTime(fromdate);
+        Calendar end = Calendar.getInstance();
+        end.setTime(todate);
+        
+    	
+        while (begin.compareTo(end) <= 0) {
+        	DHQ dhq=hq.getDailyHQ(begin.getTime());
+        	if(dhq!=null){
+        		dateList.add(begin.getTime());
+            	highList.add(dhq.getHighPrice());
+            	lowList.add(dhq.getLowestPrice());
+            	openList.add(dhq.getBeginPrice());
+            	closeList.add(dhq.getFinalPrice());
+            	volumeList.add(dhq.getChargeVolume());
+        	}
+            begin.add(Calendar.DAY_OF_YEAR, 1);
+        }
+        
+    	
+    	 Date[] date = new Date[dateList.size()];
+         double[] high = new double[dateList.size()];
+         double[] low = new double[dateList.size()];
+         double[] open = new double[dateList.size()];
+         double[] close = new double[dateList.size()];
+         double[] volume = new double[dateList.size()];
+         
+         for(int i=0;i<dateList.size();i++){
+        	 date[i]=(Date) dateList.get(i);
+        	 high[i]=(Float) highList.get(i);
+        	 low[i]=(Float)lowList.get(i);
+        	 open[i]=(Float)openList.get(i);
+        	 close[i]=(Float)closeList.get(i);
+        	 volume[i]=(Long)volumeList.get(i);
+        	 
+         }
+        
+    	
+         return new DefaultHighLowDataset("Series 1", date, high, low, open, 
+                 close, volume);
+	}
+
+	/**
      * Starting point for the demonstration application.
      *
      * @param args  ignored.
