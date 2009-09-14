@@ -61,7 +61,7 @@ public class Person {
         }
     }
 
-    private void doDailyInvest(Calendar nextChargeDay) {
+    public void doDailyInvest(Calendar nextChargeDay) {
     	
         availableAmountForSellProcess();//初始化可卖数量
         List<ChargeDescription> sto_chargePlan = operatePolicy.getChargePlan(nextChargeDay);
