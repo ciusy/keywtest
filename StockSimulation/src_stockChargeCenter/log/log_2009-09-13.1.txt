@@ -1,0 +1,329 @@
+2009-09-13 00:29:37,831 ERROR [http-8080-1] Main - 
+java.lang.NullPointerException
+	at java.util.Calendar.setTime(Calendar.java:1075)
+	at com.mrj.policy.Policy.getLastDayFinalPrice(Policy.java:219)
+	at com.mrj.policy.FittingPolicy.getlastDayPriceConfidenceValue(FittingPolicy.java:98)
+	at com.mrj.policy.FittingPolicy.getCompositeConfidenceValue(FittingPolicy.java:68)
+	at com.mrj.policy.FittingPolicy.getBuyList(FittingPolicy.java:42)
+	at com.mrj.operate.policy.OperatePolicy.getChargePlan(OperatePolicy.java:59)
+	at com.mrj.person.Person.doDailyInvest(Person.java:67)
+	at com.mrj.person.Person.beginInvest(Person.java:58)
+	at com.mrj.sto.Main.testPersonInvest(Main.java:72)
+	at org.apache.jsp.index_jsp._jspService(index_jsp.java:75)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:803)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:393)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:320)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:266)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:803)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:230)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:175)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:128)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:104)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:261)
+	at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:844)
+	at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:581)
+	at org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:447)
+	at java.lang.Thread.run(Thread.java:619)
+2009-09-13 00:36:06,186 ERROR [http-8080-1] Main - 
+java.lang.NullPointerException
+	at java.util.Calendar.setTime(Calendar.java:1075)
+	at com.mrj.policy.Policy.getLastDayFinalPrice(Policy.java:219)
+	at com.mrj.policy.FittingPolicy.getlastDayPriceConfidenceValue(FittingPolicy.java:103)
+	at com.mrj.policy.FittingPolicy.getCompositeConfidenceValue(FittingPolicy.java:73)
+	at com.mrj.policy.FittingPolicy.getBuyList(FittingPolicy.java:47)
+	at com.mrj.operate.policy.OperatePolicy.getChargePlan(OperatePolicy.java:59)
+	at com.mrj.person.Person.doDailyInvest(Person.java:67)
+	at com.mrj.person.Person.beginInvest(Person.java:58)
+	at com.mrj.sto.Main.testPersonInvest(Main.java:72)
+	at org.apache.jsp.index_jsp._jspService(index_jsp.java:75)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:803)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:393)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:320)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:266)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:803)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:230)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:175)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:128)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:104)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:261)
+	at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:844)
+	at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:581)
+	at org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:447)
+	at java.lang.Thread.run(Thread.java:619)
+2009-09-13 00:47:37,698 INFO  [http-8080-1] Person - Fri Mar 06 00:00:00 CST 2009的投资日记:
+2009-09-13 00:47:37,732 INFO  [http-8080-1] CapitalSituation - 已经买入股票南100股，成交价格为4.87元
+2009-09-13 00:47:37,778 INFO  [http-8080-1] CapitalSituation - 已经买入股票三房巷100股，成交价格为3.94元
+2009-09-13 00:47:37,810 INFO  [http-8080-1] CapitalSituation - 已经买入股票七喜控股100股，成交价格为4.15元
+2009-09-13 00:47:37,841 INFO  [http-8080-1] CapitalSituation - 已经买入股票国旅联合100股，成交价格为4.05元
+2009-09-13 00:47:37,857 INFO  [http-8080-1] CapitalSituation - 已经买入股票金路集团100股，成交价格为3.69元
+2009-09-13 00:47:39,263 INFO  [http-8080-1] Person - Mon Mar 09 00:00:00 CST 2009的投资日记:
+2009-09-13 00:47:39,263 INFO  [http-8080-1] CapitalSituation - 已经买入股票武汉塑料200股，成交价格为4.89元
+2009-09-13 00:47:39,311 INFO  [http-8080-1] CapitalSituation - 已经买入股票时代万恒100股，成交价格为7.4元
+2009-09-13 00:47:39,326 INFO  [http-8080-1] CapitalSituation - 已经买入股票金城股份300股，成交价格为3.28元
+2009-09-13 00:47:39,358 INFO  [http-8080-1] CapitalSituation - 已经卖出股票南100股，成交价格为5.357元
+2009-09-13 00:47:39,389 INFO  [http-8080-1] CapitalSituation - 已经卖出股票三房巷100股，成交价格为4.334元
+2009-09-13 00:47:39,420 INFO  [http-8080-1] CapitalSituation - 已经卖出股票七喜控股100股，成交价格为4.565元
+2009-09-13 00:47:39,451 INFO  [http-8080-1] CapitalSituation - 已经卖出股票国旅联合100股，成交价格为4.4550004元
+2009-09-13 00:47:39,467 INFO  [http-8080-1] CapitalSituation - 已经卖出股票金路集团100股，成交价格为4.059元
+2009-09-13 00:47:40,750 INFO  [http-8080-1] Person - Tue Mar 10 00:00:00 CST 2009的投资日记:
+2009-09-13 00:47:40,750 INFO  [http-8080-1] CapitalSituation - 已经卖出股票金城股份300股，成交价格为3.608元
+2009-09-13 00:47:42,064 INFO  [http-8080-1] Person - Wed Mar 11 00:00:00 CST 2009的投资日记:
+2009-09-13 00:47:42,064 INFO  [http-8080-1] CapitalSituation - 已经买入股票友好集团100股，成交价格为4.25元
+2009-09-13 00:47:42,096 INFO  [http-8080-1] CapitalSituation - 已经买入股票中国服装100股，成交价格为3.51元
+2009-09-13 00:47:42,127 INFO  [http-8080-1] CapitalSituation - 已经卖出股票武汉塑料200股，成交价格为5.379元
+2009-09-13 00:47:43,424 INFO  [http-8080-1] Person - Thu Mar 12 00:00:00 CST 2009的投资日记:
+2009-09-13 00:47:43,424 INFO  [http-8080-1] CapitalSituation - 已经买入股票三木集团100股，成交价格为3.18元
+2009-09-13 00:47:43,473 INFO  [http-8080-1] CapitalSituation - 已经买入股票百大集团100股，成交价格为5.39元
+2009-09-13 00:47:43,488 INFO  [http-8080-1] CapitalSituation - 已经买入股票多伦股份100股，成交价格为3.83元
+2009-09-13 00:47:43,504 INFO  [http-8080-1] CapitalSituation - 已经买入股票渤海物流100股，成交价格为5.19元
+2009-09-13 00:47:43,535 INFO  [http-8080-1] CapitalSituation - 已经买入股票富龙热电100股，成交价格为5.07元
+2009-09-13 00:47:43,567 INFO  [http-8080-1] CapitalSituation - 已经买入股票迪马股份100股，成交价格为3.29元
+2009-09-13 00:47:43,582 INFO  [http-8080-1] CapitalSituation - 已经卖出股票友好集团100股，成交价格为4.83元
+2009-09-13 00:47:43,613 INFO  [http-8080-1] CapitalSituation - 已经卖出股票中国服装100股，成交价格为3.861元
+2009-09-13 00:47:45,082 INFO  [http-8080-1] Person - Fri Mar 13 00:00:00 CST 2009的投资日记:
+2009-09-13 00:47:45,082 INFO  [http-8080-1] CapitalSituation - 已经买入股票天兴仪表100股，成交价格为6.63元
+2009-09-13 00:47:45,114 INFO  [http-8080-1] CapitalSituation - 已经买入股票世荣兆业100股，成交价格为5.95元
+2009-09-13 00:47:45,146 INFO  [http-8080-1] CapitalSituation - 已经买入股票德豪润达100股，成交价格为6.38元
+2009-09-13 00:47:45,161 INFO  [http-8080-1] CapitalSituation - 已经买入股票深100股，成交价格为5.65元
+2009-09-13 00:47:45,177 INFO  [http-8080-1] CapitalSituation - 已经卖出股票三木集团100股，成交价格为3.4980001元
+2009-09-13 00:47:45,208 INFO  [http-8080-1] CapitalSituation - 已经卖出股票百大集团100股，成交价格为5.929元
+2009-09-13 00:47:45,224 INFO  [http-8080-1] CapitalSituation - 已经卖出股票多伦股份100股，成交价格为4.213元
+2009-09-13 00:47:45,239 INFO  [http-8080-1] CapitalSituation - 已经卖出股票渤海物流100股，成交价格为5.709元
+2009-09-13 00:47:45,271 INFO  [http-8080-1] CapitalSituation - 已经卖出股票富龙热电100股，成交价格为5.577元
+2009-09-13 00:47:46,536 INFO  [http-8080-1] Person - Mon Mar 16 00:00:00 CST 2009的投资日记:
+2009-09-13 00:47:46,536 INFO  [http-8080-1] CapitalSituation - 已经买入股票中捷股份100股，成交价格为3.0元
+2009-09-13 00:47:46,553 INFO  [http-8080-1] CapitalSituation - 已经买入股票迪马股份100股，成交价格为3.42元
+2009-09-13 00:47:46,584 INFO  [http-8080-1] CapitalSituation - 已经卖出股票迪马股份100股，成交价格为3.619元
+2009-09-13 00:47:46,600 INFO  [http-8080-1] CapitalSituation - 已经卖出股票天兴仪表100股，成交价格为7.293元
+2009-09-13 00:47:46,615 INFO  [http-8080-1] CapitalSituation - 已经卖出股票世荣兆业100股，成交价格为6.545元
+2009-09-13 00:47:46,647 INFO  [http-8080-1] CapitalSituation - 已经卖出股票深100股，成交价格为6.215元
+2009-09-13 00:47:47,912 INFO  [http-8080-1] Person - Tue Mar 17 00:00:00 CST 2009的投资日记:
+2009-09-13 00:47:47,912 INFO  [http-8080-1] CapitalSituation - 已经卖出股票迪马股份100股，成交价格为3.65元
+2009-09-13 00:47:47,929 INFO  [http-8080-1] CapitalSituation - 已经卖出股票德豪润达100股，成交价格为7.018元
+2009-09-13 00:47:48,007 INFO  [http-8080-1] CapitalSituation - 已经卖出股票中捷股份100股，成交价格为3.3000002元
+2009-09-13 00:47:49,616 INFO  [http-8080-1] Person - Wed Mar 18 00:00:00 CST 2009的投资日记:
+2009-09-13 00:47:49,616 INFO  [http-8080-1] CapitalSituation - 已经买入股票华银电力100股，成交价格为3.98元
+2009-09-13 00:47:49,633 INFO  [http-8080-1] CapitalSituation - 已经买入股票*ST生物100股，成交价格为3.41元
+2009-09-13 00:47:49,664 INFO  [http-8080-1] CapitalSituation - 已经买入股票长电科技100股，成交价格为4.1元
+2009-09-13 00:47:50,977 INFO  [http-8080-1] Person - Thu Mar 19 00:00:00 CST 2009的投资日记:
+2009-09-13 00:47:50,977 INFO  [http-8080-1] CapitalSituation - 已经卖出股票华银电力100股，成交价格为4.3780003元
+2009-09-13 00:47:51,009 INFO  [http-8080-1] CapitalSituation - 已经卖出股票*ST生物100股，成交价格为3.7510002元
+2009-09-13 00:47:51,040 INFO  [http-8080-1] CapitalSituation - 已经卖出股票长电科技100股，成交价格为4.51元
+2009-09-13 00:47:52,415 INFO  [http-8080-1] Person - Fri Mar 20 00:00:00 CST 2009的投资日记:
+2009-09-13 00:47:53,666 INFO  [http-8080-1] Person - Mon Mar 23 00:00:00 CST 2009的投资日记:
+2009-09-13 00:47:54,966 INFO  [http-8080-1] Person - Tue Mar 24 00:00:00 CST 2009的投资日记:
+2009-09-13 00:47:54,966 INFO  [http-8080-1] CapitalSituation - 已经买入股票维维股份100股，成交价格为3.26元
+2009-09-13 00:47:55,014 INFO  [http-8080-1] CapitalSituation - 已经买入股票中捷股份100股，成交价格为3.29元
+2009-09-13 00:47:56,311 INFO  [http-8080-1] Person - Wed Mar 25 00:00:00 CST 2009的投资日记:
+2009-09-13 00:47:56,311 INFO  [http-8080-1] CapitalSituation - 已经买入股票开元控股100股，成交价格为3.9元
+2009-09-13 00:47:56,343 INFO  [http-8080-1] CapitalSituation - 已经买入股票中成股份100股，成交价格为5.71元
+2009-09-13 00:47:56,374 INFO  [http-8080-1] CapitalSituation - 已经买入股票太极实业100股，成交价格为4.47元
+2009-09-13 00:47:56,390 INFO  [http-8080-1] CapitalSituation - 已经卖出股票时代万恒100股，成交价格为8.14元
+2009-09-13 00:47:56,437 INFO  [http-8080-1] CapitalSituation - 已经卖出股票维维股份100股，成交价格为3.586元
+2009-09-13 00:47:56,468 INFO  [http-8080-1] CapitalSituation - 已经卖出股票中捷股份100股，成交价格为3.619元
+2009-09-13 00:47:57,843 INFO  [http-8080-1] Person - Thu Mar 26 00:00:00 CST 2009的投资日记:
+2009-09-13 00:47:57,843 INFO  [http-8080-1] CapitalSituation - 已经卖出股票开元控股100股，成交价格为4.29元
+2009-09-13 00:47:57,875 INFO  [http-8080-1] CapitalSituation - 已经卖出股票中成股份100股，成交价格为6.281元
+2009-09-13 00:47:57,891 INFO  [http-8080-1] CapitalSituation - 已经卖出股票太极实业100股，成交价格为4.917元
+2009-09-13 00:48:08,305 INFO  [http-8080-1] Person - Wed Apr 08 00:00:00 CST 2009的投资日记:
+2009-09-13 00:48:08,305 INFO  [http-8080-1] CapitalSituation - 已经买入股票太原刚玉100股，成交价格为3.99元
+2009-09-13 00:48:08,337 INFO  [http-8080-1] CapitalSituation - 已经买入股票浙大网新100股，成交价格为4.8元
+2009-09-13 00:48:08,353 INFO  [http-8080-1] CapitalSituation - 已经买入股票标准股份100股，成交价格为4.8元
+2009-09-13 00:48:08,368 INFO  [http-8080-1] CapitalSituation - 已经买入股票维维股份100股，成交价格为4.07元
+2009-09-13 00:48:08,400 INFO  [http-8080-1] CapitalSituation - 已经买入股票华东电脑100股，成交价格为6.36元
+2009-09-13 00:48:08,431 INFO  [http-8080-1] CapitalSituation - 已经买入股票*ST汇源100股，成交价格为4.76元
+2009-09-13 00:48:09,634 INFO  [http-8080-1] Person - Thu Apr 09 00:00:00 CST 2009的投资日记:
+2009-09-13 00:48:09,634 INFO  [http-8080-1] CapitalSituation - 已经卖出股票浙大网新100股，成交价格为5.28元
+2009-09-13 00:48:09,666 INFO  [http-8080-1] CapitalSituation - 已经卖出股票标准股份100股，成交价格为5.28元
+2009-09-13 00:48:09,697 INFO  [http-8080-1] CapitalSituation - 已经卖出股票华东电脑100股，成交价格为6.9960003元
+2009-09-13 00:48:09,713 INFO  [http-8080-1] CapitalSituation - 已经卖出股票*ST汇源100股，成交价格为5.2360005元
+2009-09-13 00:48:11,042 INFO  [http-8080-1] Person - Fri Apr 10 00:00:00 CST 2009的投资日记:
+2009-09-13 00:48:11,042 INFO  [http-8080-1] CapitalSituation - 已经卖出股票太原刚玉100股，成交价格为4.389元
+2009-09-13 00:48:11,074 INFO  [http-8080-1] CapitalSituation - 已经卖出股票维维股份100股，成交价格为4.477元
+2009-09-13 00:48:17,657 INFO  [http-8080-1] Person - Fri Apr 17 00:00:00 CST 2009的投资日记:
+2009-09-13 00:48:21,520 INFO  [http-8080-1] Person - Wed Apr 22 00:00:00 CST 2009的投资日记:
+2009-09-13 00:48:21,520 INFO  [http-8080-1] CapitalSituation - 已经买入股票ST华龙100股，成交价格为8.64元
+2009-09-13 00:48:21,552 INFO  [http-8080-1] CapitalSituation - 已经买入股票*ST盛润A100股，成交价格为4.79元
+2009-09-13 00:48:21,568 INFO  [http-8080-1] CapitalSituation - 已经买入股票数源科技100股，成交价格为7.39元
+2009-09-13 00:48:22,958 INFO  [http-8080-1] Person - Thu Apr 23 00:00:00 CST 2009的投资日记:
+2009-09-13 00:48:22,958 INFO  [http-8080-1] CapitalSituation - 已经卖出股票数源科技100股，成交价格为8.129元
+2009-09-13 00:48:24,272 INFO  [http-8080-1] Person - Fri Apr 24 00:00:00 CST 2009的投资日记:
+2009-09-13 00:48:24,272 INFO  [http-8080-1] CapitalSituation - 已经买入股票成霖股份100股，成交价格为4.78元
+2009-09-13 00:48:24,288 INFO  [http-8080-1] CapitalSituation - 已经买入股票TCL100股，成交价格为3.7元
+2009-09-13 00:48:25,570 INFO  [http-8080-1] Person - Mon Apr 27 00:00:00 CST 2009的投资日记:
+2009-09-13 00:48:25,570 INFO  [http-8080-1] CapitalSituation - 已经买入股票保税科技100股，成交价格为7.66元
+2009-09-13 00:48:25,618 INFO  [http-8080-1] CapitalSituation - 已经卖出股票TCL100股，成交价格为4.07元
+2009-09-13 00:48:27,228 INFO  [http-8080-1] Person - Tue Apr 28 00:00:00 CST 2009的投资日记:
+2009-09-13 00:48:27,228 INFO  [http-8080-1] CapitalSituation - 已经卖出股票保税科技100股，成交价格为8.426元
+2009-09-13 00:48:28,588 INFO  [http-8080-1] Person - Wed Apr 29 00:00:00 CST 2009的投资日记:
+2009-09-13 00:48:29,855 INFO  [http-8080-1] Person - Thu Apr 30 00:00:00 CST 2009的投资日记:
+2009-09-13 00:48:31,324 INFO  [http-8080-1] Person - Mon May 04 00:00:00 CST 2009的投资日记:
+2009-09-13 00:48:32,638 INFO  [http-8080-1] Person - Tue May 05 00:00:00 CST 2009的投资日记:
+2009-09-13 00:48:32,638 INFO  [http-8080-1] CapitalSituation - 已经卖出股票成霖股份100股，成交价格为5.2580004元
+2009-09-13 00:48:34,045 INFO  [http-8080-1] Person - Wed May 06 00:00:00 CST 2009的投资日记:
+2009-09-13 00:48:35,343 INFO  [http-8080-1] Person - Thu May 07 00:00:00 CST 2009的投资日记:
+2009-09-13 00:48:36,625 INFO  [http-8080-1] Person - Fri May 08 00:00:00 CST 2009的投资日记:
+2009-09-13 00:48:38,142 INFO  [http-8080-1] Person - Mon May 11 00:00:00 CST 2009的投资日记:
+2009-09-13 00:48:39,393 INFO  [http-8080-1] Person - Tue May 12 00:00:00 CST 2009的投资日记:
+2009-09-13 00:48:40,676 INFO  [http-8080-1] Person - Wed May 13 00:00:00 CST 2009的投资日记:
+2009-09-13 00:48:41,943 INFO  [http-8080-1] Person - Thu May 14 00:00:00 CST 2009的投资日记:
+2009-09-13 00:48:43,240 INFO  [http-8080-1] Person - Fri May 15 00:00:00 CST 2009的投资日记:
+2009-09-13 00:48:44,476 INFO  [http-8080-1] Person - Mon May 18 00:00:00 CST 2009的投资日记:
+2009-09-13 00:48:45,930 INFO  [http-8080-1] Person - Tue May 19 00:00:00 CST 2009的投资日记:
+2009-09-13 00:48:47,212 INFO  [http-8080-1] Person - Wed May 20 00:00:00 CST 2009的投资日记:
+2009-09-13 00:48:48,526 INFO  [http-8080-1] Person - Thu May 21 00:00:00 CST 2009的投资日记:
+2009-09-13 00:48:48,526 INFO  [http-8080-1] CapitalSituation - 已经买入股票深南电Ａ100股，成交价格为4.96元
+2009-09-13 00:48:48,542 INFO  [http-8080-1] CapitalSituation - 已经买入股票吉电股份100股，成交价格为4.3元
+2009-09-13 00:48:49,948 INFO  [http-8080-1] Person - Fri May 22 00:00:00 CST 2009的投资日记:
+2009-09-13 00:48:49,948 INFO  [http-8080-1] CapitalSituation - 已经买入股票金杯汽车100股，成交价格为3.97元
+2009-09-13 00:48:49,981 INFO  [http-8080-1] CapitalSituation - 已经买入股票太极实业100股，成交价格为6.41元
+2009-09-13 00:48:50,012 INFO  [http-8080-1] CapitalSituation - 已经买入股票九龙山100股，成交价格为7.02元
+2009-09-13 00:48:50,027 INFO  [http-8080-1] CapitalSituation - 已经卖出股票吉电股份100股，成交价格为4.7300005元
+2009-09-13 00:48:51,340 INFO  [http-8080-1] Person - Mon May 25 00:00:00 CST 2009的投资日记:
+2009-09-13 00:48:51,340 INFO  [http-8080-1] CapitalSituation - 已经卖出股票金杯汽车100股，成交价格为4.367元
+2009-09-13 00:48:51,372 INFO  [http-8080-1] CapitalSituation - 已经卖出股票太极实业100股，成交价格为7.051元
+2009-09-13 00:48:51,403 INFO  [http-8080-1] CapitalSituation - 已经卖出股票九龙山100股，成交价格为7.722元
+2009-09-13 00:48:52,716 INFO  [http-8080-1] Person - Tue May 26 00:00:00 CST 2009的投资日记:
+2009-09-13 00:48:54,001 INFO  [http-8080-1] Person - Wed May 27 00:00:00 CST 2009的投资日记:
+2009-09-13 00:48:54,001 INFO  [http-8080-1] CapitalSituation - 已经买入股票广宇发展100股，成交价格为6.89元
+2009-09-13 00:48:54,049 INFO  [http-8080-1] CapitalSituation - 已经买入股票华资实业100股，成交价格为7.57元
+2009-09-13 00:48:55,362 INFO  [http-8080-1] Person - Mon Jun 01 00:00:00 CST 2009的投资日记:
+2009-09-13 00:48:55,362 INFO  [http-8080-1] CapitalSituation - 已经卖出股票广宇发展100股，成交价格为7.77元
+2009-09-13 00:48:55,395 INFO  [http-8080-1] CapitalSituation - 已经卖出股票华资实业100股，成交价格为8.327001元
+2009-09-13 00:48:56,660 INFO  [http-8080-1] Person - Tue Jun 02 00:00:00 CST 2009的投资日记:
+2009-09-13 00:48:57,943 INFO  [http-8080-1] Person - Wed Jun 03 00:00:00 CST 2009的投资日记:
+2009-09-13 00:48:59,303 INFO  [http-8080-1] Person - Thu Jun 04 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:00,554 INFO  [http-8080-1] Person - Fri Jun 05 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:01,930 INFO  [http-8080-1] Person - Mon Jun 08 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:03,275 INFO  [http-8080-1] Person - Tue Jun 09 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:04,572 INFO  [http-8080-1] Person - Wed Jun 10 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:05,964 INFO  [http-8080-1] Person - Thu Jun 11 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:05,964 INFO  [http-8080-1] CapitalSituation - 已经买入股票世纪光华100股，成交价格为6.54元
+2009-09-13 00:49:05,996 INFO  [http-8080-1] CapitalSituation - 已经买入股票中纺投资100股，成交价格为6.51元
+2009-09-13 00:49:06,074 INFO  [http-8080-1] CapitalSituation - 已经买入股票思达高科100股，成交价格为5.54元
+2009-09-13 00:49:07,418 INFO  [http-8080-1] Person - Fri Jun 12 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:07,418 INFO  [http-8080-1] CapitalSituation - 已经买入股票深圳华强100股，成交价格为8.83元
+2009-09-13 00:49:07,466 INFO  [http-8080-1] CapitalSituation - 已经卖出股票世纪光华100股，成交价格为7.1940002元
+2009-09-13 00:49:07,497 INFO  [http-8080-1] CapitalSituation - 已经卖出股票中纺投资100股，成交价格为7.1610003元
+2009-09-13 00:49:08,950 INFO  [http-8080-1] Person - Mon Jun 15 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:08,950 INFO  [http-8080-1] CapitalSituation - 已经卖出股票深圳华强100股，成交价格为9.713元
+2009-09-13 00:49:10,280 INFO  [http-8080-1] Person - Tue Jun 16 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:10,280 INFO  [http-8080-1] CapitalSituation - 已经买入股票河池化工100股，成交价格为6.06元
+2009-09-13 00:49:10,313 INFO  [http-8080-1] CapitalSituation - 已经卖出股票*ST盛润A100股，成交价格为5.269元
+2009-09-13 00:49:11,610 INFO  [http-8080-1] Person - Wed Jun 17 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:11,610 INFO  [http-8080-1] CapitalSituation - 已经卖出股票河池化工100股，成交价格为6.666元
+2009-09-13 00:49:13,126 INFO  [http-8080-1] Person - Thu Jun 18 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:14,502 INFO  [http-8080-1] Person - Fri Jun 19 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:15,832 INFO  [http-8080-1] Person - Mon Jun 22 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:15,832 INFO  [http-8080-1] CapitalSituation - 已经买入股票柳钢股份100股，成交价格为5.0元
+2009-09-13 00:49:15,864 INFO  [http-8080-1] CapitalSituation - 已经买入股票ST中润100股，成交价格为7.11元
+2009-09-13 00:49:17,224 INFO  [http-8080-1] Person - Tue Jun 23 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:17,224 INFO  [http-8080-1] CapitalSituation - 已经买入股票赛格三星100股，成交价格为4.23元
+2009-09-13 00:49:17,272 INFO  [http-8080-1] CapitalSituation - 已经卖出股票柳钢股份100股，成交价格为5.5元
+2009-09-13 00:49:18,568 INFO  [http-8080-1] Person - Wed Jun 24 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:18,568 INFO  [http-8080-1] CapitalSituation - 已经卖出股票赛格三星100股，成交价格为4.6530004元
+2009-09-13 00:49:20,023 INFO  [http-8080-1] Person - Thu Jun 25 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:20,023 INFO  [http-8080-1] CapitalSituation - 已经卖出股票深南电Ａ100股，成交价格为5.4560003元
+2009-09-13 00:49:20,039 INFO  [http-8080-1] CapitalSituation - 已经卖出股票思达高科100股，成交价格为6.22元
+2009-09-13 00:49:21,539 INFO  [http-8080-1] Person - Fri Jun 26 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:22,853 INFO  [http-8080-1] Person - Mon Jun 29 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:24,151 INFO  [http-8080-1] Person - Tue Jun 30 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:25,449 INFO  [http-8080-1] Person - Wed Jul 01 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:25,449 INFO  [http-8080-1] CapitalSituation - 已经卖出股票ST中润100股，成交价格为7.821元
+2009-09-13 00:49:26,810 INFO  [http-8080-1] Person - Thu Jul 02 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:28,108 INFO  [http-8080-1] Person - Fri Jul 03 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:29,437 INFO  [http-8080-1] Person - Mon Jul 06 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:30,735 INFO  [http-8080-1] Person - Tue Jul 07 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:30,735 INFO  [http-8080-1] CapitalSituation - 已经买入股票东方热电100股，成交价格为5.92元
+2009-09-13 00:49:32,064 INFO  [http-8080-1] Person - Wed Jul 08 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:33,365 INFO  [http-8080-1] Person - Thu Jul 09 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:34,694 INFO  [http-8080-1] Person - Fri Jul 10 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:35,961 INFO  [http-8080-1] Person - Mon Jul 13 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:37,353 INFO  [http-8080-1] Person - Tue Jul 14 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:38,777 INFO  [http-8080-1] Person - Wed Jul 15 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:40,012 INFO  [http-8080-1] Person - Thu Jul 16 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:40,012 INFO  [http-8080-1] CapitalSituation - 已经卖出股票东方热电100股，成交价格为6.512元
+2009-09-13 00:49:41,263 INFO  [http-8080-1] Person - Fri Jul 17 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:42,670 INFO  [http-8080-1] Person - Mon Jul 20 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:43,999 INFO  [http-8080-1] Person - Tue Jul 21 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:45,298 INFO  [http-8080-1] Person - Wed Jul 22 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:46,690 INFO  [http-8080-1] Person - Thu Jul 23 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:48,097 INFO  [http-8080-1] Person - Fri Jul 24 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:49,473 INFO  [http-8080-1] Person - Mon Jul 27 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:50,880 INFO  [http-8080-1] Person - Tue Jul 28 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:52,196 INFO  [http-8080-1] Person - Wed Jul 29 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:52,196 INFO  [http-8080-1] CapitalSituation - 已经买入股票昆明制药100股，成交价格为7.04元
+2009-09-13 00:49:53,526 INFO  [http-8080-1] Person - Thu Jul 30 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:53,526 INFO  [http-8080-1] CapitalSituation - 已经卖出股票昆明制药100股，成交价格为7.76元
+2009-09-13 00:49:54,855 INFO  [http-8080-1] Person - Fri Jul 31 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:56,185 INFO  [http-8080-1] Person - Mon Aug 03 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:57,608 INFO  [http-8080-1] Person - Tue Aug 04 00:00:00 CST 2009的投资日记:
+2009-09-13 00:49:58,952 INFO  [http-8080-1] Person - Wed Aug 05 00:00:00 CST 2009的投资日记:
+2009-09-13 00:50:00,266 INFO  [http-8080-1] Person - Thu Aug 06 00:00:00 CST 2009的投资日记:
+2009-09-13 00:50:01,564 INFO  [http-8080-1] Person - Fri Aug 07 00:00:00 CST 2009的投资日记:
+2009-09-13 00:50:02,986 INFO  [http-8080-1] Person - Mon Aug 10 00:00:00 CST 2009的投资日记:
+2009-09-13 00:50:04,316 INFO  [http-8080-1] Person - Tue Aug 11 00:00:00 CST 2009的投资日记:
+2009-09-13 00:50:05,629 INFO  [http-8080-1] Person - Wed Aug 12 00:00:00 CST 2009的投资日记:
+2009-09-13 00:50:05,629 INFO  [http-8080-1] CapitalSituation - 已经买入股票杭钢股份100股，成交价格为7.69元
+2009-09-13 00:50:07,052 INFO  [http-8080-1] Person - Thu Aug 13 00:00:00 CST 2009的投资日记:
+2009-09-13 00:50:07,052 INFO  [http-8080-1] CapitalSituation - 已经卖出股票杭钢股份100股，成交价格为8.459001元
+2009-09-13 00:50:08,381 INFO  [http-8080-1] Person - Fri Aug 14 00:00:00 CST 2009的投资日记:
+2009-09-13 00:50:09,773 INFO  [http-8080-1] Person - Mon Aug 17 00:00:00 CST 2009的投资日记:
+2009-09-13 00:50:09,773 INFO  [http-8080-1] CapitalSituation - 已经买入股票双钱股份100股，成交价格为8.62元
+2009-09-13 00:50:09,820 INFO  [http-8080-1] CapitalSituation - 已经买入股票青岛双星200股，成交价格为6.96元
+2009-09-13 00:50:11,290 INFO  [http-8080-1] Person - Tue Aug 18 00:00:00 CST 2009的投资日记:
+2009-09-13 00:50:11,290 INFO  [http-8080-1] CapitalSituation - 已经买入股票宝商集团100股，成交价格为6.11元
+2009-09-13 00:50:11,322 INFO  [http-8080-1] CapitalSituation - 已经买入股票新乡化纤100股，成交价格为5.59元
+2009-09-13 00:50:11,338 INFO  [http-8080-1] CapitalSituation - 已经卖出股票双钱股份100股，成交价格为9.482元
+2009-09-13 00:50:11,369 INFO  [http-8080-1] CapitalSituation - 已经卖出股票青岛双星200股，成交价格为7.656元
+2009-09-13 00:50:12,916 INFO  [http-8080-1] Person - Wed Aug 19 00:00:00 CST 2009的投资日记:
+2009-09-13 00:50:12,916 INFO  [http-8080-1] CapitalSituation - 已经买入股票太原刚玉200股，成交价格为5.51元
+2009-09-13 00:50:12,948 INFO  [http-8080-1] CapitalSituation - 已经买入股票鑫新股份100股，成交价格为8.06元
+2009-09-13 00:50:12,964 INFO  [http-8080-1] CapitalSituation - 已经买入股票双钱股份100股，成交价格为8.9元
+2009-09-13 00:50:12,995 INFO  [http-8080-1] CapitalSituation - 已经买入股票芜湖港100股，成交价格为12.29元
+2009-09-13 00:50:13,011 INFO  [http-8080-1] CapitalSituation - 已经卖出股票宝商集团100股，成交价格为6.721元
+2009-09-13 00:50:13,042 INFO  [http-8080-1] CapitalSituation - 已经卖出股票新乡化纤100股，成交价格为6.149元
+2009-09-13 00:50:14,386 INFO  [http-8080-1] Person - Thu Aug 20 00:00:00 CST 2009的投资日记:
+2009-09-13 00:50:14,386 INFO  [http-8080-1] CapitalSituation - 已经卖出股票太原刚玉200股，成交价格为6.0610003元
+2009-09-13 00:50:14,418 INFO  [http-8080-1] CapitalSituation - 已经卖出股票鑫新股份100股，成交价格为8.866001元
+2009-09-13 00:50:14,434 INFO  [http-8080-1] CapitalSituation - 已经卖出股票双钱股份100股，成交价格为9.79元
+2009-09-13 00:50:14,465 INFO  [http-8080-1] CapitalSituation - 已经卖出股票芜湖港100股，成交价格为13.519元
+2009-09-13 00:50:15,902 INFO  [http-8080-1] Person - Fri Aug 21 00:00:00 CST 2009的投资日记:
+2009-09-13 00:50:17,216 INFO  [http-8080-1] Person - Mon Aug 24 00:00:00 CST 2009的投资日记:
+2009-09-13 00:50:18,529 INFO  [http-8080-1] Person - Tue Aug 25 00:00:00 CST 2009的投资日记:
+2009-09-13 00:50:19,952 INFO  [http-8080-1] Person - Wed Aug 26 00:00:00 CST 2009的投资日记:
+2009-09-13 00:50:21,281 INFO  [http-8080-1] Person - Thu Aug 27 00:00:00 CST 2009的投资日记:
+2009-09-13 00:50:22,564 INFO  [http-8080-1] Person - Fri Aug 28 00:00:00 CST 2009的投资日记:
+2009-09-13 00:50:22,564 INFO  [http-8080-1] CapitalSituation - 已经买入股票万丰奥威100股，成交价格为7.48元
+2009-09-13 00:50:24,158 INFO  [http-8080-1] Person - Mon Aug 31 00:00:00 CST 2009的投资日记:
+2009-09-13 00:50:24,158 INFO  [http-8080-1] CapitalSituation - 已经买入股票新华锦200股，成交价格为9.58元
+2009-09-13 00:50:24,175 INFO  [http-8080-1] CapitalSituation - 已经买入股票双钱股份100股，成交价格为14.38元
+2009-09-13 00:50:24,222 INFO  [http-8080-1] CapitalSituation - 已经卖出股票万丰奥威100股，成交价格为8.228001元
+2009-09-13 00:50:25,567 INFO  [http-8080-1] Person - Tue Sep 01 00:00:00 CST 2009的投资日记:
+2009-09-13 00:50:25,567 INFO  [http-8080-1] CapitalSituation - 已经买入股票世纪光华100股，成交价格为7.78元
+2009-09-13 00:50:25,583 INFO  [http-8080-1] CapitalSituation - 已经买入股票新华锦100股，成交价格为10.54元
+2009-09-13 00:50:25,599 INFO  [http-8080-1] CapitalSituation - 已经买入股票宁波联合100股，成交价格为12.04元
+2009-09-13 00:50:25,630 INFO  [http-8080-1] CapitalSituation - 已经买入股票南化股份100股，成交价格为7.52元
+2009-09-13 00:50:25,661 INFO  [http-8080-1] CapitalSituation - 已经买入股票通葡股份100股，成交价格为9.01元
+2009-09-13 00:50:25,677 INFO  [http-8080-1] CapitalSituation - 已经买入股票中福实业300股，成交价格为4.86元
+2009-09-13 00:50:25,693 INFO  [http-8080-1] CapitalSituation - 已经买入股票中国服装300股，成交价格为4.77元
+2009-09-13 00:50:25,708 INFO  [http-8080-1] CapitalSituation - 已经卖出股票新华锦200股，成交价格为10.538元
+2009-09-13 00:50:25,755 INFO  [http-8080-1] Main - 赢利结果：赢利0.23059005倍
+2009-09-13 22:39:43,047 INFO  [http-8080-2] Person - Fri Sep 04 00:00:00 CST 2009的投资日记:
+2009-09-13 22:39:43,059 INFO  [http-8080-2] CapitalSituation - 已经买入股票中国服装100股，成交价格为5.34元
+2009-09-13 22:39:44,924 INFO  [http-8080-2] Person - Mon Sep 07 00:00:00 CST 2009的投资日记:
+2009-09-13 22:39:44,925 INFO  [http-8080-2] CapitalSituation - 已经卖出股票中国服装100股，成交价格为5.874元
+2009-09-13 22:39:46,531 INFO  [http-8080-2] Person - Tue Sep 08 00:00:00 CST 2009的投资日记:
+2009-09-13 22:39:46,532 INFO  [http-8080-2] CapitalSituation - 已经买入股票漳泽电力100股，成交价格为4.81元
+2009-09-13 22:39:48,263 INFO  [http-8080-2] Person - Wed Sep 09 00:00:00 CST 2009的投资日记:
+2009-09-13 22:39:48,264 INFO  [http-8080-2] CapitalSituation - 已经卖出股票漳泽电力100股，成交价格为5.291元
+2009-09-13 22:39:51,992 INFO  [http-8080-2] Person - Fri Sep 11 00:00:00 CST 2009的投资日记:
+2009-09-13 22:39:52,018 INFO  [http-8080-2] Main - 赢利结果：赢利0.005075倍
