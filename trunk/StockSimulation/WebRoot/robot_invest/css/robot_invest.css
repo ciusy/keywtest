@@ -1,0 +1,61 @@
+@CHARSET "UTF-8";
+body{
+	width: 100%;
+}
+#robot_info_list{
+	border:1px;
+	border-style:solid;
+	border-color:purple;
+	width:19%;
+	height: 750px;	
+	float: left;
+}
+#robot_info_detail{
+	border:1px;
+	border-style:solid;
+	border-color:red;
+	width:79%;
+		height: 750px;
+	float: right;
+	
+}
+
+
+.menu {
+background:#DEEAF8 none repeat scroll 0 0;
+border-top:1px solid #4C94EA;
+height:25px;
+line-height:25px;
+margin-left:13px;
+position:relative;
+}
+
+
+div, td, li, dt, dd, p, a, span, font, label, input, textarea {
+color:#444444;
+font-family:Tahoma;
+font-size:12px;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+margin:0;
+padding:0;
+}
+
+
+.menu .tabs div {
+color:#333333;
+cursor:pointer;
+display:inline;
+float:left;
+margin-left:8px;
+padding:0 8px;
+text-decoration:none;
+}
+
+
+.menu .tabs .current {
+background:#FFFFFF none repeat scroll 0 0;
+font-weight:bold;
+height:21px;
+margin-top:4px;
+}
