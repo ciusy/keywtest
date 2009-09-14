@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -16,11 +17,14 @@ import com.mrj.dm.dao.HibernateUtil;
 import com.mrj.dm.dao.PersonDao;
 import com.mrj.dm.domain.CapitalFlow;
 import com.mrj.operate.policy.LastDayFinalPricePolicy;
+import com.mrj.operate.policy.OperatePolicy;
 import com.mrj.person.CapitalSituation;
 import com.mrj.person.Person;
 import com.mrj.person.ShareHolding;
 import com.mrj.policy.FittingPolicy;
+import com.mrj.policy.Policy;
 import com.mrj.policy.RandomPolicy;
+import com.mrj.policy.util.ChargeDescription;
 import com.mrj.util.GlobalConstant;
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -85,19 +89,55 @@ public class Main {
 	public static void testHql() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		CapitalFlow capitalFlow = new CapitalFlow("1234", "涓浗閾濅笟", CapitalFlow.sto_buy, new Date(), 16.83f, 300, new BigDecimal(5030.33f), new BigDecimal(5300.90f), new BigDecimal(18.67f), "601600");
+		CapitalFlow capitalFlow = new CapitalFlow("1234", "中国铝业", CapitalFlow.sto_buy, new Date(), 16.83f, 300, new BigDecimal(5030.33f), new BigDecimal(5300.90f), new BigDecimal(18.67f), "601600");
 		session.save(capitalFlow);
 		capitalFlow.setUserUuid("234");
 		session.save(capitalFlow);
 		session.getTransaction().commit();
+	}
+	
+	
+	public static void tellmeHowtoInvestOnSomeDay(String dateMMDDYYYY,Policy policy, OperatePolicy operatePolicy,CapitalSituation cs){
+		Person p=new Person(policy,operatePolicy,cs);
+		BigDecimal atbeginning = p.getCs().getLeftMoney();		
+		try {	
+			Date date=sdf.parse(dateMMDDYYYY);
+			Calendar begin = Calendar.getInstance();
+		    begin.setTime(date);
+		    List<ChargeDescription> list=p.getOperatePolicy().getChargePlan(begin);
+		    System.out.println(dateMMDDYYYY+"的操作策略：");
+		    for(ChargeDescription cd:list){
+		    	System.out.print(cd.operationType==ChargeDescription.operationType_buy?"买入【":"卖出"+"【");
+		    	System.out.print(cd.sto.getName()+cd.sto.getCode()+"】 ");
+		    	System.out.print(cd.operateAmount+"股，操作价格【");
+		    	System.out.println(cd.plan_price+"】元");
+		    }
+		} catch (Exception e) {
+			logger.error("", e);
+		}
 	}
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Person person1 = new Person(new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(28000f)));
-		Main.testPersonInvest(person1, "09/12/2008", "09/13/2009");
-
+		/*Person person1 = new Person(new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		Main.testPersonInvest(person1, "09/15/2008", "09/15/2009");
+*/
+		Main.tellmeHowtoInvestOnSomeDay("09/15/2008",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		Main.tellmeHowtoInvestOnSomeDay("09/16/2008",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		Main.tellmeHowtoInvestOnSomeDay("09/17/2008",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		Main.tellmeHowtoInvestOnSomeDay("09/18/2008",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		Main.tellmeHowtoInvestOnSomeDay("09/19/2008",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		Main.tellmeHowtoInvestOnSomeDay("09/20/2008",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		Main.tellmeHowtoInvestOnSomeDay("09/21/2008",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		Main.tellmeHowtoInvestOnSomeDay("09/22/2008",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		Main.tellmeHowtoInvestOnSomeDay("09/23/2008",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		Main.tellmeHowtoInvestOnSomeDay("09/24/2008",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		Main.tellmeHowtoInvestOnSomeDay("09/25/2008",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		Main.tellmeHowtoInvestOnSomeDay("09/26/2008",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		Main.tellmeHowtoInvestOnSomeDay("09/27/2008",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		
+		
 	}
 }
