@@ -121,23 +121,16 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		/*Person person1 = new Person(new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
-		Main.testPersonInvest(person1, "09/15/2008", "09/15/2009");
-*/
-		Main.tellmeHowtoInvestOnSomeDay("09/15/2008",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
-		Main.tellmeHowtoInvestOnSomeDay("09/16/2008",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
-		Main.tellmeHowtoInvestOnSomeDay("09/17/2008",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
-		Main.tellmeHowtoInvestOnSomeDay("09/18/2008",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
-		Main.tellmeHowtoInvestOnSomeDay("09/19/2008",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
-		Main.tellmeHowtoInvestOnSomeDay("09/20/2008",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
-		Main.tellmeHowtoInvestOnSomeDay("09/21/2008",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
-		Main.tellmeHowtoInvestOnSomeDay("09/22/2008",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
-		Main.tellmeHowtoInvestOnSomeDay("09/23/2008",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
-		Main.tellmeHowtoInvestOnSomeDay("09/24/2008",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
-		Main.tellmeHowtoInvestOnSomeDay("09/25/2008",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
-		Main.tellmeHowtoInvestOnSomeDay("09/26/2008",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
-		Main.tellmeHowtoInvestOnSomeDay("09/27/2008",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
-		
+		Person person1 = new Person(new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		Main.testPersonInvest(person1, "09/15/2008", "09/13/2009");
+		/*
+		Main.tellmeHowtoInvestOnSomeDay("09/11/2009",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		Main.tellmeHowtoInvestOnSomeDay("09/12/2009",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		Main.tellmeHowtoInvestOnSomeDay("09/13/2009",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		Main.tellmeHowtoInvestOnSomeDay("09/14/2009",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		Main.tellmeHowtoInvestOnSomeDay("09/15/2009",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		Main.tellmeHowtoInvestOnSomeDay("09/16/2009",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		*/
 		
 	}
 }

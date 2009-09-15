@@ -44,7 +44,7 @@ public abstract class Policy {
 		begin.setTime(nextChargeDay.getTime());
 		begin.add(Calendar.DAY_OF_YEAR, -60);
 		HashMap<Date, DHQ> map = sto.getHq().getDhqMap();
-		while (begin.compareTo(nextChargeDay) <= 0) {
+		while (begin.compareTo(nextChargeDay) < 0) {
 			if (map.get(begin.getTime()) != null) {
 				beforeList.add(map.get(begin.getTime()).getFinalPrice());
 			}
@@ -61,7 +61,7 @@ public abstract class Policy {
 			begin.setTime(nextChargeDay.getTime());
 			begin.add(Calendar.DAY_OF_YEAR, -60);
 			HashMap<Date, DHQ> map = sto.getHq().getDhqMap();
-			while (begin.compareTo(nextChargeDay) <= 0) {
+			while (begin.compareTo(nextChargeDay) < 0) {
 				if (map.get(begin.getTime()) != null) {
 					beforeList.add(map.get(begin.getTime()).getPrice_5day());
 				}
@@ -81,7 +81,7 @@ public abstract class Policy {
 			begin.setTime(nextChargeDay.getTime());
 			begin.add(Calendar.DAY_OF_YEAR, -60);
 			HashMap<Date, DHQ> map = sto.getHq().getDhqMap();
-			while (begin.compareTo(nextChargeDay) <= 0) {
+			while (begin.compareTo(nextChargeDay) < 0) {
 				if (map.get(begin.getTime()) != null) {
 					beforeList.add(map.get(begin.getTime()).getPrice_10day());
 				}
@@ -101,7 +101,7 @@ public abstract class Policy {
 			begin.setTime(nextChargeDay.getTime());
 			begin.add(Calendar.DAY_OF_YEAR, -60);
 			HashMap<Date, DHQ> map = sto.getHq().getDhqMap();
-			while (begin.compareTo(nextChargeDay) <= 0) {
+			while (begin.compareTo(nextChargeDay) < 0) {
 				if (map.get(begin.getTime()) != null) {
 					beforeList.add(map.get(begin.getTime()).getPrice_20day());
 				}
@@ -121,7 +121,7 @@ public abstract class Policy {
 			begin.setTime(nextChargeDay.getTime());
 			begin.add(Calendar.DAY_OF_YEAR, -60);
 			HashMap<Date, DHQ> map = sto.getHq().getDhqMap();
-			while (begin.compareTo(nextChargeDay) <= 0) {
+			while (begin.compareTo(nextChargeDay) < 0) {
 				if (map.get(begin.getTime()) != null) {
 					beforeList.add(map.get(begin.getTime()).getPrice_30day());
 				}
@@ -141,7 +141,7 @@ public abstract class Policy {
 			begin.setTime(nextChargeDay.getTime());
 			begin.add(Calendar.DAY_OF_YEAR, -60);
 			HashMap<Date, DHQ> map = sto.getHq().getDhqMap();
-			while (begin.compareTo(nextChargeDay) <= 0) {
+			while (begin.compareTo(nextChargeDay) < 0) {
 				if (map.get(begin.getTime()) != null) {
 					beforeList.add(map.get(begin.getTime()).getPrice_60day());
 				}
@@ -161,7 +161,7 @@ public abstract class Policy {
 			begin.setTime(nextChargeDay.getTime());
 			begin.add(Calendar.DAY_OF_YEAR, -60);
 			HashMap<Date, DHQ> map = sto.getHq().getDhqMap();
-			while (begin.compareTo(nextChargeDay) <= 0) {
+			while (begin.compareTo(nextChargeDay) < 0) {
 				if (map.get(begin.getTime()) != null) {
 					beforeList.add(map.get(begin.getTime()).getPrice_180day());
 				}

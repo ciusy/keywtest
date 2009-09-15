@@ -4,7 +4,12 @@
  */
 package com.mrj.dm.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 
 import com.mrj.dm.domain.AssetDayData;
 
@@ -22,4 +27,13 @@ public class AssetDayDataDao extends Dao{
         session.save(c);
         session.getTransaction().commit();
     }
+     
+     public List getAssetListByUserUuid(String uuid){
+    	 DetachedCriteria query = DetachedCriteria.forClass(AssetDayData.class).add(Restrictions.eq("userUuid", uuid));    	 
+    	 Session session = HibernateUtil.getSessionFactory().getCurrentSession();    	 
+    	 Transaction txn = session.beginTransaction();  	 
+    	 List re = query.getExecutableCriteria(session).list();   
+    	 txn.commit();
+    	 return re;
+     }
 }
