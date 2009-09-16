@@ -33,7 +33,8 @@ public class FittingPolicy extends Policy {
     private float average60Price_FittingResult_rate = 0.025f;//60日均线拟合结果所占比例
     private float average180Price_FittingResult_rate = 0.025f;//180日均线拟合结果所占比例
     private float buyifConfidenceGreaterThanThisValue=0.6f;
-
+    private int chargeDescription_size = 3;//默认为3个
+    
     @Override
     public List<StoConfidenceValuePair> getBuyList(Calendar nextChargeDay) {
         List<Sto> allStoList = OriginalDataUtil.getAllStoList();
@@ -51,9 +52,16 @@ public class FittingPolicy extends Policy {
         StoConfidenceValuePair[] reArray = new StoConfidenceValuePair[re.size()];
         re.toArray(reArray);
         Arrays.sort(reArray);
-        List<StoConfidenceValuePair> re1 = new ArrayList<StoConfidenceValuePair>();
-        re1 = Arrays.asList(reArray);
-        return re;
+        List<StoConfidenceValuePair> re_sort = new ArrayList<StoConfidenceValuePair>();
+        re_sort = Arrays.asList(reArray);
+        List<StoConfidenceValuePair> re_final = new ArrayList<StoConfidenceValuePair>();
+        for(int i=re_sort.size()-1-chargeDescription_size;i<re_sort.size();i++){
+        	if(i<0){
+        		i=-1;continue;
+        	}
+        	re_final.add(re_sort.get(i));
+        }
+        return re_final;
     }
 
     @Override
@@ -94,7 +102,7 @@ public class FittingPolicy extends Policy {
 
    
     private float formatConfidenceValue(float re){
-    	float r=(float)(re/2.0+0.5);
+    	float r=(float)(re/2.0*10+0.5);
     	 if (r > 1) {
              r = 1;
          }

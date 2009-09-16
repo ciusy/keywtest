@@ -26,6 +26,8 @@ import com.mrj.policy.Policy;
 import com.mrj.policy.RandomPolicy;
 import com.mrj.policy.util.ChargeDescription;
 import com.mrj.util.GlobalConstant;
+import com.mrj.util.chart.ChartUtil;
+
 import java.math.BigInteger;
 import java.util.ArrayList;
 
@@ -121,6 +123,8 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		String beginTime="06/12/2008";
+		String endTime="09/15/2009";
 		/*int trytimes=10;
 		for(int i=0;i<trytimes;i++){
 			Person person1 = new Person(new RandomPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
@@ -136,7 +140,14 @@ public class Main {
 		Main.tellmeHowtoInvestOnSomeDay("09/16/2009",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
 		*/
 		Person person1 = new Person(new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
-		Main.testPersonInvest(person1, "09/15/2005", "09/15/2006");
+		Main.testPersonInvest(person1, beginTime, endTime);
+		Person person2 = new Person(new RandomPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		Main.testPersonInvest(person2, beginTime, endTime);
+		Person person3 = new Person(new RandomPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		Main.testPersonInvest(person3, beginTime, endTime);
+		Person person4 = new Person(new RandomPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		Main.testPersonInvest(person4, beginTime, endTime);
+		ChartUtil.getAssetChart(new String[]{person1.getUserUuid(),person2.getUserUuid(),person3.getUserUuid(),person4.getUserUuid()});
 		
 	}
 }
