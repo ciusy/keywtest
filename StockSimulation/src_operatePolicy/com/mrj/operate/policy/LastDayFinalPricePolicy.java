@@ -4,11 +4,13 @@ import com.mrj.person.CapitalSituation;
 import com.mrj.person.ShareHolding;
 import com.mrj.policy.util.ChargeDescription;
 import com.mrj.policy.util.StoConfidenceValuePair;
+import com.mrj.sto.DHQ;
 import com.mrj.sto.HQ;
 import com.mrj.sto.Sto;
+
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.util.*;
-import java.util.List;
 import org.apache.log4j.Logger;
 
 /*
@@ -20,9 +22,16 @@ import org.apache.log4j.Logger;
  * @author ruojun
  */
 public class LastDayFinalPricePolicy extends OperatePolicy {
+	public LastDayFinalPricePolicy(){
+		
+	}
+	public LastDayFinalPricePolicy(float intrestRate){
+		this.intrestRate=intrestRate;
+	}
 
     static Logger logger = Logger.getLogger(LastDayFinalPricePolicy.class);
-    private float intrestRate = 0.12f;//0.1f为默认值
+    private float intrestRate = 0.12f;//0.1f为默认值,止赢率
+    private float lostRate=0.05f;
 
     public float getIntrestRate() {
         return intrestRate;
@@ -73,6 +82,7 @@ public class LastDayFinalPricePolicy extends OperatePolicy {
         if (a != null) {
             for (ShareHolding s : a) {
                 Sto sto = s.getSto();
+                if(getLastDayPrice(sto, nextChargeDay, "getFinalPrice")-this.getOwnerPerson().getCs().getHoldingList())
                 float planPrice = s.getCostPrice() < 0 ? 0 : s.getCostPrice() * (1 + intrestRate);
                 ChargeDescription temp = new ChargeDescription(sto, ChargeDescription.operationType_sell, s.getAvailableAmountForSell(), planPrice);
                 sellChargeDescriptionList.add(temp);
@@ -101,4 +111,41 @@ public class LastDayFinalPricePolicy extends OperatePolicy {
             }
         }
     }
+    
+    /**
+	 * 根据条件，获取nextChargeDay日之前的一天的某种价格。
+	 * 
+	 * @param sto
+	 * @param nextChargeDay
+	 * @param
+	 * @return
+	 */
+	public float getLastDayPrice(Sto sto, Calendar nextChargeDay, String getMethodName) {
+		float price = 0;
+		DHQ dhq = null;
+		Calendar temp = Calendar.getInstance();
+		temp.setTime(nextChargeDay.getTime());
+		HQ hq = sto.getHq();
+		Calendar earliestDate = Calendar.getInstance();
+		earliestDate.setTime(hq.getEarliestDate());
+		while (true) {
+			temp.add(Calendar.DAY_OF_YEAR, -1);
+			boolean isBeforeearliestDate = false;
+			isBeforeearliestDate = temp.compareTo(earliestDate) < 0;
+			if (hq.getDailyHQ(temp.getTime()) != null || isBeforeearliestDate) {
+				if (hq.getDailyHQ(temp.getTime()) != null) {
+					dhq = hq.getDailyHQ(temp.getTime());
+					Class clazz = dhq.getClass();
+					try {
+						Method m1 = clazz.getDeclaredMethod(getMethodName);
+						price = (Float) m1.invoke(dhq);
+					} catch (Exception e) {
+						logger.error("", e);
+					}
+
+				}
+				return price;
+			}
+		}
+	}
 }

@@ -90,12 +90,27 @@ public class ChartUtil {
 		return jfreechart;
 	}
 
+public static void showAssetChart(String[] person_uuid_array){	
+	ApplicationFrame demo = new ApplicationFrame("");
+	JPanel chartPanel = new ChartPanel(getAssetChart(person_uuid_array));
+	chartPanel.setPreferredSize(new java.awt.Dimension(1000, 600));
+	demo.setContentPane(chartPanel);
+	demo.pack();
+	RefineryUtilities.centerFrameOnScreen(demo);
+	demo.setVisible(true);
+}
+	
+	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		String[] person_uuid_array=new String[]{		
-				"3b68c17776b2462789fe3c991df124a2"
+				"5ece3b4ede144649b36130c70de0ca98",
+				"aaf1b8284a2b4953b0ece12deca116cb",	
+				"c0bc69d5a8594254b9177819bb47fe41",	
+				"f33b7dcc99c24ceb8a3b26aaa0ecb2e7"
+
 		};
 		ApplicationFrame demo = new ApplicationFrame("");
 		JPanel chartPanel = new ChartPanel(getAssetChart(person_uuid_array));
