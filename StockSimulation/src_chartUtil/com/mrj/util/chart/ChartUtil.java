@@ -36,17 +36,23 @@ import demo.CandlestickChartDemo1;
 public class ChartUtil {
 
 	@SuppressWarnings( { "deprecation", "unchecked" })
-	public static JFreeChart getAssetChart(String person_uuid) {
-		TimeSeries daytime = new TimeSeries("assetChart for user " + person_uuid, org.jfree.data.time.Day.class);
-		List<AssetDayData> dataList = new AssetDayDataDao().getAssetListByUserUuid(person_uuid);
-		AssetDayData temp = null;
+	public static JFreeChart getAssetChart(String[] person_uuid_array) {
+		TimeSeriesCollection tsc=new TimeSeriesCollection();
 		double tempMax_vol=0;
-		for (int i = 0; i < dataList.size(); i++) {
-			temp = dataList.get(i);
-			daytime.addOrUpdate(new Day(temp.getDateTime()), temp.getAssetValue());
-			if(temp.getAssetValue()>tempMax_vol)tempMax_vol=temp.getAssetValue();
+		List<AssetDayData> dataList=null;
+		for(String person_uuid:person_uuid_array){
+			TimeSeries daytime = new TimeSeries("assetChart for user " + person_uuid, org.jfree.data.time.Day.class);
+			dataList = new AssetDayDataDao().getAssetListByUserUuid(person_uuid);
+			AssetDayData temp = null;
+			
+			for (int i = 0; i < dataList.size(); i++) {
+				temp = dataList.get(i);
+				daytime.addOrUpdate(new Day(temp.getDateTime()), temp.getAssetValue());
+				if(temp.getAssetValue()>tempMax_vol)tempMax_vol=temp.getAssetValue();
+			}
+			tsc.addSeries(daytime);
 		}
-		IntervalXYDataset dataset = new TimeSeriesCollection(daytime);
+		IntervalXYDataset dataset = tsc;
 		NumberAxis y1Axis = new NumberAxis("");// 设定y轴，就是数字轴
 		y1Axis.setAutoRange(false);// 不使用自动设定范围
 		
@@ -57,7 +63,7 @@ public class ChartUtil {
 		
 		XYLineAndShapeRenderer xyLineRender1 = new XYLineAndShapeRenderer(true, false);
 		xyLineRender1.setBaseToolTipGenerator(new StandardXYToolTipGenerator("{0}: ({1}, {2})", new SimpleDateFormat("yy年MM月dd日"), new DecimalFormat("0.00")));
-		xyLineRender1.setSeriesPaint(0, Color.RED);
+		//xyLineRender1.setSeriesPaint(0, Color.RED);
 
 		DateAxis dateaxis = new DateAxis("");
 		// 设置日期格式及显示日期的间隔
@@ -88,9 +94,11 @@ public class ChartUtil {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		String person_uuid="00001";
+		String[] person_uuid_array=new String[]{		
+				"3b68c17776b2462789fe3c991df124a2"
+		};
 		ApplicationFrame demo = new ApplicationFrame("");
-		JPanel chartPanel = new ChartPanel(getAssetChart(person_uuid));
+		JPanel chartPanel = new ChartPanel(getAssetChart(person_uuid_array));
 		chartPanel.setPreferredSize(new java.awt.Dimension(1000, 600));
 		demo.setContentPane(chartPanel);
 		demo.pack();
