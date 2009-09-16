@@ -78,6 +78,10 @@ public class Person {
     private void insertCurrentDateAsset(Calendar nextChargeDay) {
     	AssetDayDataDao addao=new AssetDayDataDao(); 
     	AssetDayData asset=new AssetDayData(this.userUuid,nextChargeDay.getTime(),getCs().getTotalAssets(nextChargeDay.getTime()).doubleValue());
+    	if(getCs().getTotalAssets(nextChargeDay.getTime()).doubleValue()<0){
+    		System.out.println("error");
+    		int i=1;
+    	}
     	addao.add(asset);
 	}
 
