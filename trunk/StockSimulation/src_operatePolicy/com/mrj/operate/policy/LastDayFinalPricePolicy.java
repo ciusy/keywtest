@@ -31,7 +31,7 @@ public class LastDayFinalPricePolicy extends OperatePolicy {
 
     static Logger logger = Logger.getLogger(LastDayFinalPricePolicy.class);
     private float intrestRate = 0.12f;//0.1f为默认值,止赢率
-    private float lostRate=0.05f;
+    private float lostRate=0.05f;//止损率
 
     public float getIntrestRate() {
         return intrestRate;
@@ -82,10 +82,17 @@ public class LastDayFinalPricePolicy extends OperatePolicy {
         if (a != null) {
             for (ShareHolding s : a) {
                 Sto sto = s.getSto();
-                if(getLastDayPrice(sto, nextChargeDay, "getFinalPrice")-this.getOwnerPerson().getCs().getHoldingList())
-                float planPrice = s.getCostPrice() < 0 ? 0 : s.getCostPrice() * (1 + intrestRate);
+                float lastDayPrice=getLastDayPrice(sto, nextChargeDay, "getFinalPrice");
+                float costPrice=this.getOwnerPerson().getCs().getHoldingMap().get(sto.getCode()).getCostPrice();
+                float planPrice=0;
+                if((lastDayPrice-costPrice)/costPrice<lostRate){
+                	planPrice=lastDayPrice;//以上一交易日的收盘价卖出，类似买入时以上一交易日的收盘价买入                    
+                }else{
+                	planPrice = s.getCostPrice() < 0 ? 0 : s.getCostPrice() * (1 + intrestRate);                    
+                }
                 ChargeDescription temp = new ChargeDescription(sto, ChargeDescription.operationType_sell, s.getAvailableAmountForSell(), planPrice);
                 sellChargeDescriptionList.add(temp);
+                
             }
         }
         return sellChargeDescriptionList;

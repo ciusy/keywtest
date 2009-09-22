@@ -3,7 +3,7 @@ package com.mrj.person;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import org.apache.log4j.Logger;
 
@@ -19,6 +19,7 @@ public class CapitalSituation {
     public Person ownerPerson = null;
     BigDecimal leftMoney;
     List<ShareHolding> holdingList = new ArrayList<ShareHolding>();
+    Map<String,ShareHolding> holdingMap=null;
 
     public CapitalSituation(List<ShareHolding> holdingList, BigDecimal leftMoney) {
         this.holdingList = holdingList;
@@ -35,6 +36,15 @@ public class CapitalSituation {
 
     public List<ShareHolding> getHoldingList() {
         return holdingList;
+    }
+    
+    public Map<String,ShareHolding> getHoldingMap() {
+    	if(holdingMap==null){
+    		for(ShareHolding sh:holdingList){
+    			holdingMap.put(sh.getSto().getCode(), sh);	
+    		}
+    	}
+        return holdingMap;
     }
 
     public void setHoldingList(List<ShareHolding> holdingList) {
