@@ -125,7 +125,7 @@ public abstract class Policy {
 		return sto.getAverage180PriceFittingResultMap().get(nextChargeDay);
 	}
 
-	public float getFittingResult(List<Float> beforeArray) {
+	public float getFittingResult(List<Float> beforeArray) {//
 		// TODO 拟合函数未完成，需要研究然后再完成。目前的实现：直接使用最后一天涨跌幅作用在最后一天的收盘价上，作为拟合的结果
 		if (beforeArray.size() < 3) {
 			if (beforeArray.size() - 1 < 0) {

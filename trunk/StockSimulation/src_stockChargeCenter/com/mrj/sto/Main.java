@@ -87,6 +87,22 @@ public class Main {
 		}
 		return null;
 	}
+	
+	public static float letPersonInvest(Person p, String fromMMDDYYYY, String toMMDDYYYY) {
+		new PersonDao().add(p);
+		BigDecimal atbeginning = p.getCs().getLeftMoney();
+		try {
+			p.beginInvest(sdf.parse(fromMMDDYYYY), sdf.parse(toMMDDYYYY));
+			float re=(p.getCs().getTotalAssets(sdf.parse(toMMDDYYYY)).floatValue() - atbeginning.floatValue()) / atbeginning.floatValue();
+			String reinfo = "赢利结果：赢利" + re + "倍";
+			logger.info(reinfo);
+			return re;
+
+		} catch (Exception e) {
+			logger.error("", e);
+		}
+		return 1;
+	}
 
 	public static void testHql() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -118,36 +134,73 @@ public class Main {
 			logger.error("", e);
 		}
 	}
+	
+	
+	public static void testLastDayFinalPricePolicyWithRandomPolicy(){
+		String beginTime="06/12/2007";
+		String endTime="09/15/2009";
+		int n=500;
+		
+		//List<Person> plist=new ArrayList<Person>();
+		String[] personUuidArray=new String[n];
+		
+		float maxWinRate=-10;
+		float goodintrestRate=-2;
+		float goodlostRate=-2;
+		for(int i=0;i<n;i++){
+			float intrestRate=(float)Math.random();
+			float lostRate=(float)Math.random();
+			Person person = new Person(new RandomPolicy(), new LastDayFinalPricePolicy(intrestRate,-lostRate), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+			//plist.add(person);
+			float rate=Main.letPersonInvest(person, beginTime, endTime);
+			if(rate>maxWinRate){
+				maxWinRate=rate;
+				goodintrestRate=intrestRate;
+				goodlostRate=lostRate;
+			}
+			personUuidArray[i]=person.getUserUuid();
+		}
+		logger.info(maxWinRate);
+		logger.info(goodintrestRate);
+		logger.info(goodlostRate);
+		
+		ChartUtil.showAssetChart(personUuidArray);
+		
+	}
+	
+	
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		String beginTime="06/12/2008";
+		/*String beginTime="06/12/2007";
 		String endTime="09/15/2009";
-		/*int trytimes=10;
+		int trytimes=10;
 		for(int i=0;i<trytimes;i++){
 			Person person1 = new Person(new RandomPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
 			Main.testPersonInvest(person1, "09/15/1999", "09/15/2009");
-		}*/
+		}
 		
-		/*
+		
 		Main.tellmeHowtoInvestOnSomeDay("09/11/2009",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
 		Main.tellmeHowtoInvestOnSomeDay("09/12/2009",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
 		Main.tellmeHowtoInvestOnSomeDay("09/13/2009",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
 		Main.tellmeHowtoInvestOnSomeDay("09/14/2009",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
 		Main.tellmeHowtoInvestOnSomeDay("09/15/2009",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
 		Main.tellmeHowtoInvestOnSomeDay("09/16/2009",new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
-		*/
-		Person person1 = new Person(new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
-		Main.testPersonInvest(person1, beginTime, endTime);
+		
+		//Person person1 = new Person(new FittingPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		//Main.testPersonInvest(person1, beginTime, endTime);
 		Person person2 = new Person(new RandomPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
 		Main.testPersonInvest(person2, beginTime, endTime);
 		Person person3 = new Person(new RandomPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
 		Main.testPersonInvest(person3, beginTime, endTime);
 		Person person4 = new Person(new RandomPolicy(), new LastDayFinalPricePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
 		Main.testPersonInvest(person4, beginTime, endTime);
-		ChartUtil.getAssetChart(new String[]{person1.getUserUuid(),person2.getUserUuid(),person3.getUserUuid(),person4.getUserUuid()});
+		ChartUtil.showAssetChart(new String[]{person2.getUserUuid(),person3.getUserUuid(),person4.getUserUuid()});*/
+		
+		testLastDayFinalPricePolicyWithRandomPolicy();
 		
 	}
 }
