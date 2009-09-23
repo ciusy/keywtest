@@ -25,13 +25,14 @@ public class LastDayFinalPricePolicy extends OperatePolicy {
 	public LastDayFinalPricePolicy(){
 		
 	}
-	public LastDayFinalPricePolicy(float intrestRate){
+	public LastDayFinalPricePolicy(float intrestRate,float lostRate){
 		this.intrestRate=intrestRate;
+		this.lostRate=lostRate;
 	}
 
     static Logger logger = Logger.getLogger(LastDayFinalPricePolicy.class);
     private float intrestRate = 0.12f;//0.1f为默认值,止赢率
-    private float lostRate=0.05f;//止损率
+    private float lostRate=-0.10f;//止损率
 
     public float getIntrestRate() {
         return intrestRate;
