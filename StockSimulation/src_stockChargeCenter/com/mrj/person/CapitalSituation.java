@@ -108,7 +108,7 @@ public class CapitalSituation {
 				brokerage = ChargeCenter.minimumBrokerage;
 
 			this.leftMoney = this.leftMoney.subtract(new BigDecimal(brokerage));
-			logger.info("已经买入股票" + sto.getName() + operateAmount + "股，成交价格为"
+			logger.debug("已经买入股票" + sto.getName() + operateAmount + "股，成交价格为"
 					+ plan_price + "元");
 			cfDao.add(new CapitalFlow(getOwnerPerson().getUserUuid(), sto
 					.getName(), CapitalFlow.sto_buy, date, plan_price,
@@ -116,7 +116,7 @@ public class CapitalSituation {
 					leftMoney, new BigDecimal(brokerage), sto.getCode()));
 			return ChargeCenter.charge_succuss;
 		} else {
-			logger.error("余额不足以买入要求的股票");
+			logger.debug("余额不足以买入要求的股票");
 			return ChargeCenter.charge_fail;
 		}
 
@@ -165,7 +165,7 @@ public class CapitalSituation {
 
 			this.leftMoney = this.leftMoney.subtract(new BigDecimal(brokerage));
 
-			logger.info("已经卖出股票" + sto.getName() + operateAmount + "股，成交价格为"
+			logger.debug("已经卖出股票" + sto.getName() + operateAmount + "股，成交价格为"
 					+ plan_price + "元");
 			cfDao.add(new CapitalFlow(getOwnerPerson().getUserUuid(), sto
 					.getName(), CapitalFlow.sto_sell, date, plan_price,

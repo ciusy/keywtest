@@ -13,14 +13,13 @@ import java.math.BigDecimal;
 import java.util.*;
 import org.apache.log4j.Logger;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 /**
- *
+ *止赢止损 的操作模型
  * @author ruojun
  */
+
+
 public class LastDayFinalPricePolicy extends OperatePolicy {
 	public LastDayFinalPricePolicy(){
 		
