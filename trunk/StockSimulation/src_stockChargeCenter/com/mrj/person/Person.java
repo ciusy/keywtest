@@ -67,7 +67,7 @@ public class Person {
         List<ChargeDescription> sto_chargePlan = operatePolicy.getChargePlan(nextChargeDay);
         ChargeCenter cc = new ChargeCenter();
         if (sto_chargePlan.size() != 0) {
-            logger.info(nextChargeDay.getTime() + "的投资日记:");
+            logger.debug(nextChargeDay.getTime() + "的投资日记:");
         }
         for (ChargeDescription cd : sto_chargePlan) {
             cc.charge(this, cd, nextChargeDay.getTime());

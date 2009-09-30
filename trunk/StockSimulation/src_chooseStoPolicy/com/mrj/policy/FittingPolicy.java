@@ -35,6 +35,10 @@ public class FittingPolicy extends Policy {
     private float buyifConfidenceGreaterThanThisValue=0.6f;
     private int chargeDescription_size = 3;//默认为3个
     
+    public FittingPolicy(){
+    	
+    }
+    
     @Override
     public List<StoConfidenceValuePair> getBuyList(Calendar nextChargeDay) {
         List<Sto> allStoList = OriginalDataUtil.getAllStoList();
@@ -78,8 +82,8 @@ public class FittingPolicy extends Policy {
        
         //lastDayPrice-confidence
         confidenceVlaueRateMap.put(getlastDayPriceConfidenceValue(nextChargeDay, sto), this.finalPrice_FittingResult_rate);
-        // confidenceVlaueRateMap.put(getSH_Composite_Index_FittingResult(nextChargeDay), this.sH_Composite_Index_FittingResult_rate);
-        // confidenceVlaueRateMap.put(getSS_Composition_Index_FittingResult(nextChargeDay), this.sS_Composition_Index_FittingResult_rate);
+        confidenceVlaueRateMap.put(getSH_Composite_Index_FittingResult(nextChargeDay), this.sH_Composite_Index_FittingResult_rate);
+        confidenceVlaueRateMap.put(getSS_Composition_Index_FittingResult(nextChargeDay), this.sS_Composition_Index_FittingResult_rate);
         confidenceVlaueRateMap.put(getAverage5PriceConfidenceValue(nextChargeDay, sto), this.average5Price_FittingResult_rate);
         confidenceVlaueRateMap.put(getAverage10PriceConfidenceValue(nextChargeDay, sto), this.average10Price_FittingResult_rate);
         confidenceVlaueRateMap.put(getAverage20PriceConfidenceValue(nextChargeDay, sto), this.average20Price_FittingResult_rate);
@@ -92,8 +96,10 @@ public class FittingPolicy extends Policy {
         float allConfidence = 0;
         float allRate = 0;
         for (float f : confidenceVlaueRateMap.keySet()) {
+        	if(f!=0)
             allRate += confidenceVlaueRateMap.get(f);
         }
+        if(allRate==0)allRate=1;
         for (float f : confidenceVlaueRateMap.keySet()) {
             allConfidence += f * (confidenceVlaueRateMap.get(f) / allRate);
         }
@@ -169,12 +175,14 @@ public class FittingPolicy extends Policy {
         return formatConfidenceValue(re) ;
     }
 
-    private float getSH_Composite_Index_FittingResult(Calendar nextChargeDay) {
-        return getFinalPriceFittingResult(nextChargeDay, OriginalDataUtil.getAllStoMap().get("999999"));//上证指数的代码
+    private float getSH_Composite_Index_FittingResult(Calendar nextChargeDay) {    	
+       // return getFinalPriceFittingResult(nextChargeDay, OriginalDataUtil.getAllStoMap().get("999999"));//上证指数的代码
+    	return	getlastDayPriceConfidenceValue(nextChargeDay, OriginalDataUtil.getAllStoMap().get("999999"));
     }
 
     private float getSS_Composition_Index_FittingResult(Calendar nextChargeDay) {
-        return getFinalPriceFittingResult(nextChargeDay, OriginalDataUtil.getAllStoMap().get("399001"));//上证指数的代码
+       // return getFinalPriceFittingResult(nextChargeDay, OriginalDataUtil.getAllStoMap().get("399001"));//上证指数的代码
+    	return	getlastDayPriceConfidenceValue(nextChargeDay, OriginalDataUtil.getAllStoMap().get("399001"));
     }
 
    

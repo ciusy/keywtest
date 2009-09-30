@@ -62,7 +62,7 @@ public abstract class Policy {
 		}
 		Calendar begin = Calendar.getInstance();
 		begin.setTime(nextChargeDay.getTime());
-		begin.add(Calendar.DAY_OF_YEAR, -10);
+		begin.add(Calendar.DAY_OF_YEAR, -7);
 		HashMap<Date, DHQ> map = sto.getHq().getDhqMap();
 		while (begin.compareTo(nextChargeDay) < 0) {
 			if (map.get(begin.getTime()) != null) {
@@ -125,8 +125,26 @@ public abstract class Policy {
 		return sto.getAverage180PriceFittingResultMap().get(nextChargeDay);
 	}
 
+	
+	/**
+	 * 拟合的函数
+	 * 实现未定
+	 * @param beforeArray
+	 * @return
+	 */
 	public float getFittingResult(List<Float> beforeArray) {//
-		// TODO 拟合函数未完成，需要研究然后再完成。目前的实现：直接使用最后一天涨跌幅作用在最后一天的收盘价上，作为拟合的结果
+		return getFittingResult2(beforeArray);		
+	}
+	
+	
+	/**
+	 * 拟合的函数的第一种实现
+	 * 目前的实现：直接使用最后一天涨跌幅作用在最后一天的收盘价上，作为拟合的结果
+	 * @param beforeArray
+	 * @return
+	 */
+	public float getFittingResult1(List<Float> beforeArray) {//
+		
 		if (beforeArray.size() < 3) {
 			if (beforeArray.size() - 1 < 0) {
 				return 0;
@@ -135,9 +153,57 @@ public abstract class Policy {
 		}
 		float re = (beforeArray.get(beforeArray.size() - 1) - beforeArray.get(beforeArray.size() - 2)) / beforeArray.get(beforeArray.size() - 2);
 		re = (1 + re) * (beforeArray.get(beforeArray.size() - 1));
-
 		return re;
 	}
+	
+	
+	/**
+	 * 拟合的函数的第二种实现
+	 * 目前的实现：//目前的实现：趋势平均值+涨跌幅平均值
+	 * @param beforeArray
+	 * @return
+	 */
+	public float getFittingResult2(List<Float> beforeArray) {//
+		
+		if (beforeArray.size() < 3) {
+			if (beforeArray.size() - 1 < 0) {
+				return 0;
+			}
+			return beforeArray.get(beforeArray.size() - 1);
+		}
+		
+		
+		//目前的实现：趋势平均值+涨跌幅平均值
+		float re=beforeArray.get(beforeArray.size() - 1);		
+		float[] cha_array=new float[beforeArray.size()-1];//涨跌幅
+		for(int i=0;i<beforeArray.size()-1;i++){
+			cha_array[i]=(beforeArray.get(i+1)-beforeArray.get(i))/beforeArray.get(i);
+		}	
+		float[] trend_array=new float[cha_array.length-1];//趋势
+		for(int i=0;i<cha_array.length-1;i++){
+			trend_array[i]=cha_array[i+1]-cha_array[i];
+		}
+		float trend_avg=0;//趋势平均值
+		for(int i=0;i<trend_array.length;i++){
+			trend_avg+=trend_array[i];
+		}
+		trend_avg=(float) (trend_avg/(trend_array.length*1.0));
+		float cha_avg=0;
+		for(int i=0;i<cha_array.length;i++){
+			cha_avg+=cha_array[i];
+		}
+		cha_avg=(float)(cha_avg/cha_array.length*1.0);
+		re=trend_avg+cha_avg;
+		if(re==0)return beforeArray.get(beforeArray.size() - 1)*1;//如果没有算出值就返回最后一个值
+		if(re<-0.1)return (float)(beforeArray.get(beforeArray.size() - 1)*(1-0.1));//如果太差返回跌停
+		if(re>0.1)return (float)(beforeArray.get(beforeArray.size() - 1)*(1+0.1));//如果太好返回涨停
+		else{
+			return (float)(beforeArray.get(beforeArray.size() - 1)*(1+re));
+		}
+	}
+	
+	
+	
 
 	/**
 	 * 给出对一些股票的信息值List

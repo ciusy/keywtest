@@ -33,7 +33,7 @@ public class OriginalDataUtil {
 			InputStreamReader read;
 			for (int i = 0; i < files.length; i++) {
 				try {
-					logger.info("读取第"+(i+1)+"个文件");
+					logger.debug("读取第"+(i+1)+"个文件");
 					read = new InputStreamReader(new FileInputStream(files[i]),"GBK");
 					BufferedReader reader = new BufferedReader(read);
 					String result = "";
@@ -80,6 +80,7 @@ public class OriginalDataUtil {
 					logger.error("", ex);
 				}
 			}
+			logger.info("文件读取完成!");
 			return stoMap;
 		}
 
