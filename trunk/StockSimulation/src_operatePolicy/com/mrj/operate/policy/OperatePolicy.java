@@ -5,6 +5,7 @@
 package com.mrj.operate.policy;
 
 import com.mrj.person.Person;
+import com.mrj.policy.Policy;
 import com.mrj.policy.util.ChargeDescription;
 import com.mrj.policy.util.StoConfidenceValuePair;
 import java.util.*;
@@ -23,7 +24,7 @@ import java.util.*;
  *  买卖数量：
  * @author ruojun
  */
-public abstract class OperatePolicy {
+public abstract class OperatePolicy  extends Policy{
     private float buyOperatePeriod;//买入操作周期:多少天操作一次
     private float sellOperatePeriod;//卖出操作周期:多少天操作一次
 

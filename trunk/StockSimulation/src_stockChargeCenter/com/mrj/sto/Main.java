@@ -16,13 +16,15 @@ import org.hibernate.Session;
 import com.mrj.dm.dao.HibernateUtil;
 import com.mrj.dm.dao.PersonDao;
 import com.mrj.dm.domain.CapitalFlow;
+import com.mrj.operate.policy.DayAvgOperatePolicy;
 import com.mrj.operate.policy.LastDayFinalPricePolicy;
 import com.mrj.operate.policy.OperatePolicy;
 import com.mrj.person.CapitalSituation;
 import com.mrj.person.Person;
 import com.mrj.person.ShareHolding;
 import com.mrj.policy.FittingPolicy;
-import com.mrj.policy.Policy;
+import com.mrj.policy.DayAavAnalysePolicy;
+import com.mrj.policy.ChoosePolicy;
 import com.mrj.policy.RandomPolicy;
 import com.mrj.policy.util.ChargeDescription;
 import com.mrj.util.GlobalConstant;
@@ -114,7 +116,7 @@ public class Main {
 		session.getTransaction().commit();
 	}
 
-	public static void tellmeHowtoInvestOnSomeDay(String dateMMDDYYYY, Policy policy, OperatePolicy operatePolicy, CapitalSituation cs) {
+	public static void tellmeHowtoInvestOnSomeDay(String dateMMDDYYYY, ChoosePolicy policy, OperatePolicy operatePolicy, CapitalSituation cs) {
 		Person p = new Person(policy, operatePolicy, cs);
 		BigDecimal atbeginning = p.getCs().getLeftMoney();
 		try {
@@ -158,9 +160,9 @@ public class Main {
 			}
 			personUuidArray[i] = person.getUserUuid();
 		}
-		logger.info(maxWinRate);
-		logger.info(goodintrestRate);
-		logger.info(goodlostRate);
+		logger.error(maxWinRate);
+		logger.error(goodintrestRate);
+		logger.error(goodlostRate);
 
 		ChartUtil.showAssetChart(personUuidArray);
 
@@ -189,6 +191,51 @@ public class Main {
 		logger.info(maxWinRate);
 		logger.info(goodintrestRate);
 		logger.info(goodlostRate);
+
+		ChartUtil.showAssetChart(personUuidArray);
+
+	}
+	
+	public static void testFiveAavAnalysePolicy() {
+		String beginTime = "01/01/2004";
+		String endTime = "09/30/2009";
+
+		String[] personUuidArray = new String[8];
+
+
+		float intrestRate = (float) 0.12;
+		float lostRate = (float) 0.07;
+		Person person = new Person(new DayAavAnalysePolicy(5), new LastDayFinalPricePolicy(intrestRate, -lostRate), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		Person person1 = new Person(new DayAavAnalysePolicy(10), new LastDayFinalPricePolicy(intrestRate, -lostRate), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		Person person2 = new Person(new DayAavAnalysePolicy(20), new LastDayFinalPricePolicy(intrestRate, -lostRate), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		Person person3 = new Person(new DayAavAnalysePolicy(60), new LastDayFinalPricePolicy(intrestRate, -lostRate), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		
+
+		
+		Person person4 = new Person(new DayAavAnalysePolicy(5), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		Person person5 = new Person(new DayAavAnalysePolicy(10), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		Person person6 = new Person(new DayAavAnalysePolicy(20), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		Person person7 = new Person(new DayAavAnalysePolicy(60), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		
+		
+		float rate = Main.letPersonInvest(person, beginTime, endTime);
+		float rate1 = Main.letPersonInvest(person1, beginTime, endTime);
+		float rate2 = Main.letPersonInvest(person2, beginTime, endTime);
+		float rate3 = Main.letPersonInvest(person3, beginTime, endTime);
+		float rate4 = Main.letPersonInvest(person4, beginTime, endTime);
+		float rate5 = Main.letPersonInvest(person5, beginTime, endTime);
+		float rate6 = Main.letPersonInvest(person6, beginTime, endTime);
+		float rate7 = Main.letPersonInvest(person7, beginTime, endTime);
+		
+		
+		personUuidArray[0] = person.getUserUuid();
+		personUuidArray[1]=person1.getUserUuid();
+		personUuidArray[2]=person2.getUserUuid();
+		personUuidArray[3] = person3.getUserUuid();
+		personUuidArray[4]=person4.getUserUuid();
+		personUuidArray[5] = person5.getUserUuid();
+		personUuidArray[6]=person6.getUserUuid();
+		personUuidArray[7] = person7.getUserUuid();
 
 		ChartUtil.showAssetChart(personUuidArray);
 
@@ -246,7 +293,8 @@ public class Main {
 		 */
 
 		//testLastDayFinalPricePolicyWithRandomPolicy();
-		testFittingePolicy();
+		//testFittingePolicy();
+		testFiveAavAnalysePolicy();
 
 	}
 }

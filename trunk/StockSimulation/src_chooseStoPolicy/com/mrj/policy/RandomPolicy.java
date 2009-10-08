@@ -14,7 +14,7 @@ import com.mrj.sto.OriginalDataUtil;
  * 随机的给出一些股票的信心值和已有股票的信心值
  * @author ruojun
  */
-public class RandomPolicy extends Policy {
+public class RandomPolicy extends ChoosePolicy {
 
     static Logger logger = Logger.getLogger(RandomPolicy.class);
     private int chargeDescription_size = 3;//默认为3个
