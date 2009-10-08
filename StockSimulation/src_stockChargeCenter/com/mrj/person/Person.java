@@ -14,7 +14,7 @@ import com.mrj.dm.dao.PersonDao;
 import com.mrj.dm.domain.AssetDayData;
 import com.mrj.operate.policy.OperatePolicy;
 import com.mrj.policy.util.ChargeDescription;
-import com.mrj.policy.Policy;
+import com.mrj.policy.ChoosePolicy;
 import com.mrj.sto.Main;
 import com.mrj.sto.OriginalDataUtil;
 import com.mrj.util.UUIDGenerator;
@@ -27,7 +27,7 @@ public class Person {
 
     static Logger logger = Logger.getLogger(Person.class);
     private String userUuid;
-    private Policy policy;
+    private ChoosePolicy policy;
     private OperatePolicy operatePolicy;   
     private CapitalSituation cs ;
     private String userId;
@@ -40,7 +40,7 @@ public class Person {
 		this.userId = userId;
 	}
 
-	public Person(Policy policy, OperatePolicy operatePolicy,CapitalSituation cs) {
+	public Person(ChoosePolicy policy, OperatePolicy operatePolicy,CapitalSituation cs) {
         this.userUuid=UUIDGenerator.getUUID();
         this.setPolicy(policy);
         this.setOperatePolicy(operatePolicy);
@@ -117,11 +117,11 @@ public class Person {
         this.cs.setOwnerPerson(this);
     }
 
-     public Policy getPolicy() {
+     public ChoosePolicy getPolicy() {
         return policy;
     }
 
-    public void setPolicy(Policy po) {
+    public void setPolicy(ChoosePolicy po) {
         this.policy = po;
         this.policy.setOwnerPerson(this);
 

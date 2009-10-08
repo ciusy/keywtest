@@ -21,7 +21,7 @@ import java.util.Map;
  *拟合预测分析
  * @author Administrator
  */
-public class FittingPolicy extends Policy {
+public class FittingPolicy extends ChoosePolicy {
 
     private float sH_Composite_Index_FittingResult_rate = 0.05f;//上证综合指数拟合结果所占比例
     private float sS_Composition_Index_FittingResult_rate = 0.05f;//深圳成分指数拟合结果所占比例

@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Administrator
  */
-public class RedGreenAnalysePolicy extends Policy{
+public class RedGreenAnalysePolicy extends ChoosePolicy{
 
     @Override
     public List<StoConfidenceValuePair> getBuyList(Calendar nextChargeDay) {

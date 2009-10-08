@@ -72,7 +72,7 @@ public class ChartUtil {
     dateaxis.setTickMarkPosition(DateTickMarkPosition.MIDDLE);//设置标记的位置
 	    
 	    dateaxis.setStandardTickUnits(DateAxis.createStandardDateTickUnits());//设置标准的时间刻度单位
-	    dateaxis.setTickUnit(new DateTickUnit(DateTickUnit.DAY,dataList.size()/5>0?dataList.size()/5:1));//设置时间刻度的间隔，一般以周为单位
+	    dateaxis.setTickUnit(new DateTickUnit(DateTickUnit.DAY,dataList.size()/5>0?dataList.size()/10:1));//设置时间刻度的间隔，一般以周为单位
 	    dateaxis.setDateFormatOverride(new SimpleDateFormat("yy年MM月dd日"));//设置显示时间的格式
 	  
 	    dateaxis.setLowerMargin(0.0D);
