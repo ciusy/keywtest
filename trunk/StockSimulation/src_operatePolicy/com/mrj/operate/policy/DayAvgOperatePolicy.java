@@ -15,7 +15,7 @@ import com.mrj.policy.util.StoConfidenceValuePair;
 import com.mrj.sto.Sto;
 
 /**
- * 5日均线操作模型 低于5日线卖
+ * n日均线操作模型 低于n日线卖，高于m日线买
  * 
  * @author ruojun
  * 
