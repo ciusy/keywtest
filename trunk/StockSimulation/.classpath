@@ -8,7 +8,7 @@
 	<classpathentry kind="src" path="src_chartUtil"/>
 	<classpathentry kind="src" path="src_stockChargeCenter"/>
 	<classpathentry kind="con" path="com.genuitec.eclipse.j2eedt.core.J2EE14_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_02"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/MrjLib"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_11"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/mrjLib"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
