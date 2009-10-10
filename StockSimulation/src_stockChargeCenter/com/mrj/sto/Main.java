@@ -90,6 +90,17 @@ public class Main {
 		return null;
 	}
 
+	
+	public static ArrayList<Float> letPersonListInvest(List<Person> plist,String fromMMDDYYYY, String toMMDDYYYY){
+		ArrayList<Float> re=new ArrayList<Float>();
+		for(Person p:plist){
+			float rate=letPersonInvest(p,fromMMDDYYYY,toMMDDYYYY);
+			re.add(rate);
+		}
+		return re;
+	}
+	
+	
 	public static float letPersonInvest(Person p, String fromMMDDYYYY, String toMMDDYYYY) {
 		new PersonDao().add(p);
 		BigDecimal atbeginning = p.getCs().getLeftMoney();
@@ -196,48 +207,22 @@ public class Main {
 
 	}
 	@SuppressWarnings("unused")
-	public static void testFiveAavAnalysePolicy() {
+	public static void testAavAnalysePolicy() {
 		String beginTime = "01/01/2007";
 		String endTime = "09/30/2009";
-
-		String[] personUuidArray = new String[8];
-
-
 		float intrestRate = (float) 0.12;
-		float lostRate = (float) 0.07;
-		Person person = new Person(new DayAavAnalysePolicy(60,5), new LastDayFinalPricePolicy(intrestRate, -lostRate), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
-		Person person1 = new Person(new DayAavAnalysePolicy(60,10), new LastDayFinalPricePolicy(intrestRate, -lostRate), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
-		Person person2 = new Person(new DayAavAnalysePolicy(60,20), new LastDayFinalPricePolicy(intrestRate, -lostRate), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
-		Person person3 = new Person(new DayAavAnalysePolicy(60,60), new LastDayFinalPricePolicy(intrestRate, -lostRate), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
-		
-
-		
-		Person person4 = new Person(new DayAavAnalysePolicy(60,5), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
-		Person person5 = new Person(new DayAavAnalysePolicy(60,10), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
-		Person person6 = new Person(new DayAavAnalysePolicy(60,20), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		float lostRate = (float) 0.07;		
+		ArrayList<Person> plist=new ArrayList<Person>();		
 		Person person7 = new Person(new DayAavAnalysePolicy(60,60), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		plist.add(person7);	
 		
+		ArrayList<Float> rateList=Main.letPersonListInvest(plist, beginTime, endTime);
 		
-		float rate = Main.letPersonInvest(person, beginTime, endTime);
-		float rate1 = Main.letPersonInvest(person1, beginTime, endTime);
-		float rate2 = Main.letPersonInvest(person2, beginTime, endTime);
-		float rate3 = Main.letPersonInvest(person3, beginTime, endTime);
+		String[] personUuidArray = new String[plist.size()];
+		for(int i=0;i<plist.size();i++){
+			personUuidArray[i]=plist.get(i).getUserUuid();
+		}
 		
-		float rate4 = Main.letPersonInvest(person4, beginTime, endTime);
-		float rate5 = Main.letPersonInvest(person5, beginTime, endTime);
-		float rate6 = Main.letPersonInvest(person6, beginTime, endTime);
-		float rate7 = Main.letPersonInvest(person7, beginTime, endTime);
-		
-		
-		personUuidArray[0] = person.getUserUuid();
-		personUuidArray[1]=person1.getUserUuid();
-		personUuidArray[2]=person2.getUserUuid();
-		personUuidArray[3] = person3.getUserUuid();
-		personUuidArray[4]=person4.getUserUuid();
-		personUuidArray[5] = person5.getUserUuid();
-		personUuidArray[6]=person6.getUserUuid();
-		personUuidArray[7] = person7.getUserUuid();
-
 		ChartUtil.showAssetChart(personUuidArray);
 
 	}
@@ -295,7 +280,7 @@ public class Main {
 
 		//testLastDayFinalPricePolicyWithRandomPolicy();
 		//testFittingePolicy();
-		testFiveAavAnalysePolicy();
+		testAavAnalysePolicy();
 
 	}
 }
