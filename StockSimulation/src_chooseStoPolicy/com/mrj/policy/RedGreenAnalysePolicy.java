@@ -6,8 +6,11 @@
 package com.mrj.policy;
 
 import com.mrj.policy.util.StoConfidenceValuePair;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Properties;
 
 /**
  *
@@ -24,5 +27,11 @@ public class RedGreenAnalysePolicy extends ChoosePolicy{
     public List<StoConfidenceValuePair> getOwnStoList(Calendar nextChargeDay) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+	@Override
+	public Object getInstanceWithPropertiesList(ArrayList<Properties> list) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

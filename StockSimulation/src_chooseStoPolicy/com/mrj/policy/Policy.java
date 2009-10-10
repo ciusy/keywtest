@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Properties;
 
 import org.apache.log4j.Logger;
 
@@ -13,7 +14,9 @@ import com.mrj.sto.DHQ;
 import com.mrj.sto.HQ;
 import com.mrj.sto.Sto;
 
-public class Policy {
+public abstract class Policy implements initWithProperties{
+	
+	
 	
 	static Logger logger = Logger.getLogger(Policy.class);
 	
@@ -235,5 +238,9 @@ public class Policy {
 			}
 		}
 	}
+
+	public abstract Object getInstanceWithPropertiesList(ArrayList<Properties> list) ;
 	
 }
+
+

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Properties;
 
 import com.mrj.person.ShareHolding;
 import com.mrj.policy.util.StoConfidenceValuePair;
@@ -45,6 +46,10 @@ public class DayAavAnalysePolicy extends ChoosePolicy {
 	
 	
 	
+
+	public DayAavAnalysePolicy() {
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public List<StoConfidenceValuePair> getBuyList(Calendar nextChargeDay) {
@@ -100,6 +105,13 @@ public class DayAavAnalysePolicy extends ChoosePolicy {
             
         }
         return re;
+	}
+
+	@Override
+	public Object getInstanceWithPropertiesList(ArrayList<Properties> list) {
+		DayAavAnalysePolicy re=new DayAavAnalysePolicy();
+		// TODO Auto-generated method stub
+		return re;
 	}
 
 }
