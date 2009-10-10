@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Properties;
 
 import org.apache.log4j.Logger;
 
@@ -74,6 +75,12 @@ public class DayAvgOperatePolicy extends OperatePolicy {
 			sellChargeDescriptionList.add(temp);
 		}
 		return sellChargeDescriptionList;
+	}
+
+	@Override
+	public Object getInstanceWithPropertiesList(ArrayList<Properties> list) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

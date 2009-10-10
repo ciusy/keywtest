@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 /**
  *拟合预测分析
@@ -184,6 +185,12 @@ public class FittingPolicy extends ChoosePolicy {
        // return getFinalPriceFittingResult(nextChargeDay, OriginalDataUtil.getAllStoMap().get("399001"));//上证指数的代码
     	return	getlastDayPriceConfidenceValue(nextChargeDay, OriginalDataUtil.getAllStoMap().get("399001"));
     }
+
+	@Override
+	public Object getInstanceWithPropertiesList(ArrayList<Properties> list) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
    
 }

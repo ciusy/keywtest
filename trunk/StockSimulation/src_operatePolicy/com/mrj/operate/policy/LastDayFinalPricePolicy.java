@@ -11,6 +11,7 @@ import com.mrj.sto.Sto;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.util.*;
+
 import org.apache.log4j.Logger;
 
 
@@ -154,5 +155,10 @@ public class LastDayFinalPricePolicy extends OperatePolicy {
 				return price;
 			}
 		}
+	}
+	@Override
+	public Object getInstanceWithPropertiesList(ArrayList<Properties> list) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
