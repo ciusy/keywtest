@@ -19,7 +19,10 @@ public class TaskDispatcher implements Runnable {
 
 	private TaskDispatcher(){
 		for(int i=0;i<processorNum;i++){
-			taskProcessorList.add(new TaskProcessor("TaskProcessor"+i));
+			TaskProcessor tp=new TaskProcessor("TaskProcessor"+i);
+			tp.start();
+			taskProcessorList.add(tp);
+			
 		}
 	}
 	
@@ -55,15 +58,17 @@ public class TaskDispatcher implements Runnable {
 				}
 			}else{
 				
-				//Ê¹ÓÃ×î²»Ã¦µÄÏß³Ì×öÊÂ
+				/*//Ê¹ï¿½ï¿½ï¿½î²»Ã¦ï¿½ï¿½ï¿½ß³ï¿½ï¿½ï¿½ï¿½ï¿½
 				for(int i=0;i<processorNum;i++){
 					if(taskProcessorList.get(i).getTaskPoolSize()<minBusyValue){
 						minBusyValue=taskProcessorList.get(i).getTaskPoolSize();
 						minBusyProcessorNum=i;
 					}
+				}*/
+				taskProcessorList.get(minBusyProcessorNum++).addTask(task);
+				if(minBusyProcessorNum>=processorNum){
+					minBusyProcessorNum=0;//å½’é›¶
 				}
-				taskProcessorList.get(minBusyProcessorNum).addTask(task);
-				
 				
 			}
 				
