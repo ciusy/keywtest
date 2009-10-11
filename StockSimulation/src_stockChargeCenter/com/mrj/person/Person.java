@@ -32,6 +32,8 @@ public class Person {
     private CapitalSituation cs ;
     private String userId;
 
+	private Float rate;//赢利率
+
     public String getUserId() {
 		return userId;
 	}
@@ -127,7 +129,15 @@ public class Person {
 
     }
 
+    public Float getRate() {
+		return rate;
+	}
 
+	public void setRate(Float rate) {
+		this.rate = rate;
+	}
+    
+    
     public static void main(String[] args) {
         Date date = new Date();
         Calendar begin = Calendar.getInstance();

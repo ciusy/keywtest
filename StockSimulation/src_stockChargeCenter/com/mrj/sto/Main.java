@@ -12,7 +12,6 @@ import java.util.Properties;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.hibernate.Session;
-
 import com.mrj.dm.dao.HibernateUtil;
 import com.mrj.dm.dao.PersonDao;
 import com.mrj.dm.domain.CapitalFlow;
@@ -27,6 +26,9 @@ import com.mrj.policy.DayAavAnalysePolicy;
 import com.mrj.policy.ChoosePolicy;
 import com.mrj.policy.RandomPolicy;
 import com.mrj.policy.util.ChargeDescription;
+import com.mrj.server.CallBack;
+import com.mrj.server.LetSinglePersonToInvestTask;
+import com.mrj.server.TaskDispatcher;
 import com.mrj.util.GlobalConstant;
 import com.mrj.util.chart.ChartUtil;
 
@@ -90,17 +92,29 @@ public class Main {
 		return null;
 	}
 
-	
-	public static ArrayList<Float> letPersonListInvest(List<Person> plist,String fromMMDDYYYY, String toMMDDYYYY){
-		ArrayList<Float> re=new ArrayList<Float>();
-		for(Person p:plist){
-			float rate=letPersonInvest(p,fromMMDDYYYY,toMMDDYYYY);
+	public static ArrayList<Float> letPersonListInvest(List<Person> plist, String fromMMDDYYYY, String toMMDDYYYY) {
+		ArrayList<Float> re = new ArrayList<Float>();
+		for (Person p : plist) {
+			float rate = letPersonInvest(p, fromMMDDYYYY, toMMDDYYYY);
 			re.add(rate);
 		}
 		return re;
 	}
 	
 	
+	public static void letPersonListInvest_multyThread(List<Person> plist, String fromMMDDYYYY, String toMMDDYYYY) {
+		TaskDispatcher tp=TaskDispatcher.getInstance();
+		List<String> pUuidList=new ArrayList<String>();
+		ShowChartCallback sccb=new ShowChartCallback(plist.size(),pUuidList);
+		
+		new Thread(TaskDispatcher.getInstance()).start();		
+		for (Person p : plist) {
+			tp.addTask(new LetSinglePersonToInvestTask(fromMMDDYYYY,toMMDDYYYY,p,sccb));
+		}
+	}
+	
+	
+
 	public static float letPersonInvest(Person p, String fromMMDDYYYY, String toMMDDYYYY) {
 		new PersonDao().add(p);
 		BigDecimal atbeginning = p.getCs().getLeftMoney();
@@ -120,7 +134,8 @@ public class Main {
 	public static void testHql() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		CapitalFlow capitalFlow = new CapitalFlow("1234", "中国铝业", CapitalFlow.sto_buy, new Date(), 16.83f, 300, new BigDecimal(5030.33f), new BigDecimal(5300.90f), new BigDecimal(18.67f), "601600");
+		CapitalFlow capitalFlow = new CapitalFlow("1234", "中国铝业", CapitalFlow.sto_buy, new Date(), 16.83f, 300, new BigDecimal(5030.33f), new BigDecimal(5300.90f), new BigDecimal(
+				18.67f), "601600");
 		session.save(capitalFlow);
 		capitalFlow.setUserUuid("234");
 		session.save(capitalFlow);
@@ -161,7 +176,8 @@ public class Main {
 		for (int i = 0; i < n; i++) {
 			float intrestRate = (float) Math.random();
 			float lostRate = (float) Math.random();
-			Person person = new Person(new RandomPolicy(), new LastDayFinalPricePolicy(intrestRate, -lostRate), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+			Person person = new Person(new RandomPolicy(), new LastDayFinalPricePolicy(intrestRate, -lostRate), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(
+					30000f)));
 			// plist.add(person);
 			float rate = Main.letPersonInvest(person, beginTime, endTime);
 			if (rate > maxWinRate) {
@@ -191,7 +207,8 @@ public class Main {
 
 		float intrestRate = (float) 0.15;
 		float lostRate = (float) 0.1;
-		Person person = new Person(new FittingPolicy(), new LastDayFinalPricePolicy(intrestRate, -lostRate), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
+		Person person = new Person(new FittingPolicy(), new LastDayFinalPricePolicy(intrestRate, -lostRate), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(
+				30000f)));
 
 		float rate = Main.letPersonInvest(person, beginTime, endTime);
 		maxWinRate = rate;
@@ -206,81 +223,56 @@ public class Main {
 		ChartUtil.showAssetChart(personUuidArray);
 
 	}
+
 	@SuppressWarnings("unused")
 	public static void testAavAnalysePolicy() {
 		String beginTime = "01/01/2007";
 		String endTime = "09/30/2009";
 		float intrestRate = (float) 0.12;
-		float lostRate = (float) 0.07;		
-		ArrayList<Person> plist=new ArrayList<Person>();		
-		Person person7 = new Person(new DayAavAnalysePolicy(60,60), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f)));
-		plist.add(person7);	
+		float lostRate = (float) 0.07;
+		ArrayList<Person> plist = new ArrayList<Person>();
+		plist.add(new Person(new DayAavAnalysePolicy(60, 60,true,2,1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f))));
+		plist.add(new Person(new DayAavAnalysePolicy(60, 60,false,2,1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f))));
+		plist.add(new Person(new DayAavAnalysePolicy(60, 60,true,2,1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f))));
+		plist.add(new Person(new DayAavAnalysePolicy(60, 60,false,2,1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f))));
+		plist.add(new Person(new DayAavAnalysePolicy(60, 60,true,2,1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f))));
+		plist.add(new Person(new DayAavAnalysePolicy(60, 60,false,2,1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f))));
 		
-		ArrayList<Float> rateList=Main.letPersonListInvest(plist, beginTime, endTime);
+	
 		
-		String[] personUuidArray = new String[plist.size()];
-		for(int i=0;i<plist.size();i++){
-			personUuidArray[i]=plist.get(i).getUserUuid();
-		}
-		
-		ChartUtil.showAssetChart(personUuidArray);
+		letPersonListInvest_multyThread(plist, beginTime, endTime);
 
 	}
+	
+	
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		/*
-		 * String beginTime="06/12/2007"; String endTime="09/15/2009"; int
-		 * trytimes=10; for(int i=0;i<trytimes;i++){ Person person1 = new
-		 * Person(new RandomPolicy(), new LastDayFinalPricePolicy(), new
-		 * CapitalSituation(new ArrayList<ShareHolding>(), new
-		 * BigDecimal(30000f))); Main.testPersonInvest(person1, "09/15/1999",
-		 * "09/15/2009"); }
-		 * 
-		 * 
-		 * Main.tellmeHowtoInvestOnSomeDay("09/11/2009",new FittingPolicy(), new
-		 * LastDayFinalPricePolicy(), new CapitalSituation(new
-		 * ArrayList<ShareHolding>(), new BigDecimal(30000f)));
-		 * Main.tellmeHowtoInvestOnSomeDay("09/12/2009",new FittingPolicy(), new
-		 * LastDayFinalPricePolicy(), new CapitalSituation(new
-		 * ArrayList<ShareHolding>(), new BigDecimal(30000f)));
-		 * Main.tellmeHowtoInvestOnSomeDay("09/13/2009",new FittingPolicy(), new
-		 * LastDayFinalPricePolicy(), new CapitalSituation(new
-		 * ArrayList<ShareHolding>(), new BigDecimal(30000f)));
-		 * Main.tellmeHowtoInvestOnSomeDay("09/14/2009",new FittingPolicy(), new
-		 * LastDayFinalPricePolicy(), new CapitalSituation(new
-		 * ArrayList<ShareHolding>(), new BigDecimal(30000f)));
-		 * Main.tellmeHowtoInvestOnSomeDay("09/15/2009",new FittingPolicy(), new
-		 * LastDayFinalPricePolicy(), new CapitalSituation(new
-		 * ArrayList<ShareHolding>(), new BigDecimal(30000f)));
-		 * Main.tellmeHowtoInvestOnSomeDay("09/16/2009",new FittingPolicy(), new
-		 * LastDayFinalPricePolicy(), new CapitalSituation(new
-		 * ArrayList<ShareHolding>(), new BigDecimal(30000f)));
-		 * 
-		 * //Person person1 = new Person(new FittingPolicy(), new
-		 * LastDayFinalPricePolicy(), new CapitalSituation(new
-		 * ArrayList<ShareHolding>(), new BigDecimal(30000f)));
-		 * //Main.testPersonInvest(person1, beginTime, endTime); Person person2
-		 * = new Person(new RandomPolicy(), new LastDayFinalPricePolicy(), new
-		 * CapitalSituation(new ArrayList<ShareHolding>(), new
-		 * BigDecimal(30000f))); Main.testPersonInvest(person2, beginTime,
-		 * endTime); Person person3 = new Person(new RandomPolicy(), new
-		 * LastDayFinalPricePolicy(), new CapitalSituation(new
-		 * ArrayList<ShareHolding>(), new BigDecimal(30000f)));
-		 * Main.testPersonInvest(person3, beginTime, endTime); Person person4 =
-		 * new Person(new RandomPolicy(), new LastDayFinalPricePolicy(), new
-		 * CapitalSituation(new ArrayList<ShareHolding>(), new
-		 * BigDecimal(30000f))); Main.testPersonInvest(person4, beginTime,
-		 * endTime); ChartUtil.showAssetChart(new
-		 * String[]{person2.getUserUuid(),
-		 * person3.getUserUuid(),person4.getUserUuid()});
-		 */
-
-		//testLastDayFinalPricePolicyWithRandomPolicy();
-		//testFittingePolicy();
 		testAavAnalysePolicy();
 
 	}
+}
+class ShowChartCallback extends CallBack{
+	int size;List<String> pUuidList;
+	public ShowChartCallback(int size,List<String> pUuidList){
+		this.size=size;this.pUuidList=pUuidList;
+	}
+	private synchronized void push(String uuid){
+		if(size>pUuidList.size()){
+			pUuidList.add(uuid);
+		}
+		if(pUuidList.size()==size){
+			String[] uuidArray=new String[size] ;
+			ChartUtil.showAssetChart(pUuidList.toArray(uuidArray));
+		}
+			
+	}
+
+	@Override
+	public void call(Object o) {
+		push((String) o);
+	}
+	
 }

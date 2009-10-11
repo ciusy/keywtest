@@ -25,15 +25,15 @@ public class TaskProcessor extends Thread{
 		}
 	}
 
-	public Task pollTask() {
-		return taskPool.poll();
+	public Task peekTask() {
+		return taskPool.peek();
 	}
 	
 	@Override
 	public void run() {
 		while (true) {
 			Task task = null;
-			task = pollTask();
+			task = peekTask();
 			if (task == null){
 				try {					
 					synchronized (lock) {
@@ -43,7 +43,8 @@ public class TaskProcessor extends Thread{
 					e.printStackTrace();
 				}
 			}else{
-				task.dotask();				
+				task.dotask();	
+				taskPool.remove();
 			}
 				
 		}
