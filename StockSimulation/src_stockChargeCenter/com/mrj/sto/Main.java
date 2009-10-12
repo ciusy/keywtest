@@ -118,6 +118,7 @@ public class Main {
 	public static float letPersonInvest(Person p, String fromMMDDYYYY, String toMMDDYYYY) {
 		new PersonDao().add(p);
 		BigDecimal atbeginning = p.getCs().getLeftMoney();
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy");
 		try {
 			p.beginInvest(sdf.parse(fromMMDDYYYY), sdf.parse(toMMDDYYYY));
 			float re = (p.getCs().getTotalAssets(sdf.parse(toMMDDYYYY)).floatValue() - atbeginning.floatValue()) / atbeginning.floatValue();
@@ -226,20 +227,13 @@ public class Main {
 
 	@SuppressWarnings("unused")
 	public static void testAavAnalysePolicy() {
-		String beginTime = "01/01/2007";
+		String beginTime = "12/08/1993";
 		String endTime = "09/30/2009";
 		float intrestRate = (float) 0.12;
 		float lostRate = (float) 0.07;
 		ArrayList<Person> plist = new ArrayList<Person>();
 		plist.add(new Person(new DayAavAnalysePolicy(60, 60,true,2,1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f))));
-		plist.add(new Person(new DayAavAnalysePolicy(60, 60,false,2,1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f))));
-		plist.add(new Person(new DayAavAnalysePolicy(60, 60,true,2,1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f))));
-		plist.add(new Person(new DayAavAnalysePolicy(60, 60,false,2,1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f))));
-		plist.add(new Person(new DayAavAnalysePolicy(60, 60,true,2,1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f))));
-		plist.add(new Person(new DayAavAnalysePolicy(60, 60,false,2,1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f))));
-		
-	
-		
+		plist.add(new Person(new DayAavAnalysePolicy(60, 60,false,3,3), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f))));
 		letPersonListInvest_multyThread(plist, beginTime, endTime);
 
 	}
