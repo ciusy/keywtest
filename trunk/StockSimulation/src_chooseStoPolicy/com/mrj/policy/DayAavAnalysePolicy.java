@@ -21,10 +21,11 @@ public class DayAavAnalysePolicy extends ChoosePolicy {
 	private int buyCondition = 1;// 买入方法
 	public static final int BUY_CONDITION_1 = 1;//
 	public static final int BUY_CONDITION_2 = 2;//
-
+	public static final int BUY_CONDITION_3 =3;
 	private int sellCondition = 1;// 卖出方法
 	public static final int SELL_CONDITION_1 = 1;//
 	public static final int SELL_CONDITION_2 = 2;//
+	public static final int SELL_CONDITION_3 = 3;//
 
 	public DayAavAnalysePolicy(int period) {
 		if (period != 5 && period != 10 && period != 20 && period != 30 && period != 60 && period != 180)
@@ -66,6 +67,8 @@ public class DayAavAnalysePolicy extends ChoosePolicy {
 			return canbuy_1(sto, nextChargeDay);
 		case BUY_CONDITION_2:
 			return canbuy_2(sto, nextChargeDay);
+		case BUY_CONDITION_3:
+			return canbuy_3(sto, nextChargeDay);
 
 		default:
 			return false;
@@ -128,6 +131,25 @@ public class DayAavAnalysePolicy extends ChoosePolicy {
 		}
 		return false;
 	}
+	
+	private boolean canbuy_3(Sto sto, Calendar nextChargeDay) {//5avg 突破10avg buy
+		//float lastDayPrice = getLastDayFinalPrice(sto, nextChargeDay);
+
+		float lastDayPrice_5AVGday = getLastDayPrice(sto, nextChargeDay, "getPrice_" + 5 + "day");
+		float lastDayPrice_10AVGday = getLastDayPrice(sto, nextChargeDay, "getPrice_" + 10 + "day");
+		
+		if(lastDayPrice_5AVGday<lastDayPrice_10AVGday)return false;
+		
+		Calendar c1 = Calendar.getInstance();
+		c1.setTime(nextChargeDay.getTime());
+		c1.add(Calendar.DAY_OF_YEAR, -1);
+		float lastDayPrice_5AVGday_1 = getLastDayPrice(sto, c1, "getPrice_" + 5 + "day");
+		float lastDayPrice_10AVGday_1 = getLastDayPrice(sto, c1, "getPrice_" + 10 + "day");
+		
+		if(lastDayPrice_5AVGday_1<lastDayPrice_10AVGday_1)return true;
+		
+		return false;
+	}
 
 	private boolean cansell(Sto sto, Calendar nextChargeDay) {
 		switch (sellCondition) {
@@ -135,10 +157,28 @@ public class DayAavAnalysePolicy extends ChoosePolicy {
 			return cansell_1(sto, nextChargeDay);
 		case SELL_CONDITION_2:
 			return cansell_2(sto, nextChargeDay);
-
+		case SELL_CONDITION_3:
+			return cansell_3(sto, nextChargeDay);
 		default:
 			return false;
 		}
+	}
+	
+	private boolean cansell_3(Sto sto, Calendar nextChargeDay) {
+		float lastDayPrice_5AVGday = getLastDayPrice(sto, nextChargeDay, "getPrice_" + 5 + "day");
+		float lastDayPrice_10AVGday = getLastDayPrice(sto, nextChargeDay, "getPrice_" + 10 + "day");
+		
+		if(lastDayPrice_5AVGday>lastDayPrice_10AVGday)return false;
+		
+		Calendar c1 = Calendar.getInstance();
+		c1.setTime(nextChargeDay.getTime());
+		c1.add(Calendar.DAY_OF_YEAR, -1);
+		float lastDayPrice_5AVGday_1 = getLastDayPrice(sto, c1, "getPrice_" + 5 + "day");
+		float lastDayPrice_10AVGday_1 = getLastDayPrice(sto, c1, "getPrice_" + 10 + "day");
+		
+		if(lastDayPrice_5AVGday_1>lastDayPrice_10AVGday_1)return true;
+		
+		return false;
 	}
 
 	private boolean cansell_2(Sto sto, Calendar nextChargeDay) {

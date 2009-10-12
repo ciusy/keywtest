@@ -19,6 +19,6 @@
   </head>
   
   <body>
-   <%Main.testFiveAavAnalysePolicy(); %>
+   <%Main.testAavAnalysePolicy(); %>
   </body>
 </html>
