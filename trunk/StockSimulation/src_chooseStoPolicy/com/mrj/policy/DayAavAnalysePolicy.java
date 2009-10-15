@@ -134,17 +134,21 @@ public class DayAavAnalysePolicy extends ChoosePolicy {
 	
 	private boolean canbuy_3(Sto sto, Calendar nextChargeDay) {//5avg 突破10avg buy
 		//float lastDayPrice = getLastDayFinalPrice(sto, nextChargeDay);
+		
+		String firstAvg=periodStr_buy;
+		String secondAvg=periodStr_sell;
+		
 
-		float lastDayPrice_5AVGday = getLastDayPrice(sto, nextChargeDay, "getPrice_" + 5 + "day");
-		float lastDayPrice_10AVGday = getLastDayPrice(sto, nextChargeDay, "getPrice_" + 10 + "day");
+		float lastDayPrice_5AVGday = getLastDayPrice(sto, nextChargeDay, periodStr_buy);
+		float lastDayPrice_10AVGday = getLastDayPrice(sto, nextChargeDay, periodStr_sell);
 		
 		if(lastDayPrice_5AVGday<lastDayPrice_10AVGday)return false;
 		
 		Calendar c1 = Calendar.getInstance();
 		c1.setTime(nextChargeDay.getTime());
 		c1.add(Calendar.DAY_OF_YEAR, -1);
-		float lastDayPrice_5AVGday_1 = getLastDayPrice(sto, c1, "getPrice_" + 5 + "day");
-		float lastDayPrice_10AVGday_1 = getLastDayPrice(sto, c1, "getPrice_" + 10 + "day");
+		float lastDayPrice_5AVGday_1 = getLastDayPrice(sto, c1, periodStr_buy);
+		float lastDayPrice_10AVGday_1 = getLastDayPrice(sto, c1, periodStr_sell);
 		
 		if(lastDayPrice_5AVGday_1<lastDayPrice_10AVGday_1)return true;
 		
@@ -165,16 +169,21 @@ public class DayAavAnalysePolicy extends ChoosePolicy {
 	}
 	
 	private boolean cansell_3(Sto sto, Calendar nextChargeDay) {
-		float lastDayPrice_5AVGday = getLastDayPrice(sto, nextChargeDay, "getPrice_" + 5 + "day");
-		float lastDayPrice_10AVGday = getLastDayPrice(sto, nextChargeDay, "getPrice_" + 10 + "day");
+		String firstAvg=periodStr_buy;
+		String secondAvg=periodStr_sell;
+		
+		
+		
+		float lastDayPrice_5AVGday = getLastDayPrice(sto, nextChargeDay, periodStr_buy);
+		float lastDayPrice_10AVGday = getLastDayPrice(sto, nextChargeDay, periodStr_sell);
 		
 		if(lastDayPrice_5AVGday>lastDayPrice_10AVGday)return false;
 		
 		Calendar c1 = Calendar.getInstance();
 		c1.setTime(nextChargeDay.getTime());
 		c1.add(Calendar.DAY_OF_YEAR, -1);
-		float lastDayPrice_5AVGday_1 = getLastDayPrice(sto, c1, "getPrice_" + 5 + "day");
-		float lastDayPrice_10AVGday_1 = getLastDayPrice(sto, c1, "getPrice_" + 10 + "day");
+		float lastDayPrice_5AVGday_1 = getLastDayPrice(sto, c1, periodStr_buy);
+		float lastDayPrice_10AVGday_1 = getLastDayPrice(sto, c1, periodStr_sell);
 		
 		if(lastDayPrice_5AVGday_1>lastDayPrice_10AVGday_1)return true;
 		

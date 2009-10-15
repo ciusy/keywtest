@@ -15,8 +15,19 @@ public class AssetDayData implements java.io.Serializable {
 	private String userUuid;
 	private Date dateTime;
 	private Double assetValue;
+	private String investResultUuid;//投资实验的批次号码
 
 	// Constructors
+
+	public String getInvestResultUuid() {
+		return investResultUuid;
+	}
+
+
+	public void setInvestResultUuid(String investResultUuid) {
+		this.investResultUuid = investResultUuid;
+	}
+
 
 	/** default constructor */
 	public AssetDayData() {

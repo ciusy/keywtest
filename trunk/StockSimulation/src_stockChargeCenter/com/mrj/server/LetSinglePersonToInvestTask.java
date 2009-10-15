@@ -1,8 +1,14 @@
 package com.mrj.server;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
+import com.mrj.dm.dao.InvestResultDAO;
+import com.mrj.dm.dao.PersonDao;
+import com.mrj.dm.domain.InvestResult;
 import com.mrj.operate.policy.DayAvgOperatePolicy;
 import com.mrj.operate.policy.LastDayFinalPricePolicy;
 import com.mrj.operate.policy.OperatePolicy;
@@ -12,9 +18,12 @@ import com.mrj.person.ShareHolding;
 import com.mrj.policy.ChoosePolicy;
 import com.mrj.policy.DayAavAnalysePolicy;
 import com.mrj.sto.Main;
+import com.mrj.util.UUIDGenerator;
 import com.mrj.util.chart.ChartUtil;
 
 public class LetSinglePersonToInvestTask extends Task{
+	Logger logger = Logger.getLogger(LetSinglePersonToInvestTask.class);
+	
 	String beginTime = "01/01/2007";
 	String endTime = "09/30/2009";
 	/*ChoosePolicy cp;
@@ -46,19 +55,40 @@ public class LetSinglePersonToInvestTask extends Task{
 
 	@Override
 	public void dotask() {
-		float rate = Main.letPersonInvest(person, beginTime, endTime);
-		sccb.call(person.getUserUuid());
-		/*person.setRate(rate);
-		String[] personUuidArray = new String[1];
-		personUuidArray[0] = person.getUserUuid();
-		
-		if(needChart){
-			ChartUtil.showAssetChart(personUuidArray);
-		}*/
-		
-		
+		float rate = letPersonInvest(person, beginTime, endTime);
+		sccb.call(person.getUserUuid());		
 	}
 
+	public  float letPersonInvest(Person p, String fromMMDDYYYY, String toMMDDYYYY) {
+		new PersonDao().add(p);
+		/*Person p_db=new PersonDao().getPersonByUserUuid(p.getUserId());
+		if(p_db==null){
+			new PersonDao().add(p);
+		}else{
+			p.setUserUuid(p_db.getUserUuid());
+		}*/
+		BigDecimal atbeginning = p.getCs().getLeftMoney();
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy");
+		String currentInvestResultUuid=UUIDGenerator.getUUID();
+		p.setCurrentInvestResultUuid(currentInvestResultUuid);
+		try {
+			p.beginInvest(sdf.parse(fromMMDDYYYY), sdf.parse(toMMDDYYYY));
+			BigDecimal atFinal=p.getCs().getTotalAssets(sdf.parse(toMMDDYYYY));
+			float re = (atFinal.floatValue() - atbeginning.floatValue()) / atbeginning.floatValue();
+			String reinfo = p.getUserUuid()+"-"+p.getUserId()+"-"+"赢利结果：赢利" + re + "倍";
+			logger.info(reinfo);
+			InvestResult ir=new InvestResult(p.getUserUuid(),p.getUserId(),sdf.parse(fromMMDDYYYY),sdf.parse(toMMDDYYYY),atbeginning.doubleValue(),atFinal.doubleValue(),re);
+			ir.setInvestResultUuid(currentInvestResultUuid);
+			new InvestResultDAO().save(ir);
+			return re;
+
+		} catch (Exception e) {
+			logger.error("", e);
+		}
+		return 1;
+	}
+	
+	
 	public boolean isNeedChart() {
 		return needChart;
 	}

@@ -32,9 +32,19 @@ public class Person {
     private CapitalSituation cs ;
     private String userId;
 
-	private Float rate;//赢利率
+    
+    private String currentInvestResultUuid;//当前投资的批次号
+	
 
-    public String getUserId() {
+    public String getCurrentInvestResultUuid() {
+		return currentInvestResultUuid;
+	}
+
+	public void setCurrentInvestResultUuid(String currentInvestResultUuid) {
+		this.currentInvestResultUuid = currentInvestResultUuid;
+	}
+
+	public String getUserId() {
 		return userId;
 	}
 
@@ -47,6 +57,15 @@ public class Person {
         this.setPolicy(policy);
         this.setOperatePolicy(operatePolicy);
         this.setCs(cs);
+    }
+	
+	public Person(){
+		
+	}
+	
+	public Person(String userId,ChoosePolicy policy, OperatePolicy operatePolicy,CapitalSituation cs) {
+       this(policy,operatePolicy,cs);
+       this.userId=userId;
     }
 
     public void beginInvest(Date beginDate, Date endDate) {
@@ -80,9 +99,9 @@ public class Person {
     private void insertCurrentDateAsset(Calendar nextChargeDay) {
     	AssetDayDataDao addao=new AssetDayDataDao(); 
     	AssetDayData asset=new AssetDayData(this.userUuid,nextChargeDay.getTime(),getCs().getTotalAssets(nextChargeDay.getTime()).doubleValue());
+    	asset.setInvestResultUuid(getCurrentInvestResultUuid());
     	if(getCs().getTotalAssets(nextChargeDay.getTime()).doubleValue()<0){
     		System.out.println("error");
-    		int i=1;
     	}
     	addao.add(asset);
 	}
@@ -129,13 +148,7 @@ public class Person {
 
     }
 
-    public Float getRate() {
-		return rate;
-	}
-
-	public void setRate(Float rate) {
-		this.rate = rate;
-	}
+    
     
     
     public static void main(String[] args) {

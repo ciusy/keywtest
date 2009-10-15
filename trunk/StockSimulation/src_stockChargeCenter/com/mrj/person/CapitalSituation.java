@@ -113,7 +113,7 @@ public class CapitalSituation {
 			cfDao.add(new CapitalFlow(getOwnerPerson().getUserUuid(), sto
 					.getName(), CapitalFlow.sto_buy, date, plan_price,
 					operateAmount, new BigDecimal(plan_price * operateAmount),
-					leftMoney, new BigDecimal(brokerage), sto.getCode()));
+					leftMoney, new BigDecimal(brokerage), sto.getCode(),getOwnerPerson().getCurrentInvestResultUuid()));
 			return ChargeCenter.charge_succuss;
 		} else {
 			logger.debug("余额不足以买入要求的股票");
@@ -170,7 +170,7 @@ public class CapitalSituation {
 			cfDao.add(new CapitalFlow(getOwnerPerson().getUserUuid(), sto
 					.getName(), CapitalFlow.sto_sell, date, plan_price,
 					operateAmount, new BigDecimal(plan_price * operateAmount),
-					leftMoney, new BigDecimal(brokerage), sto.getCode()));
+					leftMoney, new BigDecimal(brokerage), sto.getCode(),getOwnerPerson().getCurrentInvestResultUuid()));
 			return ChargeCenter.charge_succuss;
 		} else {
 			logger.error("要求卖出的股票不在当前已有股票中");

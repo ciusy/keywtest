@@ -29,6 +29,7 @@ import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 
 import com.mrj.dm.dao.AssetDayDataDao;
+import com.mrj.dm.dao.PersonDao;
 import com.mrj.dm.domain.AssetDayData;
 
 import demo.CandlestickChartDemo1;
@@ -41,7 +42,8 @@ public class ChartUtil {
 		double tempMax_vol=0;
 		List<AssetDayData> dataList=null;
 		for(String person_uuid:person_uuid_array){
-			TimeSeries daytime = new TimeSeries("assetChart for user " + person_uuid, org.jfree.data.time.Day.class);
+			String userId=new PersonDao().getPersonByUserUuid(person_uuid).getUserId();
+			TimeSeries daytime = new TimeSeries("assetChart for user " + "person_uuid-"+userId, org.jfree.data.time.Day.class);
 			dataList = new AssetDayDataDao().getAssetListByUserUuid(person_uuid);
 			AssetDayData temp = null;
 			

@@ -19,5 +19,6 @@
   <property generated="never" lazy="false" name="assetValue" type="java.lang.Double">
    <column name="ASSET_VALUE" not-null="true" precision="22" scale="0"/>
   </property>
+  <property column="INVEST_RESULT_UUID" name="investResultUuid" type="java.lang.String"/>
  </class>
 </hibernate-mapping>
