@@ -7,26 +7,18 @@
 <hibernate-configuration>
 	<session-factory>
 		<!-- Database connection settings -->
-		<property name="connection.driver_class">
-			com.mysql.jdbc.Driver
-		</property>
-		<property name="connection.url">
-			jdbc:mysql://127.0.0.1:3306/stock
-		</property>
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://127.0.0.1:3306/stock</property>
 		<property name="connection.username">root</property>
 		<property name="connection.password">617929</property>
 		<!-- JDBC connection pool (use the built-in) -->
 		<property name="connection.pool_size">1</property>
 		<!-- SQL dialect -->
-		<property name="dialect">
-			org.hibernate.dialect.MySQL5Dialect
-		</property>
+		<property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
 		<!-- Enable Hibernate's automatic session context management -->
 		<property name="current_session_context_class">thread</property>
 		<!-- Disable the second-level cache -->
-		<property name="cache.provider_class">
-			org.hibernate.cache.NoCacheProvider
-		</property>
+		<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
 		<!-- Echo all executed SQL to stdout -->
 		<property name="show_sql">false</property>
 		<!-- Drop and re-create the database schema on startup -->
@@ -34,5 +26,6 @@
 		<mapping resource="com/mrj/dm/domain/CapitalFlow.hbm.xml" />
 		<mapping resource="com/mrj/person/Person.hbm.xml" />
 		<mapping resource="com/mrj/dm/domain/AssetDayData.hbm.xml" />
+		<mapping resource="com/mrj/dm/domain/InvestResult.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

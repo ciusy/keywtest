@@ -30,6 +30,7 @@ import com.mrj.server.CallBack;
 import com.mrj.server.LetSinglePersonToInvestTask;
 import com.mrj.server.TaskDispatcher;
 import com.mrj.util.GlobalConstant;
+import com.mrj.util.UUIDGenerator;
 import com.mrj.util.chart.ChartUtil;
 
 import java.math.BigInteger;
@@ -136,7 +137,7 @@ public class Main {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		CapitalFlow capitalFlow = new CapitalFlow("1234", "中国铝业", CapitalFlow.sto_buy, new Date(), 16.83f, 300, new BigDecimal(5030.33f), new BigDecimal(5300.90f), new BigDecimal(
-				18.67f), "601600");
+				18.67f), "601600",UUIDGenerator.getUUID());
 		session.save(capitalFlow);
 		capitalFlow.setUserUuid("234");
 		session.save(capitalFlow);
@@ -227,13 +228,36 @@ public class Main {
 
 	@SuppressWarnings("unused")
 	public static void testAavAnalysePolicy() {
-		String beginTime = "12/08/1993";
-		String endTime = "09/30/2009";
+		String beginTime = "01/01/2003";//1320
+		
+		String endTime="10/12/2009";//2894
 		float intrestRate = (float) 0.12;
 		float lostRate = (float) 0.07;
+		float beginAsset=300000f;
 		ArrayList<Person> plist = new ArrayList<Person>();
-		plist.add(new Person(new DayAavAnalysePolicy(60, 60,true,2,1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f))));
-		plist.add(new Person(new DayAavAnalysePolicy(60, 60,false,3,3), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(30000f))));
+		plist.add(new Person("p1",new DayAavAnalysePolicy(180, 180,true,2,1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+		plist.add(new Person("p2",new DayAavAnalysePolicy(60, 60,true,2,1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+		plist.add(new Person("p3",new DayAavAnalysePolicy(30, 30,true,2,1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+		plist.add(new Person("p4",new DayAavAnalysePolicy(20, 20,true,2,1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+		plist.add(new Person("p5",new DayAavAnalysePolicy(10, 10,true,2,1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+		plist.add(new Person("p6",new DayAavAnalysePolicy(5, 5,true,2,1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+		
+		plist.add(new Person("p7",new DayAavAnalysePolicy(5, 180,false,3,3), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+		plist.add(new Person("p8",new DayAavAnalysePolicy(5, 60,false,3,3), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+		plist.add(new Person("p9",new DayAavAnalysePolicy(5, 30,false,3,3), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+		plist.add(new Person("p10",new DayAavAnalysePolicy(5, 20,false,3,3), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+		plist.add(new Person("p11",new DayAavAnalysePolicy(5, 10,false,3,3), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+		
+		
+		plist.add(new Person("p12",new DayAavAnalysePolicy(10, 180,false,3,3), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+		plist.add(new Person("p13",new DayAavAnalysePolicy(10, 60,false,3,3), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+		plist.add(new Person("p14",new DayAavAnalysePolicy(10, 30,false,3,3), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+		plist.add(new Person("p15",new DayAavAnalysePolicy(10, 20,false,3,3), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+		plist.add(new Person("p16",new DayAavAnalysePolicy(10, 5,false,3,3), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+		
+		
+		
+		
 		letPersonListInvest_multyThread(plist, beginTime, endTime);
 
 	}

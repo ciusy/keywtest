@@ -18,9 +18,18 @@ public class CapitalFlow {
     private BigDecimal leftFee;//资金余额
     private BigDecimal brokerage;//手续费+印花税
     private String stoCode;//证券代码
+    private String investResultUuid;//投资实验的批次号码
 
-    public CapitalFlow(String userUuid, String stoName, String operationType, Date actionTime, float chargePrice,int chargeAmount,
-            BigDecimal fee, BigDecimal leftFee, BigDecimal brokerage, String stoCode) {//fee==chargePrice*chargeAmount-brokerage
+    public String getInvestResultUuid() {
+		return investResultUuid;
+	}
+
+	public void setInvestResultUuid(String investResultUuid) {
+		this.investResultUuid = investResultUuid;
+	}
+
+	public CapitalFlow(String userUuid, String stoName, String operationType, Date actionTime, float chargePrice,int chargeAmount,
+            BigDecimal fee, BigDecimal leftFee, BigDecimal brokerage, String stoCode,String investResultUuid) {//fee==chargePrice*chargeAmount-brokerage
         this.userUuid = userUuid;
         this.stoName = stoName;
         this.operationType = operationType;
@@ -31,6 +40,7 @@ public class CapitalFlow {
         this.leftFee=leftFee;
         this.brokerage=brokerage;
         this.stoCode=stoCode;
+        this.investResultUuid=investResultUuid;
     }
 
     public BigDecimal getBrokerage() {

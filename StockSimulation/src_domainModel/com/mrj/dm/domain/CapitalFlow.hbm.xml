@@ -15,5 +15,7 @@
     <property column="LEFT_FEE" name="leftFee" precision="12"/>
     <property column="BROKERAGE" name="brokerage" precision="12"/>
     <property column="STO_CODE" name="stoCode" type="java.lang.String"/>
+    <property column="INVEST_RESULT_UUID" name="investResultUuid" type="java.lang.String"/>
+    
   </class>
 </hibernate-mapping>

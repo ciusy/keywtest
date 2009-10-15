@@ -15,7 +15,7 @@ public class TaskDispatcher implements Runnable {
 	
 	private List<TaskProcessor> taskProcessorList= new ArrayList<TaskProcessor>();
 	
-	private int processorNum=10;
+	private int processorNum=4;
 
 	private TaskDispatcher(){
 		for(int i=0;i<processorNum;i++){
