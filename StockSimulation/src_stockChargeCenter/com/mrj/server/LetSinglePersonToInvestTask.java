@@ -2,7 +2,7 @@ package com.mrj.server;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.*;
 
 import org.apache.log4j.Logger;
 
@@ -22,6 +22,8 @@ import com.mrj.util.UUIDGenerator;
 import com.mrj.util.chart.ChartUtil;
 
 public class LetSinglePersonToInvestTask extends Task{
+	public static Map<String,Float> personAverageRate=new HashMap<String,Float>();
+	
 	Logger logger = Logger.getLogger(LetSinglePersonToInvestTask.class);
 	
 	String beginTime = "01/01/2007";
@@ -61,12 +63,6 @@ public class LetSinglePersonToInvestTask extends Task{
 
 	public  float letPersonInvest(Person p, String fromMMDDYYYY, String toMMDDYYYY) {
 		new PersonDao().add(p);
-		/*Person p_db=new PersonDao().getPersonByUserUuid(p.getUserId());
-		if(p_db==null){
-			new PersonDao().add(p);
-		}else{
-			p.setUserUuid(p_db.getUserUuid());
-		}*/
 		BigDecimal atbeginning = p.getCs().getLeftMoney();
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy");
 		String currentInvestResultUuid=UUIDGenerator.getUUID();
@@ -76,6 +72,7 @@ public class LetSinglePersonToInvestTask extends Task{
 			BigDecimal atFinal=p.getCs().getTotalAssets(sdf.parse(toMMDDYYYY));
 			float re = (atFinal.floatValue() - atbeginning.floatValue()) / atbeginning.floatValue();
 			String reinfo = p.getUserUuid()+"-"+p.getUserId()+"-"+"赢利结果：赢利" + re + "倍";
+			addAverageHashMap(p.getUserId(),re);
 			logger.info(reinfo);
 			InvestResult ir=new InvestResult(p.getUserUuid(),p.getUserId(),sdf.parse(fromMMDDYYYY),sdf.parse(toMMDDYYYY),atbeginning.doubleValue(),atFinal.doubleValue(),re);
 			ir.setInvestResultUuid(currentInvestResultUuid);
@@ -89,6 +86,17 @@ public class LetSinglePersonToInvestTask extends Task{
 	}
 	
 	
+	private  synchronized void addAverageHashMap(String userId, float re) {
+		if(personAverageRate.get(userId)!=null){
+			float oldRate=personAverageRate.get(userId);
+			float newRate=oldRate+re;
+			personAverageRate.put(userId, newRate);
+		}else{
+			personAverageRate.put(userId, re);
+		}
+		
+	}
+
 	public boolean isNeedChart() {
 		return needChart;
 	}
