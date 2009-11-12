@@ -26,14 +26,14 @@ import com.mrj.util.UUIDGenerator;
 public class Person {
 
     static Logger logger = Logger.getLogger(Person.class);
-    private String userUuid;
-    private ChoosePolicy policy;
-    private OperatePolicy operatePolicy;   
-    private CapitalSituation cs ;
-    private String userId;
+    protected String userUuid;
+    protected ChoosePolicy policy;
+    protected OperatePolicy operatePolicy;   
+    protected CapitalSituation cs ;
+    protected String userId;
 
     
-    private String currentInvestResultUuid;//当前投资的批次号
+    protected String currentInvestResultUuid;//当前投资的批次号
 	
 
     public String getCurrentInvestResultUuid() {
@@ -96,7 +96,7 @@ public class Person {
         insertCurrentDateAsset(nextChargeDay);
     }
 
-    private void insertCurrentDateAsset(Calendar nextChargeDay) {
+    protected void insertCurrentDateAsset(Calendar nextChargeDay) {
     	AssetDayDataDao addao=new AssetDayDataDao(); 
     	AssetDayData asset=new AssetDayData(this.userUuid,nextChargeDay.getTime(),getCs().getTotalAssets(nextChargeDay.getTime()).doubleValue());
     	asset.setInvestResultUuid(getCurrentInvestResultUuid());
@@ -106,7 +106,7 @@ public class Person {
     	addao.add(asset);
 	}
 
-	private void availableAmountForSellProcess() {
+	protected void availableAmountForSellProcess() {
         cs.availableAmountForSellProcess();
     }
 

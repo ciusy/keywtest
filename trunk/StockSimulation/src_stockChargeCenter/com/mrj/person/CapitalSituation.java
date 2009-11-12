@@ -20,7 +20,16 @@ public class CapitalSituation {
 	BigDecimal leftMoney;
 	List<ShareHolding> holdingList = new ArrayList<ShareHolding>();
 	
-
+	public String toString(){
+		String re="";
+		re+="剩余资金："+this.leftMoney+"元\n";
+		re+="拥有股票：\n";
+		for(ShareHolding sh:holdingList){
+			re+=sh.getHodingAmount()+"股"+sh.getSto().getName()+sh.getSto().getCode()+",成本价："+sh.getCostPrice()+"元,可卖数量："+sh.getAvailableAmountForSell()+"股\n";
+		}
+		return re;
+	}
+	
 	public CapitalSituation(List<ShareHolding> holdingList, BigDecimal leftMoney) {
 		this.holdingList = holdingList;
 		this.leftMoney = leftMoney;
