@@ -45,3 +45,18 @@ CREATE TABLE `person` (
   PRIMARY KEY (`USER_UUID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- ----------------------------
+-- Table structure for invest_result
+-- ----------------------------
+DROP TABLE IF EXISTS `invest_result`;
+CREATE TABLE `invest_result` (
+  `invest_result_uuid` varchar(32) NOT NULL,
+  `user_uuid` varchar(32) NOT NULL,
+  `user_id` varchar(32) NOT NULL,
+  `fromdate` datetime NOT NULL,
+  `todate` datetime NOT NULL,
+  `beginAsset` double NOT NULL,
+  `endAsset` double NOT NULL,
+  `rate` float NOT NULL,
+  PRIMARY KEY (`invest_result_uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

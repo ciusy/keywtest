@@ -23,6 +23,7 @@ import com.mrj.operate.policy.DayAvgOperatePolicy;
 import com.mrj.operate.policy.LastDayFinalPricePolicy;
 import com.mrj.operate.policy.OperatePolicy;
 import com.mrj.person.CapitalSituation;
+import com.mrj.person.CapitalSituationFactory;
 import com.mrj.person.Person;
 import com.mrj.person.ShareHolding;
 import com.mrj.person.SuperPerson;
@@ -232,8 +233,8 @@ public class Main {
 	}
 	
 	
-	static String beginTime = "08/14/2009";//1320	
-	static String endTime="10/29/2009";//2894
+	static String beginTime = "10/12/2009";//1320	
+	static String endTime="11/12/2009";//2894
 	
 	@SuppressWarnings("unused")
 	public static void testAavAnalysePolicy1() {
@@ -273,7 +274,7 @@ public class Main {
 		float lostRate = (float) 0.07;
 		float beginAsset=300000f;
 		ArrayList<Person> plist = new ArrayList<Person>();
-		for(int j=0;j<10;j++){
+		for(int j=0;j<3;j++){
 			int i=1;
 			plist.add(new Person("p"+i++,new DayAavAnalysePolicy(180, 180,true,2,1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
 			plist.add(new Person("p"+i++,new DayAavAnalysePolicy(60, 60,true,2,1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
@@ -328,13 +329,15 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		/*testAavAnalysePolicy1();*/
-		float beginAsset=300000f;
+		//testAavAnalysePolicy();
+		/*float beginAsset=300000f;
 		tellmeHowtoInvestOnSomeDay("11/12/2009", new DayAavAnalysePolicy(60, 60,true,2,1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset)));
 		tellmeHowtoInvestOnSomeDay("11/12/2009", new DayAavAnalysePolicy(5, 10,false,3,3), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset)));
 		
 		tellmeHowtoInvestOnSomeDay("11/12/2009", new DayAavAnalysePolicy(10, 180,false,3,3), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset)));
-		
+		*/
+		String filePath = "C:\\Users\\ruojun\\Documents\\20091113 资金股份查询.txt";
+		tellmeHowtoInvestOnSomeDay("11/13/2009",new DayAavAnalysePolicy(10, 180,false,3,3), new LastDayFinalPricePolicy(0.12f,-0.10f),CapitalSituationFactory.getInstanceFromRealWorld(filePath));
 	}
 	
 	 
