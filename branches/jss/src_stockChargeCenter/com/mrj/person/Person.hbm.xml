@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.mrj.person">
+  <class name="Person" table="person">
+    <id column="USER_UUID" name="userUuid" type="java.lang.String">
+    </id>
+    <property column="USER_ID" name="userId" type="java.lang.String"/>
+
+     <property column="CHOOSE_POLICY_NAME" name="choosePolicyName" type="java.lang.String"/>
+
+      <property column="CHOOSE_POLICY_ARGS" name="choosePolicyArgs" type="java.lang.String"/>
+
+       <property column="OPERATE_POLICY_NAME" name="operatePolicyName" type="java.lang.String"/>
+
+        <property column="OPERATE_POLICY_ARGS" name="operatePolicyArgs" type="java.lang.String"/>
+
+  </class>
+</hibernate-mapping>
