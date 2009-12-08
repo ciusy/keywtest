@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="gb2312"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="service"
+		class="com.keyplot.gp.common.service.AbstractService" abstract="true">
+		<property name="sessionFactory" ref="sessionFactory" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="jdbcBatchSize" value="${jdbcBatchSize}" />
+	</bean>
+	<!--<bean id="dao" class="com.ruijie.spl.common.power.dao.DAOImpl"
+		abstract="true">
+		<property name="sessionFactory" ref="sessionFactory" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="jdbcBatchSize" value="${jdbcBatchSize}" />
+		<property name="dbType" value="dbType" />
+	</bean>-->
+
+  <bean id="userService" class="com.keyplot.gp.user.service.UserService" parent="service">
+  </bean>
+  
+</beans>

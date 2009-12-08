@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2009-2-8 14:48:29 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class catalog="ruojun" name="com.keyplot.gp.user.domain.User" table="user">
+    <id name="userEmail" type="string">
+      <column length="64" name="USER_EMAIL"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="password" type="string">
+      <column length="45" name="PASSWORD" not-null="true"/>
+    </property>
+    <property name="name" type="string">
+      <column length="45" name="NAME">
+        <comment>ture name</comment>
+      </column>
+    </property>
+    <property name="nickname" type="string">
+      <column length="45" name="NICKNAME" not-null="true">
+        <comment>showed on web pages</comment>
+      </column>
+    </property>
+    <property name="sex" type="int">
+      <column name="SEX" not-null="true">
+        <comment>0secret,1male,2female</comment>
+      </column>
+    </property>
+    <property name="birth" type="timestamp">
+      <column length="19" name="BIRTH"/>
+    </property>
+  </class>
+</hibernate-mapping>

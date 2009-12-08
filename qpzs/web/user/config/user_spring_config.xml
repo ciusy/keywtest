@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+  <bean id="onlineUserDAO" class="com.ruijie.spl.onlineuser.dao.OnlineUserDAOImpl" parent="dao" />
+  <bean id="onlineUserServiceTarget" class="com.ruijie.spl.onlineuser.service.OnlineUserServiceImpl" parent="service">
+    <property name="onlineUserDAO" ref="onlineUserDAO" />
+    <property name="onlineDetailService" ref="onlineDetailService" />
+    <property name="acctTempService" ref="acctTempService" />
+    <property name="roamingTempService" ref="roamingTempService"></property>
+    <property name="transactionManager" ref="TransactionManager" />
+    <property name="maxSnmpOperNum" value="${maxSnmpOperNum}" />
+  </bean>
+  <bean id="onlineUserService" parent="transactionProxy">
+    <property name="target" ref="onlineUserServiceTarget" />
+    <property name="transactionAttributes">
+      <props>
+        <prop key="dealUserLogin">PROPAGATION_REQUIRED,-Exception</prop>
+        <prop key="billAndLogout">PROPAGATION_REQUIRED,-Exception</prop>
+        <prop key="delete">PROPAGATION_REQUIRED,-Exception</prop>
+        <prop key="add">PROPAGATION_REQUIRED,-Exception</prop>
+        <prop key="deleteByUuidList">PROPAGATION_REQUIRED,-Exception</prop>
+      </props>
+    </property>
+  </bean>
+  
+</beans>
+

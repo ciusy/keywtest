@@ -1,0 +1,82 @@
+/* 
+Document   : home
+Created on : 2009-2-7, 16:49:37
+Author     : ruojun
+Description:
+Purpose of the stylesheet follows.
+*/
+
+/* 
+TODO customize this sample style
+Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+root { 
+    display: block;
+}
+*{
+    margin:0;
+    padding:0;
+}
+div,code,p,h1,h2,address,dt,dd,li{font: normal 12px/1.5em Tahoma,"Lucida Grande",Helvetica,Verdana,Lucida,Arial,"Arial Unicode",sans-serif,serif}
+iframe{
+    width:1000px;height:670px;
+}
+
+#top{    
+    margin:5px 5px 5px 5px;
+    border:#66DD8C 1px solid;
+    height:65px;
+}
+#logo{
+    width:300px;
+    float:left;
+}
+#welcome{
+
+ padding-top: 24px;
+ padding-bottom: 24px;
+}
+
+#center{
+    height:670px;
+    border:#66DD8C 0px solid;
+    margin:5px 5px 5px 5px;
+}
+#foot{
+    height:20px;
+    margin:5px 5px 5px 5px;
+}
+
+#nav{
+    width:260px;
+    height:100%;
+    float:left;
+    border:#66DD8C 1px solid;
+    margin:0 10px 0 0;
+}
+#content{
+    height:100%;
+    border: #66DD8C 1px solid;
+}
+
+#nav ul a{
+    display:block;
+    width:205px;
+    height:71px;
+    line-height:70px;
+    color:#FFFFFF;
+    background: #ffe45c  url(../img/button_bg4.gif) no-repeat top;
+    /*background:#000000;*/
+    font-weight: bolder;
+    font-variant: inherit;
+    font-size: 20px;
+    text-align: center;
+    font-family: 黑体;
+    margin: 10px auto;
+    text-decoration:none;
+}
+ul{
+    list-style-type:none;
+}
+
+

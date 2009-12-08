@@ -1,0 +1,372 @@
+HTML {
+	HEIGHT: 100%
+}
+BODY {
+	HEIGHT: 100%
+}
+BODY {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 12px; PADDING-BOTTOM: 0px; MARGIN: 0px; COLOR: #626262; PADDING-TOP: 0px; TEXT-ALIGN: center
+}
+DIV {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 12px; PADDING-BOTTOM: 0px; MARGIN: 0px; COLOR: #626262; PADDING-TOP: 0px; TEXT-ALIGN: center
+}
+P {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 12px; PADDING-BOTTOM: 0px; MARGIN: 0px; COLOR: #626262; PADDING-TOP: 0px; TEXT-ALIGN: center
+}
+UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 12px; PADDING-BOTTOM: 0px; MARGIN: 0px; COLOR: #626262; PADDING-TOP: 0px; TEXT-ALIGN: center
+}
+LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 12px; PADDING-BOTTOM: 0px; MARGIN: 0px; COLOR: #626262; PADDING-TOP: 0px; TEXT-ALIGN: center
+}
+UL {
+	LIST-STYLE-TYPE: none
+}
+LI {
+	LIST-STYLE-TYPE: none
+}
+IMG {
+	BORDER-TOP-WIDTH: 0px; DISPLAY: block; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px
+}
+B {
+	BORDER-TOP-WIDTH: 0px; DISPLAY: block; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px
+}
+A {
+	COLOR: #4d784d; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #f70; TEXT-DECORATION: underline
+}
+#News_Cc UL LI A:hover {
+	COLOR: #f70; TEXT-DECORATION: underline
+}
+#Top {
+	BACKGROUND: url(http://mimg.126.com/index/bg.png) repeat-x
+}
+#J_div {
+	BACKGROUND: url(http://mimg.126.com/index/bg.png) repeat-x
+}
+#News_Tt {
+	BACKGROUND: url(http://mimg.126.com/index/bg.png) repeat-x
+}
+#News_Cc {
+	BACKGROUND: url(http://mimg.126.com/index/bg.png) repeat-x
+}
+#Footer {
+	BACKGROUND: url(http://mimg.126.com/index/bg.png) repeat-x
+}
+#Top_catchword_pic {
+	BACKGROUND: url(http://mimg.126.com/index/bg_x.jpg) no-repeat
+}
+#Top_catchword_words {
+	BACKGROUND: url(http://mimg.126.com/index/bg_x.jpg) no-repeat
+}
+.inp_Z1 {
+	BACKGROUND: url(http://mimg.126.com/index/bg_x.jpg) no-repeat
+}
+.inp_Z2 {
+	BACKGROUND: url(http://mimg.126.com/index/bg_x.jpg) no-repeat
+}
+.inp_L1 {
+	BACKGROUND: url(http://mimg.126.com/index/bg_x.jpg) no-repeat
+}
+.inp_L2 {
+	BACKGROUND: url(http://mimg.126.com/index/bg_x.jpg) no-repeat
+}
+B {
+	BACKGROUND: url(http://mimg.126.com/index/bg_x.jpg) no-repeat
+}
+#News_TL {
+	BACKGROUND: url(http://mimg.126.com/index/bg_x.jpg) no-repeat
+}
+#News_Tr {
+	BACKGROUND: url(http://mimg.126.com/index/bg_x.jpg) no-repeat
+}
+#News_Cr {
+	BACKGROUND: url(http://mimg.126.com/index/bg_x.jpg) no-repeat
+}
+#News_Cc UL LI {
+	BACKGROUND: url(http://mimg.126.com/index/bg_x.jpg) no-repeat
+}
+.ML_But A {
+	BACKGROUND: url(http://mimg.126.com/index/bg_x.jpg) no-repeat
+}
+.MR_But INPUT {
+	CURSOR: hand
+}
+.ML_Recom B {
+	CURSOR: hand
+}
+.ML_But INPUT {
+	CURSOR: hand
+}
+#Top_catchword_pic {
+	CURSOR: hand
+}
+#Top_catchword_words {
+	CURSOR: hand
+}
+#J_intr A {
+	BACKGROUND: url(http://mimg.126.com/index/icon_j.gif) no-repeat
+}
+.ge {
+	CLEAR: both; FONT-SIZE: 0px; LINE-HEIGHT: 0px; HEIGHT: 1px
+}
+#Top_links A {
+	COLOR: #fff; TEXT-DECORATION: none
+}
+#Top_links A:hover {
+	COLOR: #ffdf55; TEXT-DECORATION: underline
+}
+#Top {
+	BACKGROUND-POSITION: 0px -5px; HEIGHT: 72px
+}
+#Top_catchword_pic {
+	BACKGROUND-POSITION: -76px -5px; DISPLAY: inline; FLOAT: left; MARGIN: 14px 10px auto 15px; WIDTH: 43px; HEIGHT: 43px
+}
+#Top_catchword_words {
+	BACKGROUND-POSITION: -123px -5px; MARGIN-TOP: 24px; FLOAT: left; WIDTH: 159px; HEIGHT: 19px
+}
+#Top_links {
+	FLOAT: right; MARGIN: 16px 15px; COLOR: #fff
+}
+#J_div {
+	BORDER-RIGHT: #b6d1c2 1px solid; BACKGROUND-POSITION: 0px -222px; BORDER-TOP: #b6d1c2 1px solid; Z-INDEX: 999; LEFT: 14px; BORDER-LEFT: #b6d1c2 1px solid; WIDTH: 250px; BORDER-BOTTOM: #b6d1c2 1px solid; POSITION: absolute; TOP: 62px; HEIGHT: 120px; BACKGROUND-COLOR: #fff
+}
+#J_title {
+	DISPLAY: inline; FONT-WEIGHT: bold; FLOAT: left; MARGIN-LEFT: 14px; WIDTH: 220px; COLOR: #4d784d; LINE-HEIGHT: 27px; BORDER-BOTTOM: #b6d1c2 1px solid; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; HEIGHT: 28px; TEXT-ALIGN: left
+}
+#J_title SPAN {
+	FONT-WEIGHT: normal; FONT-SIZE: 14px; MARGIN-RIGHT: 25px
+}
+#J_intr {
+	CLEAR: both; MARGIN-TOP: 10px; HEIGHT: 81px
+}
+#J_intr A {
+	DISPLAY: block; PADDING-LEFT: 37px; LINE-HEIGHT: 28px; HEIGHT: 27px; BACKGROUND-COLOR: #fff; TEXT-ALIGN: left
+}
+#J_intr .J_icon1 {
+	BACKGROUND-POSITION: 13px 5px
+}
+#J_intr .J_icon2 {
+	BACKGROUND-POSITION: 13px -18px
+}
+#J_intr .J_icon3 {
+	BACKGROUND-POSITION: 13px -42px
+}
+#MainDiv {
+	CLEAR: both; LEFT: 0px; MARGIN: 0px auto; WIDTH: 100%; POSITION: absolute; HEIGHT: 480px
+}
+#Assis_Middle {
+	MARGIN: -147px auto; WIDTH: 534px; POSITION: relative; TOP: 50%; HEIGHT: 294px
+}
+#Main_Left {
+	FLOAT: left; WIDTH: 155px
+}
+#Main_Left P {
+	WIDTH: 155px; TEXT-ALIGN: right
+}
+#Main_Line {
+	BORDER-RIGHT: #dadada 1px solid; FLOAT: left; WIDTH: 34px; MARGIN-RIGHT: 34px; HEIGHT: 298px
+}
+#Main_Right {
+	FLOAT: left
+}
+#Main_Right P {
+	CLEAR: both; WIDTH: 310px; TEXT-ALIGN: left
+}
+.ML_logo {
+	MARGIN-TOP: 53px; HEIGHT: 30px
+}
+.ML_logo IMG {
+	FLOAT: right
+}
+.ML_NO {
+	MARGIN-TOP: 21px; FONT-SIZE: 14px
+}
+.ML_But {
+	MARGIN-TOP: 16px
+}
+.ML_But A {
+	BORDER-TOP-WIDTH: 0px; BACKGROUND-POSITION: -4px -4px; DISPLAY: block; BORDER-LEFT-WIDTH: 0px; FLOAT: right; BORDER-BOTTOM-WIDTH: 0px; WIDTH: 67px; COLOR: #464646; LINE-HEIGHT: 23px; HEIGHT: 23px; TEXT-ALIGN: center; BORDER-RIGHT-WIDTH: 0px
+}
+.ML_But A:hover {
+	BACKGROUND-POSITION: -4px -30px; COLOR: #464646; TEXT-DECORATION: none
+}
+.inp_Z1 {
+	BORDER-TOP-WIDTH: 0px; BACKGROUND-POSITION: -4px -4px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; WIDTH: 67px; COLOR: #464646; LINE-HEIGHT: 23px; HEIGHT: 23px; BORDER-RIGHT-WIDTH: 0px
+}
+.inp_Z2 {
+	BORDER-TOP-WIDTH: 0px; BACKGROUND-POSITION: -4px -30px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; WIDTH: 67px; COLOR: #464646; LINE-HEIGHT: 23px; HEIGHT: 23px; BORDER-RIGHT-WIDTH: 0px
+}
+.ML_Kf {
+	
+}
+.ML_Tt {
+	MARGIN-TOP: 18px; FONT-WEIGHT: bold
+}
+UNKNOWN {
+	MARGIN-TOP: 16px! important
+}
+.ML_Recom {
+	MARGIN-TOP: 5px
+}
+.ML_Recom A {
+	FLOAT: right; LINE-HEIGHT: 17px
+}
+.ML_Recom B {
+	FLOAT: left; WIDTH: 16px; HEIGHT: 17px
+}
+.icon1 {
+	BACKGROUND-POSITION: -90px -57px
+}
+.icon2 {
+	BACKGROUND-POSITION: -111px -58px
+}
+.icon3 {
+	BACKGROUND-POSITION: -133px -58px
+}
+.icon4 {
+	BACKGROUND-POSITION: -212px -59px
+}
+.icon5 {
+	BACKGROUND-POSITION: -171px -59px
+}
+.icon6 {
+	BACKGROUND-POSITION: -191px -59px
+}
+.MR_ctitle {
+	MARGIN-TOP: 14px; FONT-WEIGHT: bold; COLOR: #4d784d
+}
+.MR_ccont {
+	MARGIN-TOP: 7px; COLOR: #4d784d; LETTER-SPACING: 1px
+}
+.MR_ccont A {
+	FONT-FAMILY: Verdana
+}
+.Ge_h {
+	HEIGHT: 13px
+}
+.Log_title {
+	DISPLAY: inline; TEXT-ALIGN: left
+}
+.MR_Ltitle {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; FLOAT: left; LINE-HEIGHT: 22px; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; HEIGHT: 22px
+}
+.error_div {
+	FLOAT: left; MARGIN-LEFT: 6px; COLOR: #ff7700; PADDING-TOP: 6px; HEIGHT: 20px; TEXT-ALIGN: left
+}
+.Ge_h2 {
+	HEIGHT: 10px
+}
+.MR_pinp {
+	CLEAR: both; MARGIN-TOP: 0px
+}
+.LH {
+	MARGIN-TOP: 8px
+}
+#Main_Right P SPAN {
+	MARGIN-TOP: 6px; DISPLAY: block; FLOAT: left
+}
+.MR_pinp INPUT {
+	BORDER-RIGHT: #a1bca3 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #a1bca3 1px solid; PADDING-LEFT: 2px; FONT-WEIGHT: bold; FONT-SIZE: 14px; FLOAT: left; PADDING-BOTTOM: 4px; MARGIN-LEFT: 10px; BORDER-LEFT: #a1bca3 1px solid; WIDTH: 160px; PADDING-TOP: 4px; BORDER-BOTTOM: #a1bca3 1px solid; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.MR_pinp A {
+	DISPLAY: block; FLOAT: left; MARGIN: 4px 0px 0px 9px
+}
+.MR_pinp SELECT {
+	FLOAT: left; MARGIN-LEFT: 10px; WIDTH: 166px; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-ALIGN: center
+}
+.m126 {
+	BACKGROUND-POSITION: -120px -25px; DISPLAY: block; FLOAT: left; MARGIN: 4px 0px 0px 6px; WIDTH: 87px; HEIGHT: 18px
+}
+.MR_check {
+	MARGIN-TOP: 16px; pavertical-align: middle
+}
+.LH2 {
+	MARGIN-TOP: 2px
+}
+.MR_But {
+	CLEAR: both; MARGIN-TOP: 18px
+}
+.inp_L1 {
+	BORDER-TOP-WIDTH: 0px; BACKGROUND-POSITION: -4px -55px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; WIDTH: 82px; COLOR: #464646; LINE-HEIGHT: 23px; HEIGHT: 23px; BORDER-RIGHT-WIDTH: 0px
+}
+.inp_L2 {
+	BORDER-TOP-WIDTH: 0px; BACKGROUND-POSITION: -4px -80px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; WIDTH: 82px; COLOR: #464646; LINE-HEIGHT: 23px; HEIGHT: 23px; BORDER-RIGHT-WIDTH: 0px
+}
+.MR_check SPAN {
+	COLOR: #fff
+}
+.MR_But SPAN {
+	COLOR: #fff
+}
+.wy {
+	DISPLAY: block; WIDTH: 34px
+}
+.MR_But INPUT {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px 0px 0px 9px; PADDING-TOP: 0px
+}
+.MR_check INPUT {
+	MARGIN: 0px 0px 0px 5px; HEIGHT: 14px
+}
+UNKNOWN {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px 0px 0px 9px; PADDING-TOP: 0px
+}
+#UN {
+	CLEAR: both; MARGIN-TOP: -39px; LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 100%; HEIGHT: 145px
+}
+#News {
+	MARGIN: 0px auto; WIDTH: 755px; LINE-HEIGHT: 25px; HEIGHT: 25px
+}
+#News DIV {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 25px; TEXT-ALIGN: center
+}
+#News_TL {
+	BACKGROUND-POSITION: -208px -27px; WIDTH: 5px
+}
+#News_Tt {
+	BACKGROUND-POSITION: 0px -82px; FONT-WEIGHT: bold; WIDTH: 81px
+}
+#News_Tr {
+	BACKGROUND-POSITION: -213px -27px; WIDTH: 7px
+}
+#News_Cc {
+	BACKGROUND-POSITION: 0px -109px; WIDTH: 655px
+}
+#News_Cr {
+	BACKGROUND-POSITION: -220px -27px; WIDTH: 4px
+}
+#News_Cc UL LI {
+	BACKGROUND-POSITION: -170px -80px; MARGIN-TOP: 1px; FLOAT: left; WIDTH: 203px; LINE-HEIGHT: 12px; HEIGHT: 23px; TEXT-ALIGN: left
+}
+#News_Cc UL LI A {
+	MARGIN-TOP: 7px; DISPLAY: block; MARGIN-LEFT: 20px; COLOR: #42833a
+}
+UNKNOWN {
+	MARGIN-TOP: 6px! important
+}
+#Footer {
+	BACKGROUND-POSITION: 0px -137px; MARGIN-TOP: 40px; COLOR: #8d8d8d; LINE-HEIGHT: 20px; PADDING-TOP: 22px; HEIGHT: 50px
+}
+#Footer A {
+	COLOR: #8d8d8d
+}
+#Footer A:hover {
+	COLOR: #f70
+}
+.fcopy {
+	LINE-HEIGHT: 22px; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.ML_2008 {
+	MARGIN-TOP: 10px; POSITION: relative; HEIGHT: 25px
+}
+.iframe_2008 {
+	RIGHT: -1px; WIDTH: 270px; POSITION: absolute; TOP: 2px; HEIGHT: 40px
+}
+A.sj_a {
+	FONT-WEIGHT: bold; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+DIV.img_new {
+	BACKGROUND: url(http://mimg.126.com/index/new.gif); LEFT: 496px; WIDTH: 24px; POSITION: absolute; TOP: 158px; HEIGHT: 20px
+}

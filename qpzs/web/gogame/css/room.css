@@ -1,0 +1,83 @@
+/* Basic Styling
+=======================*/
+
+body {
+    font: 76%/1.8 "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+    background-color: #fff;
+}
+
+
+
+/* mainNav
+=======================*/
+
+ul {
+    margin: 0;
+    padding: 0;
+    float: left;
+    background: #FAA819 url(../img/mainNavBg.gif) repeat-x;
+    list-style: none;
+    text-transform: uppercase;
+}
+
+ul li {
+    float: left;
+}
+
+
+ul a {
+    padding: 0 2em;
+    line-height: 2.1em;
+    background: url(../img/mainNavBorder.gif) repeat-y left top;
+    text-decoration: none;
+    color: #fff;
+    float: left;
+    display: block;
+}
+
+
+ul a:hover {
+    color: #333;
+}
+
+
+ul .first a {
+    background: none;
+}
+
+
+/*
+Desk
+*/
+.leftSide{
+    background:url(../img/blank_seat.gif) no-repeat center;    
+    width:31px;
+    height:72px;
+    float:left;
+}
+
+.middleDesk{
+    background:url(../img/desk.gif) no-repeat center;
+    width:54px;
+    height:72px;
+    float:left;
+}
+.rightSide{
+    background:url(../img/blank_seat.gif) no-repeat center;
+    width:31px;
+    height:72px;
+    float:left;
+
+}
+
+.join{
+    z-index:10;
+    background:aqua;
+    width:31px;
+    height:72px;
+
+}
+
+#hall{
+    background:url(../img/hall_bg.gif) repeat
+}

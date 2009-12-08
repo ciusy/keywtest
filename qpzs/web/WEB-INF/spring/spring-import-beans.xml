@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<import resource="spring-base-beans.xml"/>
+	<import resource="spring-common-beans.xml" />
+</beans>

@@ -1,0 +1,23 @@
+/* 
+    Document   : test
+    Created on : 2009-2-5, 21:06:22
+    Author     : ruojun
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+*{
+    margin:0;
+    padding:0;
+}
+#myBox{
+    margin:10px;
+    padding:5px;
+    width:70px;
+	pading
+}
+

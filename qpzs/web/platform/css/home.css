@@ -1,0 +1,58 @@
+/* 
+Document   : home
+Created on : 2009-4-5, 17:00:32
+Author     : ruojun
+Description:
+Purpose of the stylesheet follows.
+*/
+
+/* 
+TODO customize this sample style
+Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+#left_box{
+    position:absolute; top:71px; overflow:hidden;left:5px;
+    border:0px;border-style:solid;width:180px;
+}
+#content_box{
+    position:absolute; top:71px; overflow:auto;left:195px;width:auto;
+    height:700px;
+    width:100%;
+    border:1px;border-style:solid;
+}
+
+
+  #left_nav {
+    margin:0;
+    padding:0;
+    list-style-type:none;
+}
+#left_nav a{
+    display:block;
+    width:200px;
+    height:39px;
+    line-height:39px;
+    color:#000;
+    text-decoration:none;
+    background:#94B8E9 url(../img/pixy-rollover.gif) no-repeat left bottom;
+    text-indent:50px;
+}
+#left_nav  li.first a{
+    height:40px;
+    line-height:40px;
+}
+
+#left_nav a:hover, .selected a{
+    background-position: right bottom;
+    color:#fff;
+}
+#left_nav li{
+    display:inline;
+}
+
+
+
+
+
+
