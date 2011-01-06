@@ -43,6 +43,7 @@ public abstract class ChoosePolicy extends Policy{
 	
 	/**
 	 * 给出对一些股票的信息值List
+     *
 	 * 
 	 * @param nextChargeDay
 	 * @return
@@ -51,6 +52,8 @@ public abstract class ChoosePolicy extends Policy{
 
 	/**
 	 * 给出已有仓位中股票的信心值List
+     *
+     * 许多情况下，如果由ChoosePolicy 来决定卖什么的话，这个方法也相当于卖什么getSellList
 	 * 
 	 * @param nextChargeDay
 	 *            下一交易日

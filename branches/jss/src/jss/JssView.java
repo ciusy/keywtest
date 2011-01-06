@@ -26,6 +26,7 @@ import com.mrj.person.CapitalSituation;
 import com.mrj.person.Person;
 import com.mrj.person.ShareHolding;
 import com.mrj.policy.DayAavAnalysePolicy;
+import com.mrj.policy.GeneralFormularyPolicy;
 import com.mrj.server.LetSinglePersonToInvestTask;
 import com.mrj.server.TaskDispatcher;
 import com.mrj.util.StringUtil;
@@ -926,47 +927,23 @@ public class JssView extends FrameView {
         PersonDao pdao = new PersonDao();
 
         int i = 1;
-        plist.add(new Person("p" + i++, new DayAavAnalysePolicy(180, 180, true, 2, 1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+        /*plist.add(new Person("p" + i++, new DayAavAnalysePolicy(180, 180, true, 2, 1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
         plist.add(new Person("p" + i++, new DayAavAnalysePolicy(60, 60, true, 2, 1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
         plist.add(new Person("p" + i++, new DayAavAnalysePolicy(30, 30, true, 2, 1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-        plist.add(new Person("p" + i++, new DayAavAnalysePolicy(20, 20, true, 2, 1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-        plist.add(new Person("p" + i++, new DayAavAnalysePolicy(10, 10, true, 2, 1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-        plist.add(new Person("p" + i++, new DayAavAnalysePolicy(5, 5, true, 2, 1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+        */i=4;
+        plist.add(new Person("p" + i++, new GeneralFormularyPolicy("chargeDescription_size:1;avg:5,60,up;vol:5,10,5,放量;sell:up,20,down,20"), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+        plist.add(new Person("p" + i++, new GeneralFormularyPolicy("chargeDescription_size:3;avg:5,60,up;vol:5,10,5,放量;sell:up,20,down,20"), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+        plist.add(new Person("p" + i++, new GeneralFormularyPolicy("chargeDescription_size:5;avg:5,60,up;vol:5,10,5,放量;sell:up,20,down,20"), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
 
-        plist.add(new Person("p" + i++, new DayAavAnalysePolicy(5, 180, false, 3, 3), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-        plist.add(new Person("p" + i++, new DayAavAnalysePolicy(5, 60, false, 3, 3), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-        plist.add(new Person("p" + i++, new DayAavAnalysePolicy(5, 30, false, 3, 3), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-        plist.add(new Person("p" + i++, new DayAavAnalysePolicy(5, 20, false, 3, 3), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-        plist.add(new Person("p" + i++, new DayAavAnalysePolicy(5, 10, false, 3, 3), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-
-
-        plist.add(new Person("p" + i++, new DayAavAnalysePolicy(10, 180, false, 3, 3), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));//p12
-        plist.add(new Person("p" + i++, new DayAavAnalysePolicy(10, 60, false, 3, 3), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-        plist.add(new Person("p" + i++, new DayAavAnalysePolicy(10, 30, false, 3, 3), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-        plist.add(new Person("p" + i++, new DayAavAnalysePolicy(10, 20, false, 3, 3), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-        plist.add(new Person("p" + i++, new DayAavAnalysePolicy(10, 5, false, 3, 3), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+        plist.add(new Person("p" + i++, new GeneralFormularyPolicy("chargeDescription_size:1;avg:5,60,up;vol:5,10,5,放量;sell:up,25,down,10"), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+                plist.add(new Person("p" + i++, new GeneralFormularyPolicy("chargeDescription_size:3;avg:5,60,up;vol:5,10,5,放量;sell:up,15,down,10"), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+                plist.add(new Person("p" + i++, new GeneralFormularyPolicy("chargeDescription_size:5;avg:5,60,up;vol:5,10,5,放量;sell:up,10,down,10"), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
 
 
-        plist.add(new Person("p" + i++, new DayAavAnalysePolicy(180, 180, true, 2, 1), new LastDayFinalPricePolicy(0.12f, -0.10f), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-        plist.add(new Person("p" + i++, new DayAavAnalysePolicy(60, 60, true, 2, 1), new LastDayFinalPricePolicy(0.12f, -0.10f), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-        plist.add(new Person("p" + i++, new DayAavAnalysePolicy(30, 30, true, 2, 1), new LastDayFinalPricePolicy(0.12f, -0.10f), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-        plist.add(new Person("p" + i++, new DayAavAnalysePolicy(20, 20, true, 2, 1), new LastDayFinalPricePolicy(0.12f, -0.10f), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-        plist.add(new Person("p" + i++, new DayAavAnalysePolicy(10, 10, true, 2, 1), new LastDayFinalPricePolicy(0.12f, -0.10f), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-        plist.add(new Person("p" + i++, new DayAavAnalysePolicy(5, 5, true, 2, 1), new LastDayFinalPricePolicy(0.12f, -0.10f), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-
-        plist.add(new Person("p" + i++, new DayAavAnalysePolicy(5, 180, false, 3, 3), new LastDayFinalPricePolicy(0.12f, -0.10f), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-        plist.add(new Person("p" + i++, new DayAavAnalysePolicy(5, 60, false, 3, 3), new LastDayFinalPricePolicy(0.12f, -0.10f), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-        plist.add(new Person("p" + i++, new DayAavAnalysePolicy(5, 30, false, 3, 3), new LastDayFinalPricePolicy(0.12f, -0.10f), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-        plist.add(new Person("p" + i++, new DayAavAnalysePolicy(5, 20, false, 3, 3), new LastDayFinalPricePolicy(0.12f, -0.10f), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-        plist.add(new Person("p" + i++, new DayAavAnalysePolicy(5, 10, false, 3, 3), new LastDayFinalPricePolicy(0.12f, -0.10f), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-
-
-        plist.add(new Person("p" + i++, new DayAavAnalysePolicy(10, 180, false, 3, 3), new LastDayFinalPricePolicy(0.12f, -0.10f), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));//p28
-        plist.add(new Person("p" + i++, new DayAavAnalysePolicy(10, 60, false, 3, 3), new LastDayFinalPricePolicy(0.12f, -0.10f), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-        plist.add(new Person("p" + i++, new DayAavAnalysePolicy(10, 30, false, 3, 3), new LastDayFinalPricePolicy(0.12f, -0.10f), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-        plist.add(new Person("p" + i++, new DayAavAnalysePolicy(10, 20, false, 3, 3), new LastDayFinalPricePolicy(0.12f, -0.10f), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-        plist.add(new Person("p" + i++, new DayAavAnalysePolicy(10, 5, false, 3, 3), new LastDayFinalPricePolicy(0.12f, -0.10f), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-
+       /* plist.add(new Person("p" + i++, new GeneralFormularyPolicy("chargeDescription_size:5;avg:5,60,up,longTerm,60;vol:5,10,5,放量;sell:up,20,down,10"), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+        plist.add(new Person("p" + i++, new GeneralFormularyPolicy("chargeDescription_size:5;avg:5,60,up,longTerm,40;vol:5,10,5,放量;sell:up,15,down,5"), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+        plist.add(new Person("p" + i++, new GeneralFormularyPolicy("chargeDescription_size:5;avg:5,60,up,longTerm,30;vol:5,10,5,放量;sell:up,15,down,20"), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+*/
         for (Person p : plist) {
             pdao.addIfNotExist(p);
         }

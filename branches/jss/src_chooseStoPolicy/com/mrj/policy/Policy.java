@@ -228,7 +228,12 @@ public abstract class Policy implements initWithProperties{
 					Class clazz = dhq.getClass();
 					try {
 						Method m1 = clazz.getDeclaredMethod(getMethodName);
-						price = (Float) m1.invoke(dhq);
+						Object re = m1.invoke(dhq);
+                        if(re.getClass().equals(Long.class)){
+                            price =((Long) m1.invoke(dhq)).floatValue();
+                        }else{
+                            price =(Float) m1.invoke(dhq);
+                        }                        
 					} catch (Exception e) {
 						logger.error("", e);
 					}
