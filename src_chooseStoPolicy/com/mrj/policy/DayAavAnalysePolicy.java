@@ -13,7 +13,7 @@ import com.mrj.sto.Sto;
 
 public class DayAavAnalysePolicy extends ChoosePolicy {
 
-    private int chargeDescription_size = 10;// 默认为3个
+    private int chargeDescription_size = 10000;// 默认为3个
     private String periodStr_buy = "getPrice_" + 5 + "day";// 买入时的参考均线
     private String periodStr_sell = "getPrice_" + 5 + "day";// 卖出参考均线
     private boolean isReferenceSz = true;
