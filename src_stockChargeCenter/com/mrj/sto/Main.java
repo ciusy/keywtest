@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+import com.mrj.policy.*;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.hibernate.Session;
@@ -27,10 +28,6 @@ import com.mrj.person.CapitalSituationFactory;
 import com.mrj.person.Person;
 import com.mrj.person.ShareHolding;
 import com.mrj.person.SuperPerson;
-import com.mrj.policy.FittingPolicy;
-import com.mrj.policy.DayAavAnalysePolicy;
-import com.mrj.policy.ChoosePolicy;
-import com.mrj.policy.RandomPolicy;
 import com.mrj.policy.util.ChargeDescription;
 import com.mrj.server.CallBack;
 import com.mrj.server.LetSinglePersonToInvestTask;
@@ -51,7 +48,7 @@ public class Main {
 	static {
 
 		String installPath = GlobalConstant.ProjectPath;
-		installPath += "src_stockChargeCenter\\";
+		installPath += "src_stockChargeCenter/";
 		Properties props = new Properties();
 		FileInputStream fis;
 		try {
@@ -322,39 +319,52 @@ public class Main {
 		letPersonListInvest_multyThread(plist, beginTime, endTime);
 
 	}
-	
-	
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		//testAavAnalysePolicy();
+
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        //testAavAnalysePolicy();
+        /*float beginAsset=300000f;
+                  String today="11/27/2009";
+                  String filePath = "C:\\Users\\ruojun\\Documents\\20091127 资金股份查询.txt";
+                  tellmeHowtoInvestOnSomeDay(today, new DayAavAnalysePolicy(5, 10,false,3,3), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset)));
+
+          tellmeHowtoInvestOnSomeDay(today, new DayAavAnalysePolicy(10,20,false,3,3),new LastDayFinalPricePolicy(0.12f,-0.10f), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset)));
+                  tellmeHowtoInvestOnSomeDay(today, new DayAavAnalysePolicy(10,20,false,3,3),new LastDayFinalPricePolicy(0.12f,-0.10f), CapitalSituationFactory.getInstanceFromRealWorld(filePath));
+
+
+          tellmeHowtoInvestOnSomeDay(today, new DayAavAnalysePolicy(10, 180,false,3,3), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset)));
+                  tellmeHowtoInvestOnSomeDay(today, new DayAavAnalysePolicy(10, 180,false,3,3), new DayAvgOperatePolicy(), CapitalSituationFactory.getInstanceFromRealWorld(filePath));
+                  tellmeHowtoInvestOnSomeDay(today, new DayAavAnalysePolicy(10, 180,false,3,3), new LastDayFinalPricePolicy(0.12f,-0.10f), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset)));
+                  tellmeHowtoInvestOnSomeDay(today, new DayAavAnalysePolicy(10, 180,false,3,3), new LastDayFinalPricePolicy(0.12f,-0.10f), CapitalSituationFactory.getInstanceFromRealWorld(filePath));
+          */
+        /**
+         * p28	com.mrj.policy.DayAavAnalysePolicy:10,180,false,3,3,com.mrj.operate.policy.LastDayFinalPricePolicy:0.12,-0.1		0.25269076
+
+         String filePath = "C:\\Users\\ruojun\\Documents\\20091124 资金股份查询.txt";
+         tellmeHowtoInvestOnSomeDay("11/23/2009",new DayAavAnalysePolicy(10, 180,false,3,3), new LastDayFinalPricePolicy(0.12f,-0.10f),CapitalSituationFactory.getInstanceFromRealWorld(filePath));
+         */
+          SimpleDateFormat sdf =new SimpleDateFormat("MM/dd/yyyy");
+        String date = sdf.format(new Date());
+        //date = "12/07/2010";
+        if(args.length >= 1){
+            date = args[0];
+        }
+        System.out.println("Today is : " + date);
 		float beginAsset=300000f;
-                String today="11/27/2009";
-                String filePath = "C:\\Users\\ruojun\\Documents\\20091127 资金股份查询.txt";
-                tellmeHowtoInvestOnSomeDay(today, new DayAavAnalysePolicy(5, 10,false,3,3), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset)));
+        System.out.println("60 days average references: ");
+          tellmeHowtoInvestOnSomeDay(date, new DayAavAnalysePolicy(60, 60,false,2,1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset)));
+        System.out.println("GeneralFormularyPolicy: ");
 
-		tellmeHowtoInvestOnSomeDay(today, new DayAavAnalysePolicy(10,20,false,3,3),new LastDayFinalPricePolicy(0.12f,-0.10f), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset)));
-                tellmeHowtoInvestOnSomeDay(today, new DayAavAnalysePolicy(10,20,false,3,3),new LastDayFinalPricePolicy(0.12f,-0.10f), CapitalSituationFactory.getInstanceFromRealWorld(filePath));
-		
-		
-		tellmeHowtoInvestOnSomeDay(today, new DayAavAnalysePolicy(10, 180,false,3,3), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset)));
-                tellmeHowtoInvestOnSomeDay(today, new DayAavAnalysePolicy(10, 180,false,3,3), new DayAvgOperatePolicy(), CapitalSituationFactory.getInstanceFromRealWorld(filePath));
-                tellmeHowtoInvestOnSomeDay(today, new DayAavAnalysePolicy(10, 180,false,3,3), new LastDayFinalPricePolicy(0.12f,-0.10f), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset)));
-                tellmeHowtoInvestOnSomeDay(today, new DayAavAnalysePolicy(10, 180,false,3,3), new LastDayFinalPricePolicy(0.12f,-0.10f), CapitalSituationFactory.getInstanceFromRealWorld(filePath));
-		
-            /**
-             * p28	com.mrj.policy.DayAavAnalysePolicy:10,180,false,3,3,com.mrj.operate.policy.LastDayFinalPricePolicy:0.12,-0.1		0.25269076
-            
-		String filePath = "C:\\Users\\ruojun\\Documents\\20091124 资金股份查询.txt";
-		tellmeHowtoInvestOnSomeDay("11/23/2009",new DayAavAnalysePolicy(10, 180,false,3,3), new LastDayFinalPricePolicy(0.12f,-0.10f),CapitalSituationFactory.getInstanceFromRealWorld(filePath));
- */
-              }
-	
-	 
-	
-	
+        GeneralFormularyPolicy gfp = new GeneralFormularyPolicy("chargeDescription_size:1;avg:5,60,up;vol:5,10,5,放量;sell:up,20,down,20");
+        gfp.setChargeDescription_size(1000);
+        tellmeHowtoInvestOnSomeDay(date, gfp , new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset)));
+         
+    }
+
+
 }
 class ShowChartCallback extends CallBack{
 	static Logger logger = Logger.getLogger(ShowChartCallback.class);

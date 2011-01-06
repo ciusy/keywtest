@@ -215,7 +215,7 @@ public class DayAavAnalysePolicy extends ChoosePolicy {
         return false;
     }
 
-    private boolean cansell_2(Sto sto, Calendar nextChargeDay) {
+    private boolean cansell_2(Sto sto, Calendar nextChargeDay) { // todo --未完成
         float lastDayPrice = getLastDayFinalPrice(sto, nextChargeDay);
         float lastDayPrice_AVGday = getLastDayPrice(sto, nextChargeDay, periodStr_sell);
         if (lastDayPrice < lastDayPrice_AVGday) {

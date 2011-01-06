@@ -17,7 +17,8 @@ import com.mrj.policy.util.StoConfidenceValuePair;
 import com.mrj.sto.Sto;
 
 /**
- * n日均线操作模型 低于n日线卖，高于m日线买
+ * 1。根据信心值来分配资金的大小，买入多少
+ * 2. 卖出全部由ChoosePolicy选中的可卖股票
  * 
  * @author ruojun
  * 

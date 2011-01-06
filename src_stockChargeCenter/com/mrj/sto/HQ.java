@@ -56,14 +56,16 @@ public class HQ {
             chargeVolumnArray[i] = dhqMap.get(key[i]).getChargeVolume();//成交量
         }
 
-        float[] priceArray_5day = calculateIndicator(priceArray, 5);//计算5日均线
-        float[] priceArray_10day = calculateIndicator(priceArray, 10);//计算5日均线
-        float[] priceArray_20day = calculateIndicator(priceArray, 20);//计算5日均线
-        float[] priceArray_30day = calculateIndicator(priceArray, 30);//计算5日均线
-        float[] priceArray_60day = calculateIndicator(priceArray, 60);//计算5日均线
-        float[] priceArray_180day = calculateIndicator(priceArray, 180);//计算5日均线
+         float[] priceArray_5day = calculateIndicator(priceArray, 5);//计算5日均线
+        float[] priceArray_10day = calculateIndicator(priceArray, 10);//计算10日均线
+        float[] priceArray_20day = calculateIndicator(priceArray, 20);//计算20日均线
+        float[] priceArray_30day = calculateIndicator(priceArray, 30);//计算30日均线
+        float[] priceArray_60day = calculateIndicator(priceArray, 60);//计算60日均线
+        float[] priceArray_180day = calculateIndicator(priceArray, 180);//计算180日均线
 
-        long[] chargeVolumn_5day = calculateIndicator(chargeVolumnArray, 5);
+        long[] chargeVolumn_5day = calculateIndicator(chargeVolumnArray, 5);  //计算5日量均线
+        long[] chargeVolumn_10day = calculateIndicator(chargeVolumnArray, 10);  //计算10日量均线
+        long[] chargeVolumn_20day = calculateIndicator(chargeVolumnArray, 20);  //计算20日量均线
 
         for (int i = 0; i < dhqMap.size(); i++) {
             DHQ hdq = dhqMap.get((Date)key[i]);
@@ -74,6 +76,8 @@ public class HQ {
             hdq.setPrice_60day(priceArray_60day[i]);
             hdq.setPrice_180day(priceArray_180day[i]);
             hdq.setVolume_5day(chargeVolumn_5day[i]);
+            hdq.setVolume_10day(chargeVolumn_10day[i]);
+            hdq.setVolume_20day(chargeVolumn_20day[i]);
         }
 
     }
