@@ -202,6 +202,27 @@ public abstract class Policy implements initWithProperties{
 		return getLastDayPrice(sto, nextChargeDay, "getFinalPrice");
 	}
 
+    /**
+     * 返回上一个交易日的一个新的日历对象，
+     * @param nextChargeDay
+     * @return
+     */
+    public Calendar getLastChargeDay(Sto sto,Calendar nextChargeDay){
+		Calendar temp = Calendar.getInstance();
+		temp.setTime(nextChargeDay.getTime());
+		HQ hq = sto.getHq();
+		Calendar earliestDate = Calendar.getInstance();
+		earliestDate.setTime(hq.getEarliestDate());
+		while (true) {
+			temp.add(Calendar.DAY_OF_YEAR, -1);
+			boolean isBeforeearliestDate = false;
+			isBeforeearliestDate = temp.compareTo(earliestDate) < 0;
+			if (hq.getDailyHQ(temp.getTime()) != null || isBeforeearliestDate) {
+                return temp;
+			}
+		}
+    }
+
 	/**
 	 * 根据条件，获取nextChargeDay日之前的一天的某种价格。
 	 * 

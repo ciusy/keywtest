@@ -97,9 +97,9 @@ public class GeneralFormularyPolicy extends ChoosePolicy{
 		float lastDayPrice_firstAvgDay = getLastDayPrice(sto, nextChargeDay, "getPrice_" + firstAvg + "day");
 		float lastDayPrice_secondAvgDay = getLastDayPrice(sto, nextChargeDay, "getPrice_" + secondAvg + "day");
 
-		Calendar c1 = Calendar.getInstance();
-		c1.setTime(nextChargeDay.getTime());
-		c1.add(Calendar.DAY_OF_YEAR, -1);
+
+
+		Calendar c1 = getLastChargeDay(sto, nextChargeDay);
 		float lastDayPrice_firstAvgDay_1 = getLastDayPrice(sto, c1, "getPrice_" + firstAvg + "day");
 		float lastDayPrice_secondAvgDay_1 = getLastDayPrice(sto, c1, "getPrice_" + secondAvg + "day");
 
@@ -170,13 +170,13 @@ public class GeneralFormularyPolicy extends ChoosePolicy{
      * @return 如果能够选出，则返回true
      */
     private boolean canBuy(Sto sto, Calendar nextChargeDay) {
-         if(sto.getCode().indexOf("002389")>=0){
+         if(sto.getCode().indexOf("600497")>=0){
             System.out.println(sto.getCode());
         }
         if (!avgConditionJudgement(sto, nextChargeDay)) {
             return false;
         }
-        if (!volConditionJudgement(sto, nextChargeDay)) {
+        if (this.volCondition !=null && !volConditionJudgement(sto, nextChargeDay)) {
             return false;
         }
         return true;

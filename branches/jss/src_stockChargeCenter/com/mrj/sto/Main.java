@@ -348,7 +348,7 @@ public class Main {
          */
           SimpleDateFormat sdf =new SimpleDateFormat("MM/dd/yyyy");
         String date = sdf.format(new Date());
-        //date = "12/07/2010";
+        //date = "08/02/2010";
         if(args.length >= 1){
             date = args[0];
         }
@@ -358,8 +358,9 @@ public class Main {
           tellmeHowtoInvestOnSomeDay(date, new DayAavAnalysePolicy(60, 60,false,2,1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset)));
         System.out.println("GeneralFormularyPolicy: ");
 
-        GeneralFormularyPolicy gfp = new GeneralFormularyPolicy("chargeDescription_size:1;avg:5,60,up;vol:5,10,5,放量;sell:up,20,down,20");
-        gfp.setChargeDescription_size(1000);
+        GeneralFormularyPolicy gfp = new GeneralFormularyPolicy("chargeDescription_size:10000;avg:5,60,up;");
+        /*GeneralFormularyPolicy gfp = new GeneralFormularyPolicy("chargeDescription_size:1;avg:5,60,up;vol:5,10,5,放量;sell:up,20,down,20");
+        gfp.setChargeDescription_size(1000);*/
         tellmeHowtoInvestOnSomeDay(date, gfp , new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset)));
          
     }
