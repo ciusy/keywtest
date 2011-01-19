@@ -208,7 +208,7 @@ public class ChartUtil {
     public static void showAssetChart(String[] person_uuid_array) {
         ApplicationFrame demo = new ApplicationFrame("");
         JPanel chartPanel = new ChartPanel(getAssetChart(person_uuid_array));
-        chartPanel.setPreferredSize(new java.awt.Dimension(1000, 600));
+        //chartPanel.setPreferredSize(new java.awt.Dimension(1000, 600));
         demo.setContentPane(chartPanel);
         demo.pack();
         RefineryUtilities.centerFrameOnScreen(demo);
