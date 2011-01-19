@@ -2,6 +2,7 @@ package com.mrj.sto;
 
 import java.io.FileInputStream;
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -11,6 +12,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+import com.mrj.dm.dao.Dao;
 import com.mrj.policy.*;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -38,6 +40,7 @@ import com.mrj.util.chart.ChartUtil;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 public class Main {
 
@@ -230,8 +233,7 @@ public class Main {
 	}
 	
 	
-	static String beginTime = "10/12/2009";//1320	
-	static String endTime="11/12/2009";//2894
+
 	
 	@SuppressWarnings("unused")
 	public static void testAavAnalysePolicy1() {
@@ -259,11 +261,38 @@ public class Main {
 		letPersonListInvest_multyThread(plist, beginTime, endTime);
 
 	}
+
+
+    @SuppressWarnings("unused")
+    public static void testGeneralFormularyPolicy() {
+        Dao dao = new Dao();
+        try {
+            dao.clearData();
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        float beginAsset = 300000f;
+        ArrayList<Person> plist = new ArrayList<Person>();
+        for (int j = 0; j < 1; j++) {
+            int i = 1;
+            plist.add(new Person("p" + i++, new GeneralFormularyPolicy("chargeDescription_size:3;avg:5,60,up;vol:5,10,5,放量;sell:up,20,down,20"), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+
+            plist.add(new Person("p" + i++, new GeneralFormularyPolicy("chargeDescription_size:3;avg:5,60,up;vol:5,10,5,放量;pastDaysUnderLine:60,0.8,30;sell:up,20,down,20"), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+            plist.add(new Person("p" + i++, new GeneralFormularyPolicy("chargeDescription_size:3;avg:5,60,up;vol:5,10,5,放量;pastDaysUnderLine:60,0.8,30;sell:up,20,down,20"), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+            plist.add(new Person("p" + i++, new GeneralFormularyPolicy("chargeDescription_size:3;avg:5,60,up;vol:5,10,5,放量;pastDaysUnderLine:60,0.8,30;sell:up,20,down,20"), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+
+            plist.add(new Person("p" + i++, new GeneralFormularyPolicy("chargeDescription_size:3;avg:5,60,up;pastDaysUnderLine:60,0.8,30;sell:up,20,down,20"), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+
+
+        }
+
+        letPersonListInvest_multyThread(plist, beginTime, endTime);
+
+    }
 	
-	
-	
-	
-	
+	static String beginTime = "01/01/2005";//1320
+	static String endTime="12/12/2010";//2894
 	@SuppressWarnings("unused")
 	public static void testAavAnalysePolicy() {
 		
@@ -321,10 +350,6 @@ public class Main {
 	}
 
 
-    /**
-     * @param args
-     */
-    public static void main(String[] args) {
         //testAavAnalysePolicy();
         /*float beginAsset=300000f;
                   String today="11/27/2009";
@@ -346,23 +371,12 @@ public class Main {
          String filePath = "C:\\Users\\ruojun\\Documents\\20091124 资金股份查询.txt";
          tellmeHowtoInvestOnSomeDay("11/23/2009",new DayAavAnalysePolicy(10, 180,false,3,3), new LastDayFinalPricePolicy(0.12f,-0.10f),CapitalSituationFactory.getInstanceFromRealWorld(filePath));
          */
-          SimpleDateFormat sdf =new SimpleDateFormat("MM/dd/yyyy");
-        String date = sdf.format(new Date());
-        //date = "08/02/2010";
-        if(args.length >= 1){
-            date = args[0];
-        }
-        System.out.println("Today is : " + date);
-		float beginAsset=300000f;
-        System.out.println("60 days average references: ");
-          tellmeHowtoInvestOnSomeDay(date, new DayAavAnalysePolicy(60, 60,false,2,1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset)));
-        System.out.println("GeneralFormularyPolicy: ");
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
 
-        GeneralFormularyPolicy gfp = new GeneralFormularyPolicy("chargeDescription_size:10000;avg:5,60,up;");
-        /*GeneralFormularyPolicy gfp = new GeneralFormularyPolicy("chargeDescription_size:1;avg:5,60,up;vol:5,10,5,放量;sell:up,20,down,20");
-        gfp.setChargeDescription_size(1000);*/
-        tellmeHowtoInvestOnSomeDay(date, gfp , new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset)));
-         
+        testGeneralFormularyPolicy();
     }
 
 
@@ -382,16 +396,6 @@ class ShowChartCallback extends CallBack{
 			ChartUtil.showAssetChart(pUuidList.toArray(uuidArray));
 			
 			printlnPersonAverageRate();
-			
-		/*	SuperPerson sp=new SuperPerson(10,pUuidList);
-			SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy");
-			try {
-				sp.beginInvest(sdf.parse(Main.beginTime), sdf.parse(Main.beginTime));
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-			*/
-			//ChartUtil.showEarnAbilityInPeriodChart(pUuidList,7);
 		}
 			
 	}

@@ -927,23 +927,16 @@ public class JssView extends FrameView {
         PersonDao pdao = new PersonDao();
 
         int i = 1;
-        /*plist.add(new Person("p" + i++, new DayAavAnalysePolicy(180, 180, true, 2, 1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-        plist.add(new Person("p" + i++, new DayAavAnalysePolicy(60, 60, true, 2, 1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-        plist.add(new Person("p" + i++, new DayAavAnalysePolicy(30, 30, true, 2, 1), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-        */i=4;
-        plist.add(new Person("p" + i++, new GeneralFormularyPolicy("chargeDescription_size:1;avg:5,60,up;vol:5,10,5,放量;sell:up,20,down,20"), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+
         plist.add(new Person("p" + i++, new GeneralFormularyPolicy("chargeDescription_size:3;avg:5,60,up;vol:5,10,5,放量;sell:up,20,down,20"), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-        plist.add(new Person("p" + i++, new GeneralFormularyPolicy("chargeDescription_size:5;avg:5,60,up;vol:5,10,5,放量;sell:up,20,down,20"), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
 
-        plist.add(new Person("p" + i++, new GeneralFormularyPolicy("chargeDescription_size:1;avg:5,60,up;vol:5,10,5,放量;sell:up,25,down,10"), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-                plist.add(new Person("p" + i++, new GeneralFormularyPolicy("chargeDescription_size:3;avg:5,60,up;vol:5,10,5,放量;sell:up,15,down,10"), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-                plist.add(new Person("p" + i++, new GeneralFormularyPolicy("chargeDescription_size:5;avg:5,60,up;vol:5,10,5,放量;sell:up,10,down,10"), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+        plist.add(new Person("p" + i++, new GeneralFormularyPolicy("chargeDescription_size:3;avg:5,60,up;vol:5,10,5,放量;pastDaysUnderLine:60,0.8,30;sell:up,20,down,20"), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+        plist.add(new Person("p" + i++, new GeneralFormularyPolicy("chargeDescription_size:3;avg:5,60,up;vol:5,10,5,放量;pastDaysUnderLine:60,0.8,30;sell:up,20,down,20"), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+        plist.add(new Person("p" + i++, new GeneralFormularyPolicy("chargeDescription_size:3;avg:5,60,up;vol:5,10,5,放量;pastDaysUnderLine:60,0.8,30;sell:up,20,down,20"), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
 
+        plist.add(new Person("p" + i++, new GeneralFormularyPolicy("chargeDescription_size:3;avg:5,60,up;pastDaysUnderLine:60,0.8,30;sell:up,20,down,20"), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
+        
 
-       /* plist.add(new Person("p" + i++, new GeneralFormularyPolicy("chargeDescription_size:5;avg:5,60,up,longTerm,60;vol:5,10,5,放量;sell:up,20,down,10"), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-        plist.add(new Person("p" + i++, new GeneralFormularyPolicy("chargeDescription_size:5;avg:5,60,up,longTerm,40;vol:5,10,5,放量;sell:up,15,down,5"), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-        plist.add(new Person("p" + i++, new GeneralFormularyPolicy("chargeDescription_size:5;avg:5,60,up,longTerm,30;vol:5,10,5,放量;sell:up,15,down,20"), new DayAvgOperatePolicy(), new CapitalSituation(new ArrayList<ShareHolding>(), new BigDecimal(beginAsset))));
-*/
         for (Person p : plist) {
             pdao.addIfNotExist(p);
         }

@@ -5,6 +5,7 @@ import com.mrj.person.ShareHolding;
 import com.mrj.policy.util.StoConfidenceValuePair;
 import com.mrj.sto.OriginalDataUtil;
 import com.mrj.sto.Sto;
+import org.apache.log4j.Logger;
 
 import java.util.*;
 
@@ -20,6 +21,8 @@ import java.util.*;
  * To change this template use File | Settings | File Templates.
  */
 public class GeneralFormularyPolicy extends ChoosePolicy{
+
+    static Logger logger = Logger.getLogger(GeneralFormularyPolicy.class);
     private int chargeDescription_size = 3;// 选出的股票数量，默认为最多1000个。
     Condition avgCondition = null;
 
@@ -30,13 +33,15 @@ public class GeneralFormularyPolicy extends ChoosePolicy{
     Condition volCondition = null;
 
     Condition sellCondition = null;
+
+    Condition pastDaysUnderLineCondition = null; //过去的若干天，股价都低于或者大部分都低于某一均线
     
     private String formulary;
     /**
      * 构造函数
      * @param formulary   公式说明
      * 公式格式 ： n日线上穿m日线;阶段?量    . 例如："选股数量上限为3个;5日线上穿60日线;阶段放量;盈利20%或者亏损20%卖出"的公式为
-     * "chargeDescription_size:3;avg:5,60,up;vol:5,10,5,放量;sell:up,20,down,20"
+     * "chargeDescription_size:3;avg:5,60,up;vol:5,10,5,放量;sell:up,20,down,20;pastDaysUnderLine:60,0.9,20"
      */
     public GeneralFormularyPolicy(String formulary){
         this.formulary = formulary;
@@ -58,6 +63,8 @@ public class GeneralFormularyPolicy extends ChoosePolicy{
                     this.volCondition = new Condition("vol",param_array);
                 }else if(key.equalsIgnoreCase("sell")){
                     this.sellCondition = new Condition("sell",param_array);
+                }else if(key.equalsIgnoreCase("pastDaysUnderLine")){
+                    this.pastDaysUnderLineCondition = new Condition("pastDaysUnderLine", param_array);
                 }
             }
         }
@@ -71,6 +78,39 @@ public class GeneralFormularyPolicy extends ChoosePolicy{
     public GeneralFormularyPolicy(){
         avgCondition = new Condition("avg",new String[]{"5","60","up"});   // 5日线 上穿 60日线
         volCondition = new Condition("vol",new String[]{"5","10","5","放量"});   // 最近2日的均量大于最近10日均量的130%    ---  阶段放量
+    }
+
+    /**
+     * 如果 过去若干天的股价到低于某一均线， 则返回true
+     * pastDaysUnderLine:60,0.9,20    ----   过去20个交易日里，有90%的交易日的收盘价低于当日的60日均线
+     * @param sto
+     * @param nextChargeDay
+     * @return
+     */
+    private boolean pastDaysUnderLineConditionJudgement(Sto sto, Calendar nextChargeDay){
+        String firstAvg = pastDaysUnderLineCondition.paramValues[0];
+        String secondAvg = pastDaysUnderLineCondition.paramValues[1];
+        String thirdAvg = pastDaysUnderLineCondition.paramValues[2];
+
+
+        int longTerm = Integer.valueOf(thirdAvg);
+        Calendar c2 = Calendar.getInstance();
+        c2.setTime(nextChargeDay.getTime());
+        int acceptNumOfDays = 0;
+        while (longTerm > 0) { //假设 longTerm == 60， 则判断过去的60个交易日内，是否运行在某均线的下法或者上方
+            longTerm--;
+            float lastDayPrice_final_temp = getLastDayFinalPrice(sto, c2);
+            float lastDayPrice_AvgDay_temp = getLastDayPrice(sto, c2, "getPrice_" + firstAvg + "day");
+            c2 = getLastChargeDay(sto, c2);
+            if (lastDayPrice_final_temp < lastDayPrice_AvgDay_temp) {
+                acceptNumOfDays++;
+            }
+        }
+        if(acceptNumOfDays/Float.valueOf(thirdAvg)<Float.valueOf(secondAvg)){
+            return false;    
+        }
+
+        return true;
     }
 
 
@@ -108,28 +148,6 @@ public class GeneralFormularyPolicy extends ChoosePolicy{
         }else{ //下穿
             if(!(lastDayPrice_firstAvgDay_1>lastDayPrice_secondAvgDay_1&&lastDayPrice_firstAvgDay<lastDayPrice_secondAvgDay) )return false;
         }
-
-        //长期条件判断
-        if (avgCondition.paramValues.length > 3) {
-            int longTerm = Integer.valueOf(avgCondition.paramValues[4]);
-            Calendar c2 = Calendar.getInstance();
-            c2.setTime(nextChargeDay.getTime());
-            while(longTerm>0){ //假设 longTerm == 60， 则判断过去的60个交易日内，是否运行在某均线的下法或者上方
-                longTerm--;
-                c2.add(Calendar.DAY_OF_YEAR, -1);
-                float lastDayPrice_firstAvgDay_temp = getLastDayPrice(sto, c2, "getPrice_" + firstAvg + "day");
-                float lastDayPrice_secondAvgDay_temp = getLastDayPrice(sto, c2, "getPrice_" + secondAvg + "day");
-
-                if (upOrDown.equalsIgnoreCase("up")) { //上穿
-                    if (!(lastDayPrice_firstAvgDay_temp < lastDayPrice_secondAvgDay_temp))
-                        return false;
-                } else { //下穿
-                    if (!(lastDayPrice_firstAvgDay_temp > lastDayPrice_secondAvgDay_1))
-                        return false;
-                }
-            }
-        }
-
 
         return true;
     }
@@ -170,13 +188,17 @@ public class GeneralFormularyPolicy extends ChoosePolicy{
      * @return 如果能够选出，则返回true
      */
     private boolean canBuy(Sto sto, Calendar nextChargeDay) {
-         if(sto.getCode().indexOf("600497")>=0){
-            System.out.println(sto.getCode());
+         if(sto.getCode().indexOf("002122")>=0){
+            logger.debug(sto.getCode());
         }
         if (!avgConditionJudgement(sto, nextChargeDay)) {
             return false;
         }
         if (this.volCondition !=null && !volConditionJudgement(sto, nextChargeDay)) {
+            return false;
+        }
+
+        if (this.pastDaysUnderLineCondition !=null && !pastDaysUnderLineConditionJudgement(sto, nextChargeDay)) {
             return false;
         }
         return true;
@@ -199,7 +221,7 @@ public class GeneralFormularyPolicy extends ChoosePolicy{
 			try {
 				if (canBuy(sto, nextChargeDay))
 					//re.add(new StoConfidenceValuePair(sto, (float) (0.8f + 0.2 * Math.random())));
-                re.add(new StoConfidenceValuePair(sto, (float) (1f))); //这里的信心值暂时没有用到 
+                re.add(new StoConfidenceValuePair(sto, (float) (0.5f + 0.5 * Math.random()))); //这里的信心值暂时没有用到 
 
 			} catch (Exception e) {
 				logger.error("", e);
