@@ -1,0 +1,56 @@
+*{
+    padding:0;
+    margin:0;
+}
+.clear{
+    clear:both;
+}
+#left_nav{
+    border: 1px #dcdcdc solid;
+    float: left;
+    width: 10%;
+    text-align:center;
+}
+
+#left_nav .selected{
+    background-color: #6495ed;
+}
+
+#center{
+    float:right;
+    margin: 2px;
+    width: 88%;
+}
+#main_panel{
+    border: 1px #a52a2a solid;
+}
+
+#personList{
+    float:right;
+    width:40%;
+    border: 1px #ff8c00 solid;
+    height:700px;
+}
+
+#main_main{
+    float:left;
+    width:59%;
+    border: 1px #daa520 solid;
+    height:700px;
+}
+
+#main_main .control{
+  border: 1px #a52a2a solid;
+   height:20px;
+}
+
+
+#main_main .result{
+  border: 1px #a52a2a solid;
+   min-height:300px;
+}
+
+#main_main .chart{
+  border: 1px #a52a2a solid;
+   min-height:300px;
+}
